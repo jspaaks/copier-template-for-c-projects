@@ -1,6 +1,6 @@
 WIP to deal with the nightmare that is building a C project.
 
-```
+```shell
 # change into the build directory
 cd build
 
