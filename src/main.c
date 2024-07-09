@@ -19,7 +19,7 @@ int main (void) {
     fprintf(stdout, "\n");
 
 
-    fprintf(stdout, "-- test wether math library was linked\n");
+    fprintf(stdout, "-- test whether math library was linked\n");
     fprintf(stdout, "   sqrt(144) = %f\n", sqrt(144));
     fprintf(stdout, "\n");
 

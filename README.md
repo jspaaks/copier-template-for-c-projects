@@ -23,7 +23,7 @@ Should output something like:
 -- test compile definitions
    DEBUG compile definition has been defined.
 
--- test wether header library was included
+-- test whether header library was included
    a = 1
 
 -- test wether math library was linked
