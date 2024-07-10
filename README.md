@@ -15,7 +15,8 @@ Then run cookiecutter with this repo's URL as argument:
 cookiecutter https://github.com/jspaaks/cookiecutter-codeblocks-cmake-c
 ```
 
-Choosing default options generates a layout like this:
+Cookiecutter will then ask you a few questions. Choosing default options generates a layout like this with some
+example files to get you started:
 
 ```txt
 .
