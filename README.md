@@ -1,37 +1,37 @@
-WIP to deal with the nightmare that is building a C project.
+# Cookiecutter template for Code::Blocks project
+
+Cookiecutter template for generating a somewhat generic project that can be built
+with CMake and has the right configuration to be used in Code::Blocks editor.
+
+To use, first install [cookiecutter from PyPI](https://pypi.org/project/cookiecutter/)
 
 ```shell
-# change into the build directory
-cd build/cmake
-
-# generate the build files
-cmake ../..
-
-# build the project
-make
-
-# install the project to <repo>/build/dist
-make install
-
-# run the program to see if it works
-./dist/bin/program
+pipx install cookiecutter
 ```
 
-Should output something like:
+Then run cookiecutter with this repo's URL as argument:
 
-```text
--- test compile definitions
-   DEBUG compile definition has been defined.
+```shell
+cookiecutter https://github.com/jspaaks/cookiecutter-codeblocks-cmake-c
+```
 
--- test whether header library was included
-   a = 1
+Choosing default options generates a layout like this:
 
--- test wether math library was linked
-   sqrt(144) = 12.000000
-
--- test c2x / c23 features
-   0 1 2 3 4
-
--- test external library
-   add(2, 3) = 5
+```txt
+.
+└── template
+    ├── .clang-format
+    ├── CMakeLists.txt
+    ├── .codeblocks
+    │   └── project.cbp
+    ├── external
+    │   └── adding
+    │       ├── CMakeLists.txt
+    │       ├── include
+    │       │   └── adding.h
+    │       └── src
+    │           └── adding.c
+    ├── .gitignore
+    └── src
+        └── main.c
 ```
