@@ -32,6 +32,7 @@ Choosing default options generates a layout like this:
     │       └── src
     │           └── adding.c
     ├── .gitignore
+    ├── README.md
     └── src
         └── main.c
 ```
