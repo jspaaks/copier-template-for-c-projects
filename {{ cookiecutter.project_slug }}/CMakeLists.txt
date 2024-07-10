@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 3.21...3.28)
 project(project LANGUAGES C)
 
-list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
+{% if cookiecutter._keep_external_directory %}
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/adding)
+{% endif %}
 
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/external/adding)
+list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
 
 add_executable(program)
 
@@ -31,13 +33,17 @@ target_include_directories(
     program
     PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/include/lib1
-        ${CMAKE_CURRENT_LIST_DIR}/external/adding/include
+{% if cookiecutter._keep_external_directory %}
+        ${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/adding/include
+{% endif %}
 )
 target_link_libraries(
     program
     PRIVATE
         m
+{% if cookiecutter._keep_external_directory %}
         adding
+{% endif %}
 )
 #target_link_directories(
 #    program

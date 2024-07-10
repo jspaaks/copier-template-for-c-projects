@@ -2,10 +2,10 @@ WIP to deal with the nightmare that is building a C project.
 
 ```shell
 # change into the build directory
-cd build
+cd build/cmake
 
 # generate the build files
-cmake ..
+cmake ../..
 
 # build the project
 make
