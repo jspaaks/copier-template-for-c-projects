@@ -15,6 +15,8 @@
     "external",
     "third_party",
     "lib",
+    "submodules"
+    "subprojects",
     "My project doesn't have external dependencies"
   ],
   "_keep_external_directory": "{{ cookiecutter.external_directory == \"My project doesn't have external dependencies\" }}",
