@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 3.21...3.28)
 project(project LANGUAGES C)
-add_library(adding SHARED)
+add_library(addition SHARED)
 target_include_directories(
-    adding
+    addition
     PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/include/
 )
 target_sources(
-    adding
+    addition
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/src/adding.c
+        ${CMAKE_CURRENT_LIST_DIR}/src/addition.c
 )
-install(TARGETS adding)
+install(TARGETS addition)

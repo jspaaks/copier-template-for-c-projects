@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <math.h>
-#include "header1.h"
-#include "adding.h"
+#include "ops.h"
+#include "addition.h"
+#include "subtraction.h"
 
 int main (void) {
     fprintf(stdout, "-- test compile definitions\n");
@@ -35,6 +36,7 @@ int main (void) {
 
     fprintf(stdout, "-- test external library\n");
     fprintf(stdout, "   add(2, 3) = %d\n", add(2, 3));
+    fprintf(stdout, "   subtract(2, 3) = %d\n", subtract(2, 3));
     fprintf(stdout, "\n");
 
     return 0;

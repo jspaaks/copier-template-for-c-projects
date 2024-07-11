@@ -34,21 +34,33 @@
 			<Add option="-Wextra" />
 			<Add option="-Wall" />
 			<Add option="-std=c2x" />
-{%- if cookiecutter._keep_external_directory -%}
-			<Add directory="../{{ cookiecutter.external_directory }}/adding/include" />
-{%- endif -%}
-			<Add directory="../include/lib1" />
+{%- if cookiecutter.external_directory != "My project doesn't have external dependencies" %}
+			<Add directory="../{{ cookiecutter.external_directory }}/addition/include" />
+			<Add directory="../{{ cookiecutter.external_directory }}/subtraction/include" />
+{%- endif %}
 		</Compiler>
-{%- if cookiecutter._keep_external_directory -%}
-		<Unit filename="../{{ cookiecutter.external_directory }}/adding/include/adding.h" />
-		<Unit filename="../{{ cookiecutter.external_directory }}/adding/src/adding.c">
-{%- endif -%}
+{%- if cookiecutter.external_directory != "My project doesn't have external dependencies" %}
+		<Unit filename="../{{ cookiecutter.external_directory }}/addition/include/addition.h" />
+		<Unit filename="../{{ cookiecutter.external_directory }}/addition/src/addition.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../include/lib1/header1.h" />
+		<Unit filename="../{{ cookiecutter.external_directory }}/subtraction/include/subtraction.h" />
+		<Unit filename="../{{ cookiecutter.external_directory }}/subtraction/src/subtraction.c">
+			<Option compilerVar="CC" />
+		</Unit>
+{%- endif %}
+		<Unit filename="../src/division.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/division.h" />
 		<Unit filename="../src/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../src/multiplication.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/multiplication.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
+

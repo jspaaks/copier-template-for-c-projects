@@ -1,11 +1,18 @@
 {
   "__prompts__" : {
-    "project_slug": "What is the name of the new project?\n        Use [A-Za-z0-9_-.]+",
     "build_directory": "What should the build directory be called?",
+    "builds_executable": "Does the new project build an executable?",
+    "produces": "What artifact(s) does the new project produce?",
     "external_directory": "What should the directory that contains external dependencies be called?",
-    "keep_include_directory": "Does the project expose public headers?"
+    "keep_assets": "Does the project use assets like images, sound, fonts, etc?",
+    "project_slug": "What is the name of the new project?\n        Use [A-Za-z0-9_-.]+"
   },
-  "project_slug": "template",
+  "produces": [
+    "an executable",
+    "a library",
+    "both"
+  ],
+  "project_slug": "{% if cookiecutter.produces in ['an executable', 'both'] -%}calculator{%- else -%}libcalculator{% endif %}",
   "build_directory": [
     "build",
     "built",
@@ -15,10 +22,9 @@
     "external",
     "third_party",
     "lib",
-    "submodules"
+    "submodules",
     "subprojects",
     "My project doesn't have external dependencies"
   ],
-  "_keep_external_directory": "{{ cookiecutter.external_directory == \"My project doesn't have external dependencies\" }}",
-  "keep_include_directory": true
+  "keep_assets": true
 }
