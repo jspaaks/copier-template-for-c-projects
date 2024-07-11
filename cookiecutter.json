@@ -12,7 +12,7 @@
     "a library",
     "both"
   ],
-  "project_slug": "{% if cookiecutter.produces in ['an executable', 'both'] -%}calculator{%- else -%}libcalculator{% endif %}",
+  "project_slug": "{% if cookiecutter.produces in ['an executable', 'both'] -%}calculator{%- else -%}liboperations{% endif %}",
   "build_directory": [
     "build",
     "built",

@@ -81,11 +81,15 @@ def main():
         "lib": [
             Path("produces", "lib", ".codeblocks", "project.cbp"),
             Path("produces", "lib", ".codeblocks"),
-            Path("produces", "lib", "include", "multiplication.h"),
+            Path("produces", "lib", "include", "addition.h"),
             Path("produces", "lib", "include", "division.h"),
+            Path("produces", "lib", "include", "multiplication.h"),
+            Path("produces", "lib", "include", "subtraction.h"),
             Path("produces", "lib", "include"),
-            Path("produces", "lib", "src", "multiplication.c"),
+            Path("produces", "lib", "src", "addition.c"),
             Path("produces", "lib", "src", "division.c"),
+            Path("produces", "lib", "src", "multiplication.c"),
+            Path("produces", "lib", "src", "subtraction.c"),
             Path("produces", "lib", "src"),
             Path("produces", "lib", "CMakeLists.txt"),
             Path("produces", "lib")

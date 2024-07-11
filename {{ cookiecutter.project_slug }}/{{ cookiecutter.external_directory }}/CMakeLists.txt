@@ -1,2 +1,1 @@
-add_subdirectory(addition)
-add_subdirectory(subtraction)
+add_subdirectory(their)

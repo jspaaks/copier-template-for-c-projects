@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 3.21...3.28)
+
 project(project LANGUAGES C)
 
-{% if cookiecutter.external_directory != "My project doesn't have external dependencies" %}
+{% if cookiecutter.external_directory != "My project doesn't have external dependencies" -%}
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }})
-{% endif %}
+# might need CMAKE_INSTALL_RPATH
+
+{% endif -%}
 
 add_library(operations SHARED)
 
@@ -12,11 +15,13 @@ target_compile_definitions(
     PRIVATE
         $<$<CONFIG:Debug>:DEBUG>
 )
+
 target_compile_features(
     operations
     PRIVATE
         c_std_23
 )
+
 target_compile_options(
     operations
     PRIVATE
@@ -27,23 +32,27 @@ target_compile_options(
         $<$<CONFIG:Debug>:-O0>
         $<$<CONFIG:Release>:-Werror>
 )
+
 target_include_directories(
     operations
     PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/include
-{% if cookiecutter.external_directory != "My project doesn't have external dependencies" %}
+{%- if cookiecutter.external_directory != "My project doesn't have external dependencies" %}
         ${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/addition/include
         ${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/subtraction/include
-{% endif %}
+{%- endif %}
 )
+
+{% if cookiecutter.external_directory != "My project doesn't have external dependencies" -%}
 target_link_libraries(
     operations
     PRIVATE
-{% if cookiecutter.external_directory != "My project doesn't have external dependencies" %}
         addition
         subtraction
-{% endif %}
 )
+
+{% endif -%}
+
 target_sources(
     operations
     PRIVATE
