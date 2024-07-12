@@ -2,9 +2,10 @@
   "__prompts__" : {
     "build_directory": "What should the build directory be called?",
     "builds_executable": "Does the new project build an executable?",
-    "produces": "What artifact(s) does the new project produce?",
     "external_directory": "What should the directory that contains external dependencies be called?",
     "keep_assets": "Does the project use assets like images, sound, fonts, etc?",
+    "nested": "Do you want to organize components into subdirectories under src/?",
+    "produces": "What artifact(s) does the new project produce?",
     "project_slug": "What is the name of the new project?\n        Use [A-Za-z0-9_-.]+"
   },
   "produces": [
@@ -12,6 +13,7 @@
     "a library",
     "both"
   ],
+  "nested": true,
   "project_slug": "{% if cookiecutter.produces in ['an executable', 'both'] -%}calculator{%- else -%}liboperations{% endif %}",
   "build_directory": [
     "build",
