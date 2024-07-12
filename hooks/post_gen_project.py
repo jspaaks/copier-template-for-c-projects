@@ -32,12 +32,21 @@ def main():
     if both:
         if with_external:
             if flat:
-                pass
+                base = Path("produces", "both", "with-external", "flat")
+                srcs = [
+                    Path(base, "EMPTY")
+                ]
             elif nested:
-                pass
+                base = Path("produces", "both", "with-external", "nested")
+                srcs = [
+                    Path(base, "EMPTY")
+                ]
         elif wo_external:
             if flat:
-                pass
+                base = Path("produces", "both", "wo-external", "flat")
+                srcs = [
+                    Path(base, "EMPTY")
+                ]
             elif nested:
                 base = Path("produces", "both", "wo-external", "nested")
                 srcs = [
@@ -56,12 +65,21 @@ def main():
                     Path(base, "CMakeLists.txt")
                 ]
             elif nested:
-                pass
+                base = Path("produces", "exe", "with-external", "nested")
+                srcs = [
+                    Path(base, "EMPTY")
+                ]
         elif wo_external:
             if flat:
-                pass
+                base = Path("produces", "exe", "wo-external", "flat")
+                srcs = [
+                    Path(base, "EMPTY")
+                ]
             elif nested:
-                pass
+                base = Path("produces", "exe", "wo-external", "nested")
+                srcs = [
+                    Path(base, "EMPTY")
+                ]
     elif lib:
         if with_external:
             if flat:
@@ -73,12 +91,21 @@ def main():
                     Path(base, "CMakeLists.txt")
                 ]
             elif nested:
-                pass
+                base = Path("produces", "lib", "with-external", "nested")
+                srcs = [
+                    Path(base, "EMPTY")
+                ]
         elif wo_external:
             if flat:
-                pass
+                base = Path("produces", "lib", "wo-external", "flat")
+                srcs = [
+                    Path(base, "EMPTY")
+                ]
             elif nested:
-                pass
+                base = Path("produces", "lib", "wo-external", "nested")
+                srcs = [
+                    Path(base, "EMPTY")
+                ]
 
     tgt = Path(".")
     for src in srcs:
