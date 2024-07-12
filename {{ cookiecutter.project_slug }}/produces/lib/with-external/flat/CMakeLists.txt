@@ -33,7 +33,7 @@ target_include_directories(
     ours
     PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/include
-        ${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/theirs/include
+        ${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/libtheirs/include
 )
 
 target_link_libraries(

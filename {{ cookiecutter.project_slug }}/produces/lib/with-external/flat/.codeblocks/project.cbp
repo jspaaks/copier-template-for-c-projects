@@ -34,15 +34,15 @@
 			<Add option="-Wextra" />
 			<Add option="-Wall" />
 			<Add option="-std=c2x" />
-			<Add directory="../{{ cookiecutter.external_directory }}/theirs/include" />
+			<Add directory="../{{ cookiecutter.external_directory }}/libtheirs/include" />
 			<Add directory="../include" />
 		</Compiler>
-		<Unit filename="../{{ cookiecutter.external_directory }}/theirs/include/their_addition.h" />
-		<Unit filename="../{{ cookiecutter.external_directory }}/theirs/include/their_subtraction.h" />
-		<Unit filename="../{{ cookiecutter.external_directory }}/theirs/src/their_addition.c">
+		<Unit filename="../{{ cookiecutter.external_directory }}/libtheirs/include/their_addition.h" />
+		<Unit filename="../{{ cookiecutter.external_directory }}/libtheirs/include/their_subtraction.h" />
+		<Unit filename="../{{ cookiecutter.external_directory }}/libtheirs/src/their_addition.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../{{ cookiecutter.external_directory }}/theirs/src/their_subtraction.c">
+		<Unit filename="../{{ cookiecutter.external_directory }}/libtheirs/src/their_subtraction.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../include/addition.h" />
