@@ -1,22 +1,22 @@
 cmake_minimum_required(VERSION 3.21...3.28)
 project(project LANGUAGES C)
 
-add_library(operations SHARED)
+add_library(ours SHARED)
 
 target_compile_definitions(
-    operations
+    ours
     PRIVATE
         $<$<CONFIG:Debug>:DEBUG>
 )
 
 target_compile_features(
-    operations
+    ours
     PRIVATE
         c_std_23
 )
 
 target_compile_options(
-    operations
+    ours
     PRIVATE
         -Wall
         -Wextra
@@ -27,13 +27,13 @@ target_compile_options(
 )
 
 target_include_directories(
-    operations
+    ours
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/liboperations
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/libours
 )
 
 target_sources(
-    operations
+    ours
     PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/division.c
         ${CMAKE_CURRENT_LIST_DIR}/multiplication.c
@@ -47,4 +47,4 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   set_property(CACHE CMAKE_INSTALL_PREFIX PROPERTY VALUE "${CMAKE_BINARY_DIR}/dist")
 endif()
 
-install(TARGETS operations)
+install(TARGETS ours)

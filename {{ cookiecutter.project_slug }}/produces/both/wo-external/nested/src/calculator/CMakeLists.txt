@@ -32,14 +32,14 @@ target_compile_options(
 target_include_directories(
     calculator
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/liboperations
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/libours
 )
 
 target_link_libraries(
     calculator
     PRIVATE
         m
-        operations
+        ours
 )
 
 target_sources(

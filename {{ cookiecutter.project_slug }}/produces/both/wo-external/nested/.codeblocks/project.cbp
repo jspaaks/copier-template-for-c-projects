@@ -36,15 +36,15 @@
 			<Add option="-std=c2x" />
 			<Add directory="../include/libours" />
 		</Compiler>
-		<Unit filename="../include/liboperations/division.h" />
-		<Unit filename="../include/liboperations/multiplication.h" />
+		<Unit filename="../include/libours/division.h" />
+		<Unit filename="../include/libours/multiplication.h" />
 		<Unit filename="../src/calculator/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../src/liboperations/division.c">
+		<Unit filename="../src/libours/division.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../src/liboperations/multiplication.c">
+		<Unit filename="../src/libours/multiplication.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions />
