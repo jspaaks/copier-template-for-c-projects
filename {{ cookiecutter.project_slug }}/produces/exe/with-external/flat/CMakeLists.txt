@@ -34,14 +34,14 @@ target_compile_options(
 target_include_directories(
     calculator
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/their/include
+        ${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/theirs/include
 )
 
 target_link_libraries(
     calculator
     PRIVATE
         m
-        their
+        theirs
 )
 
 target_sources(
