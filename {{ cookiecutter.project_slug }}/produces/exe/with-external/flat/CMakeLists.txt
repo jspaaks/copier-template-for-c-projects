@@ -2,10 +2,8 @@ cmake_minimum_required(VERSION 3.21...3.28)
 
 project(project LANGUAGES C)
 
-{% if cookiecutter.external_directory != "My project doesn't have external dependencies" -%}
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }})
 
-{% endif -%}
 list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
 
 add_executable(calculator)
@@ -33,21 +31,17 @@ target_compile_options(
         $<$<CONFIG:Release>:-Werror>
 )
 
-{% if cookiecutter.external_directory != "My project doesn't have external dependencies" -%}
 target_include_directories(
     calculator
     PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/their/include
 )
 
-{% endif -%}
 target_link_libraries(
     calculator
     PRIVATE
         m
-{%- if cookiecutter.external_directory != "My project doesn't have external dependencies" %}
         their
-{%- endif %}
 )
 
 target_sources(

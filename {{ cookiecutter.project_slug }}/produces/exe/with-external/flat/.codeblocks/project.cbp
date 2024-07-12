@@ -34,11 +34,8 @@
 			<Add option="-Wextra" />
 			<Add option="-Wall" />
 			<Add option="-std=c2x" />
-{%- if cookiecutter.external_directory != "My project doesn't have external dependencies" %}
 			<Add directory="../{{ cookiecutter.external_directory }}/their/include" />
-{%- endif %}
 		</Compiler>
-{%- if cookiecutter.external_directory != "My project doesn't have external dependencies" %}
 		<Unit filename="../{{ cookiecutter.external_directory }}/their/include/their_addition.h" />
 		<Unit filename="../{{ cookiecutter.external_directory }}/their/include/their_subtraction.h" />
 		<Unit filename="../{{ cookiecutter.external_directory }}/their/src/their_addition.c">
@@ -47,7 +44,6 @@
 		<Unit filename="../{{ cookiecutter.external_directory }}/their/src/their_subtraction.c">
 			<Option compilerVar="CC" />
 		</Unit>
-{%- endif %}
 		<Unit filename="../src/addition.c">
 			<Option compilerVar="CC" />
 		</Unit>
