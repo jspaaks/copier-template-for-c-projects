@@ -34,22 +34,34 @@
 			<Add option="-Wextra" />
 			<Add option="-Wall" />
 			<Add option="-std=c2x" />
-{%- if cookiecutter.external_directory != "My project doesn't have external dependencies" -%}
-			<Add directory="../{{ cookiecutter.external_directory }}/addition/include" />
-			<Add directory="../{{ cookiecutter.external_directory }}/subtraction/include" />
-{%- endif -%}
-			<Add directory="../include/lib1" />
+			<Add directory="../{{ cookiecutter.external_directory }}/their/include" />
+			<Add directory="../include/operations" />
 		</Compiler>
-{%- if cookiecutter.external_directory != "My project doesn't have external dependencies" -%}
-		<Unit filename="../{{ cookiecutter.external_directory }}/adding/include/adding.h" />
-		<Unit filename="../{{ cookiecutter.external_directory }}/adding/src/adding.c">
-		<Unit filename="../{{ cookiecutter.external_directory }}/subtraction/include/adding.h" />
-		<Unit filename="../{{ cookiecutter.external_directory }}/subtraction/src/adding.c">
-{%- endif -%}
+		<Unit filename="../{{ cookiecutter.external_directory }}/their/include/addition.h" />
+		<Unit filename="../{{ cookiecutter.external_directory }}/their/include/subtraction.h" />
+		<Unit filename="../{{ cookiecutter.external_directory }}/their/src/addition.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../include/lib1/header1.h" />
+		<Unit filename="../{{ cookiecutter.external_directory }}/their/src/subtraction.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../include/liboperations/addition.h" />
+		<Unit filename="../include/liboperations/division.h" />
+		<Unit filename="../include/liboperations/multiplication.h" />
+		<Unit filename="../include/liboperations/subtraction.h" />
+		<Unit filename="../src/addition.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/division.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="../src/main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/multiplication.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/subtraction.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions />

@@ -2,11 +2,7 @@ cmake_minimum_required(VERSION 3.21...3.28)
 
 project(project LANGUAGES C)
 
-{% if cookiecutter.external_directory != "My project doesn't have external dependencies" -%}
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }})
-# might need CMAKE_INSTALL_RPATH
-
-{% endif -%}
 
 add_library(operations SHARED)
 
@@ -37,27 +33,22 @@ target_include_directories(
     operations
     PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/include
-{%- if cookiecutter.external_directory != "My project doesn't have external dependencies" %}
-        ${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/addition/include
-        ${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/subtraction/include
-{%- endif %}
+        ${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/their/include
 )
 
-{% if cookiecutter.external_directory != "My project doesn't have external dependencies" -%}
 target_link_libraries(
     operations
     PRIVATE
-        addition
-        subtraction
+        their
 )
-
-{% endif -%}
 
 target_sources(
     operations
     PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}/src/addition.c
         ${CMAKE_CURRENT_LIST_DIR}/src/division.c
         ${CMAKE_CURRENT_LIST_DIR}/src/multiplication.c
+        ${CMAKE_CURRENT_LIST_DIR}/src/subtraction.c
 )
 
 if (NOT CMAKE_BUILD_TYPE)
