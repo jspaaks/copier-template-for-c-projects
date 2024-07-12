@@ -34,7 +34,7 @@
 			<Add option="-Wextra" />
 			<Add option="-Wall" />
 			<Add option="-std=c2x" />
-			<Add directory="../include/liboperations" />
+			<Add directory="../include/libours" />
 		</Compiler>
 		<Unit filename="../include/liboperations/division.h" />
 		<Unit filename="../include/liboperations/multiplication.h" />
