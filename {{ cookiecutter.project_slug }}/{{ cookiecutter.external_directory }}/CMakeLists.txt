@@ -1,1 +1,1 @@
-add_subdirectory(their)
+add_subdirectory(theirs)
