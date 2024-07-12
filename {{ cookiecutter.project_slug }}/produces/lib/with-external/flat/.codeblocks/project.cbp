@@ -34,28 +34,25 @@
 			<Add option="-Wextra" />
 			<Add option="-Wall" />
 			<Add option="-std=c2x" />
-			<Add directory="../{{ cookiecutter.external_directory }}/their/include" />
-			<Add directory="../include/operations" />
+			<Add directory="../{{ cookiecutter.external_directory }}/theirs/include" />
+			<Add directory="../include/libours" />
 		</Compiler>
-		<Unit filename="../{{ cookiecutter.external_directory }}/their/include/addition.h" />
-		<Unit filename="../{{ cookiecutter.external_directory }}/their/include/subtraction.h" />
-		<Unit filename="../{{ cookiecutter.external_directory }}/their/src/addition.c">
+		<Unit filename="../{{ cookiecutter.external_directory }}/theirs/include/their_addition.h" />
+		<Unit filename="../{{ cookiecutter.external_directory }}/theirs/include/their_subtraction.h" />
+		<Unit filename="../{{ cookiecutter.external_directory }}/theirs/src/their_addition.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../{{ cookiecutter.external_directory }}/their/src/subtraction.c">
+		<Unit filename="../{{ cookiecutter.external_directory }}/theirs/src/their_subtraction.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../include/liboperations/addition.h" />
-		<Unit filename="../include/liboperations/division.h" />
-		<Unit filename="../include/liboperations/multiplication.h" />
-		<Unit filename="../include/liboperations/subtraction.h" />
+		<Unit filename="../include/addition.h" />
+		<Unit filename="../include/division.h" />
+		<Unit filename="../include/multiplication.h" />
+		<Unit filename="../include/subtraction.h" />
 		<Unit filename="../src/addition.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../src/division.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="../src/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../src/multiplication.c">
