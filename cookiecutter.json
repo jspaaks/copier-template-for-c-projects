@@ -14,7 +14,7 @@
     "both"
   ],
   "nested": true,
-  "project_slug": "{% if cookiecutter.produces in ['an executable', 'both'] -%}calculator{%- else -%}liboperations{% endif %}",
+  "project_slug": "{% if cookiecutter.produces in ['an executable', 'both'] -%}calculator{%- else -%}libours{% endif %}",
   "build_directory": [
     "build",
     "built",
