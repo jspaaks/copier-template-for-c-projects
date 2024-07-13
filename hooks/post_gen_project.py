@@ -34,7 +34,10 @@ def main():
             if flat:
                 base = Path("produces", "both", "with-external", "flat")
                 srcs = [
-                    Path(base, "EMPTY")
+                    Path(base, ".codeblocks"),
+                    Path(base, "include"),
+                    Path(base, "src"),
+                    Path(base, "CMakeLists.txt")
                 ]
             elif nested:
                 base = Path("produces", "both", "with-external", "nested")
