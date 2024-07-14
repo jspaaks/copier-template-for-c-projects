@@ -5,7 +5,7 @@ project(project LANGUAGES C)
 {% if cookiecutter.keep_assets -%}
 add_subdirectory(assets)
 {% endif -%}
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }})
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/libtheirs)
 
 list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
 

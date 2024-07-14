@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.21...3.28)
 
 project(project LANGUAGES C)
 
+list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
+
 add_library(ours SHARED)
 
 target_compile_definitions(

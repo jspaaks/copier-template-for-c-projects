@@ -6,6 +6,8 @@ project(project LANGUAGES C)
 add_subdirectory(assets)
 {% endif -%}
 
+list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
+
 add_executable(calculator)
 
 target_compile_definitions(
