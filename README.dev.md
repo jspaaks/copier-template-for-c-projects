@@ -21,8 +21,8 @@
 | both | wo-external   | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/wo-external/nested)   | 2024-07-13 | fails 3 when installing assets. Fixable by making two `cmake ../..` calls, might be problem with CMAKE_INSTALL_PREFIX. |
 | exe  | with-external | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/with-external/flat)    | 2024-07-13 | fails 3 when installing assets. Fixable by making two `cmake ../..` calls, might be problem with CMAKE_INSTALL_PREFIX. |
 | exe  | with-external | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/with-external/nested)  | 2024-07-13 | fails 3 when installing assets. Fixable by making two `cmake ../..` calls, might be problem with CMAKE_INSTALL_PREFIX. |
-| exe  | wo-external   | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/wo-external/flat)      | 2024-07-13 | EMPTY |
-| exe  | wo-external   | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/wo-external/nested)    | 2024-07-13 | EMPTY |
+| exe  | wo-external   | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/wo-external/flat)      | 2024-07-13 | fails 3 when installing assets. Fixable by making two `cmake ../..` calls, might be problem with CMAKE_INSTALL_PREFIX. |
+| exe  | wo-external   | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/wo-external/nested)    | 2024-07-13 | fails 3 when installing assets. Fixable by making two `cmake ../..` calls, might be problem with CMAKE_INSTALL_PREFIX. |
 | lib  | with-external | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/with-external/flat)    | 2024-07-13 | fails 6 |
 | lib  | with-external | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/with-external/nested)  | 2024-07-13 | EMPTY |
 | lib  | wo-external   | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/wo-external/flat)      | 2024-07-13 | EMPTY |
