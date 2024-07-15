@@ -39,13 +39,13 @@
 		</Compiler>
 		<Linker>
 			<Add library="theirs" />
-			<Add directory="../external/libtheirs/include" />
-			<Add directory="../include/libours" />
 		</Linker>
 		<Unit filename="../{{ cookiecutter.external_directory }}/libtheirs/include/their_addition.h" />
 		<Unit filename="../{{ cookiecutter.external_directory }}/libtheirs/include/their_subtraction.h" />
+		<Unit filename="../include/libours/addition.h" />
 		<Unit filename="../include/libours/division.h" />
 		<Unit filename="../include/libours/multiplication.h" />
+		<Unit filename="../include/libours/subtraction.h" />
 		<Unit filename="../src/libours/addition.c">
 			<Option compilerVar="CC" />
 		</Unit>

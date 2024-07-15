@@ -35,18 +35,31 @@
 			<Add option="-Wall" />
 			<Add option="-std=c2x" />
 			<Add directory="../include" />
+			<Add directory="../{{ cookiecutter.external_directory }}/libtheirs/include" />
 		</Compiler>
+		<Linker>
+			<Add library="m" />
+			<Add library="theirs" />
+		</Linker>
+		<Unit filename="../{{ cookiecutter.external_directory }}/libtheirs/include/their_addition.h" />
+		<Unit filename="../{{ cookiecutter.external_directory }}/libtheirs/include/their_subtraction.h" />
+		<Unit filename="../{{ cookiecutter.external_directory }}/libtheirs/src/their_addition.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../{{ cookiecutter.external_directory }}/libtheirs/src/their_subtraction.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="../include/addition.h" />
 		<Unit filename="../include/division.h" />
 		<Unit filename="../include/multiplication.h" />
 		<Unit filename="../include/subtraction.h" />
-		<Unit filename="../src/main.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="../src/addition.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../src/division.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../src/multiplication.c">

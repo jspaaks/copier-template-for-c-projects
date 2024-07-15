@@ -1,14 +1,9 @@
 #include <stdio.h>
 #include <math.h>
-{% if cookiecutter.external_directory != "My project doesn't have external dependencies" -%}
 #include "addition.h"
-{%- endif  %}
 #include "division.h"
 #include "multiplication.h"
-{% if cookiecutter.external_directory != "My project doesn't have external dependencies" -%}
 #include "subtraction.h"
-{%- endif  %}
-
 
 int main (void) {
     fprintf(stdout, "-- test compile definitions\n");
@@ -34,17 +29,15 @@ int main (void) {
     }
     fprintf(stdout, "\n");
 
-    fprintf(stdout, "-- test own functions\n");
-    fprintf(stdout, "   multiply(2, 3) = %d\n", multiply(2, 3));
+    fprintf(stdout, "-- test own library\n");
     fprintf(stdout, "   divide(2, 3) = %d\n", divide(2, 3));
+    fprintf(stdout, "   multiply(2, 3) = %d\n", multiply(2, 3));
     fprintf(stdout, "\n");
 
-    {% if cookiecutter.external_directory != "My project doesn't have external dependencies" -%}
     fprintf(stdout, "-- test external library\n");
     fprintf(stdout, "   add(2, 3) = %d\n", add(2, 3));
     fprintf(stdout, "   subtract(2, 3) = %d\n", subtract(2, 3));
     fprintf(stdout, "\n");
-    {%- endif %}
 
     return 0;
 }

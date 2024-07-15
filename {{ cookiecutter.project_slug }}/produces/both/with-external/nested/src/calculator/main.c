@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <math.h>
+#include "addition.h"
 #include "division.h"
 #include "multiplication.h"
+#include "subtraction.h"
 
 int main (void) {
     fprintf(stdout, "-- test compile definitions\n");
@@ -30,6 +32,11 @@ int main (void) {
     fprintf(stdout, "-- test own library\n");
     fprintf(stdout, "   divide(2, 3) = %d\n", divide(2, 3));
     fprintf(stdout, "   multiply(2, 3) = %d\n", multiply(2, 3));
+    fprintf(stdout, "\n");
+
+    fprintf(stdout, "-- test external library\n");
+    fprintf(stdout, "   add(2, 3) = %d\n", add(2, 3));
+    fprintf(stdout, "   subtract(2, 3) = %d\n", subtract(2, 3));
     fprintf(stdout, "\n");
 
     return 0;

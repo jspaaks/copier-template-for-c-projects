@@ -2,6 +2,14 @@ cmake_minimum_required(VERSION 3.21...3.28)
 
 project(project LANGUAGES C)
 
+if (NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Debug)
+endif()
+
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+  set_property(CACHE CMAKE_INSTALL_PREFIX PROPERTY VALUE "${CMAKE_BINARY_DIR}/dist")
+endif()
+
 {% if cookiecutter.keep_assets -%}
 add_subdirectory(assets)
 {% endif -%}
@@ -53,14 +61,6 @@ target_sources(
     PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/src/main.c
 )
-
-if (NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Debug)
-endif()
-
-if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-  set_property(CACHE CMAKE_INSTALL_PREFIX PROPERTY VALUE "${CMAKE_BINARY_DIR}/dist")
-endif()
 
 install(TARGETS calculator)
 
@@ -116,14 +116,6 @@ target_sources(
         ${CMAKE_CURRENT_LIST_DIR}/src/multiplication.c
         ${CMAKE_CURRENT_LIST_DIR}/src/subtraction.c
 )
-
-if (NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Debug)
-endif()
-
-if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-  set_property(CACHE CMAKE_INSTALL_PREFIX PROPERTY VALUE "${CMAKE_BINARY_DIR}/dist")
-endif()
 
 install(TARGETS ours)
 

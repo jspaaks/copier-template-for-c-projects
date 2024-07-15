@@ -48,12 +48,4 @@ target_sources(
         ${CMAKE_CURRENT_LIST_DIR}/main.c
 )
 
-if (NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Debug)
-endif()
-
-if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-  set_property(CACHE CMAKE_INSTALL_PREFIX PROPERTY VALUE "${CMAKE_BINARY_DIR}/dist")
-endif()
-
 install(TARGETS calculator)

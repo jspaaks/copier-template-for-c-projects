@@ -34,9 +34,12 @@
 			<Add option="-Wextra" />
 			<Add option="-Wall" />
 			<Add option="-std=c2x" />
-			<Add directory="../{{ cookiecutter.external_directory }}/libtheirs/include" />
 			<Add directory="../include" />
+			<Add directory="../{{ cookiecutter.external_directory }}/libtheirs/include" />
 		</Compiler>
+		<Linker>
+			<Add library="theirs" />
+		</Linker>
 		<Unit filename="../{{ cookiecutter.external_directory }}/libtheirs/include/their_addition.h" />
 		<Unit filename="../{{ cookiecutter.external_directory }}/libtheirs/include/their_subtraction.h" />
 		<Unit filename="../{{ cookiecutter.external_directory }}/libtheirs/src/their_addition.c">
@@ -64,3 +67,4 @@
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
+
