@@ -17,118 +17,31 @@ def main():
     wo_assets = "{{ cookiecutter.keep_assets }}" == "False"
     nested = "{{ cookiecutter.nested }}" == "True"
 
-    # derived booleans
-    both = produces == "both"
-    exe = produces == "an executable"
-    lib = produces == "a library"
-    with_external = not wo_external
-    flat = not nested
-
-    if wo_assets: remove_assets()
-    if wo_external: remove_external()
-
-    srcs = []
-
-    if both:
-        if with_external:
-            if flat:
-                base = Path("produces", "both", "with-external", "flat")
-                srcs = [
-                    Path(base, ".codeblocks"),
-                    Path(base, "include"),
-                    Path(base, "src"),
-                    Path(base, "CMakeLists.txt")
-                ]
-            elif nested:
-                base = Path("produces", "both", "with-external", "nested")
-                srcs = [
-                    Path(base, ".codeblocks"),
-                    Path(base, "include"),
-                    Path(base, "src"),
-                    Path(base, "CMakeLists.txt")
-                ]
-        elif wo_external:
-            if flat:
-                base = Path("produces", "both", "wo-external", "flat")
-                srcs = [
-                    Path(base, ".codeblocks"),
-                    Path(base, "include"),
-                    Path(base, "src"),
-                    Path(base, "CMakeLists.txt")
-                ]
-            elif nested:
-                base = Path("produces", "both", "wo-external", "nested")
-                srcs = [
-                    Path(base, ".codeblocks"),
-                    Path(base, "include"),
-                    Path(base, "src"),
-                    Path(base, "CMakeLists.txt")
-                ]
-    elif exe:
-        if with_external:
-            if flat:
-                base = Path("produces", "exe", "with-external", "flat")
-                srcs = [
-                    Path(base, ".codeblocks"),
-                    Path(base, "src"),
-                    Path(base, "CMakeLists.txt")
-                ]
-            elif nested:
-                base = Path("produces", "exe", "with-external", "nested")
-                srcs = [
-                    Path(base, ".codeblocks"),
-                    Path(base, "src"),
-                    Path(base, "CMakeLists.txt")
-                ]
-        elif wo_external:
-            if flat:
-                base = Path("produces", "exe", "wo-external", "flat")
-                srcs = [
-                    Path(base, ".codeblocks"),
-                    Path(base, "src"),
-                    Path(base, "CMakeLists.txt")
-                ]
-            elif nested:
-                base = Path("produces", "exe", "wo-external", "nested")
-                srcs = [
-                    Path(base, ".codeblocks"),
-                    Path(base, "src"),
-                    Path(base, "CMakeLists.txt")
-                ]
-    elif lib:
-        if with_external:
-            if flat:
-                base = Path("produces", "lib", "with-external", "flat")
-                srcs = [
-                    Path(base, ".codeblocks"),
-                    Path(base, "include"),
-                    Path(base, "src"),
-                    Path(base, "CMakeLists.txt")
-                ]
-            elif nested:
-                base = Path("produces", "lib", "with-external", "nested")
-                srcs = [
-                    Path(base, ".codeblocks"),
-                    Path(base, "include"),
-                    Path(base, "src"),
-                    Path(base, "CMakeLists.txt")
-                ]
-        elif wo_external:
-            if flat:
-                base = Path("produces", "lib", "wo-external", "flat")
-                srcs = [
-                    Path(base, "EMPTY")
-                ]
-            elif nested:
-                base = Path("produces", "lib", "wo-external", "nested")
-                srcs = [
-                    Path(base, "EMPTY")
-                ]
+    base = Path(
+        "produces",
+        {
+            "an executable": "exe",
+            "a library": "lib",
+            "both": "both"
+        }[produces],
+        "wo-external" if wo_external else "with-external",
+        "nested" if nested else "flat"
+    )
+    srcs = [
+        Path(base, ".codeblocks"),
+        Path(base, "src"),
+        Path(base, "CMakeLists.txt")
+    ]
+    if produces in ["a library", "both"]:
+        srcs.append(Path(base, "include"))
 
     tgt = Path(".")
     for src in srcs:
         shutil.move(src, tgt)
     shutil.rmtree(Path("produces"))
+
+    if wo_assets: remove_assets()
+    if wo_external: remove_external()
 
 
 if __name__ == "__main__":
