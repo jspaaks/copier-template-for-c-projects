@@ -27,3 +27,16 @@
 | lib  | with-external | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/with-external/nested)  | 2024-07-13 | ?     |
 | lib  | wo-external   | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/wo-external/flat)      | 2024-07-13 | ?     |
 | lib  | wo-external   | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/wo-external/nested)    | 2024-07-13 | ?     |
+
+
+TODO
+
+- review codeblock build setup, targets, options etc
+- check what happens if user chooses different name, e.g. directory name of produces/both/with-external/nested/src/calculator is fixed atm.
+- make including cmake build optional via question
+- make including codeblocks build optional via question
+- add testing framework(s), e.g.
+   - googletest
+   - criterion
+   - check
+
