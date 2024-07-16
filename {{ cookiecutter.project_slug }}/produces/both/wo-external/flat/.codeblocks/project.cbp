@@ -57,7 +57,7 @@
 			</Target>
 		</Build>
 		<VirtualTargets>
-			<Add alias="debug" targets="debug-libtheirs;debug-libours;debug-exe;" />
+			<Add alias="debug" targets="debug-libours;debug-exe;" />
 		</VirtualTargets>
 		<Unit filename="../include/division.h">
 			<Option target="debug-libours" />
