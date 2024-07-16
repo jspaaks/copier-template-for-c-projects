@@ -15,7 +15,7 @@
 
 |      |               |        |                                                                                        | checked    | state |
 | ---  | ---           | ---    | ---                                                                                    | ---        | ---   |
-| both | with-external | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/with-external/flat)   | 2024-07-13 | ?     |
+| both | with-external | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/with-external/flat)   | 2024-07-15 | ok    |
 | both | with-external | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/with-external/nested) | 2024-07-13 | ?     |
 | both | wo-external   | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/wo-external/flat)     | 2024-07-13 | ?     |
 | both | wo-external   | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/wo-external/nested)   | 2024-07-13 | ?     |
