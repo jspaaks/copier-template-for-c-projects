@@ -6,21 +6,13 @@ def remove_assets():
     p = Path("assets")
     shutil.rmtree(p)
 
-def remove_codeblocks():
-    paths = [
-        Path(".codeblocks"),
-        Path("build", "codeblocks")
-    ]
-    for p in paths:
-        shutil.rmtree(p)
-
 def remove_cmake():
     paths = [
         Path("assets", "fonts", "CMakeLists.txt"),
         Path("assets", "images", "CMakeLists.txt"),
         Path("assets", "sounds", "CMakeLists.txt"),
         Path("assets", "CMakeLists.txt"),
-        Path("build", "cmake"),
+        Path("{{ cookiecutter.build_directory }}", "cmake"),
         Path("{{ cookiecutter.external_directory }}", "libtheirs", "CMakeLists.txt"),
         Path("{{ cookiecutter.external_directory }}", "CMakeLists.txt"),
         Path("src", "calculator", "CMakeLists.txt"),
@@ -30,6 +22,17 @@ def remove_cmake():
     ]
     for p in paths:
         shutil.rmtree(p) if os.path.isdir(p) else p.unlink(missing_ok=True)
+
+def remove_codeblocks():
+    paths = [
+        Path(".codeblocks"),
+        Path("{{ cookiecutter.build_directory }}", "codeblocks")
+    ]
+    for p in paths:
+        shutil.rmtree(p)
+
+def remove_clang_format():
+    Path(".clang-format").unlink()
 
 def remove_external():
     p = Path("My project doesn't have external dependencies")
@@ -43,6 +46,7 @@ def main():
     nested = "{{ cookiecutter.nested }}" == "True"
     wo_codeblocks = "{{ cookiecutter.add_codeblocks }}" == "False"
     wo_cmake = "{{ cookiecutter.add_cmake }}" == "False"
+    wo_clang_format = "{{ cookiecutter.add_clang_format }}" == "False"
 
     src = Path(
         "produces",
@@ -60,6 +64,7 @@ def main():
 
     if wo_assets: remove_assets()
     if wo_codeblocks: remove_codeblocks()
+    if wo_clang_format: remove_clang_format()
     if wo_cmake: remove_cmake()
     if wo_external: remove_external()
 

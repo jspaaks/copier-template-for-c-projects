@@ -1,8 +1,11 @@
-# README.md
+# {{ cookiecutter.project_slug }}
 
-The project has been initialized with a dual configuration, 
-1. a Code::Blocks IDE configuration in [.codeblocks/project.cbp](.codeblocks/project.cbp)
-1. a [CMakeLists.txt](CMakeLists.txt)-based configuration for building with CMake:
+{% if cookiecutter.add_cmake -%}
+
+## CMake
+
+The project has been initialized with a [CMakeLists.txt](CMakeLists.txt)-based
+configuration for building with CMake:
 
 ```shell
 # change into the build directory
@@ -44,5 +47,32 @@ Should output something like:
 {% endif -%}
 {% endif -%}
 ```
+
+{% endif -%}
+
+{% if cookiecutter.add_codeblocks -%}
+
+## Code::Blocks
+
+Use [Code::Blocks IDE](https://www.codeblocks.org/) to open [.codeblocks/project.cbp](.codeblocks/project.cbp). 
+
+{% endif -%}
+{% if cookiecutter.add_clang_format -%}
+
+## `clang-format`
+
+The file `.clang-format` contains an initial configuration for (automatic) formatting with [clang-format](https://clang.llvm.org/docs/ClangFormat.html). Run the formatter with e.g.:
+
+```shell
+# dry run on main.c
+clang-format -Werror --dry-run main.c
+
+# format in place all *.c and *.h files under ./src
+clang-format -i `find ./src -type f -name '*.[c|h]'`
+```
+
+{% endif -%}
+
+## Acknowledgements
 
 _This project was generated using [Cookiecutter](https://pypi.org/project/cookiecutter/). Thank you [@audreyfeldroy](https://github.com/audreyfeldroy) et al._

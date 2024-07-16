@@ -7,7 +7,8 @@
     "external_directory": "What should the directory that contains external dependencies be called?",
     "keep_assets": "Does the project use assets like images, sound, fonts, etc?",
     "add_cmake": "Add a CMake build configuration?",
-    "add_codeblocks": "Add a Code::Blocks IDE configuration?"
+    "add_codeblocks": "Add a Code::Blocks IDE configuration?",
+    "add_clang_format": "Add a clang-format configuration?"
   },
   "produces": [
     "an executable",
@@ -31,5 +32,6 @@
   ],
   "keep_assets": true,
   "add_cmake": true,
-  "add_codeblocks": true
+  "add_codeblocks": true,
+  "add_clang_format": true
 }
