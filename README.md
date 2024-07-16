@@ -67,6 +67,8 @@ calculator/
 │   ├── codeblocks
 │   │   └── .gitkeep
 │   └── .gitkeep
+├── .codeblocks
+│   └── project.cbp
 ├── external
 │   ├── libtheirs
 │   │   ├── include
@@ -77,11 +79,19 @@ calculator/
 │   │   │   └── their_subtraction.c
 │   │   └── CMakeLists.txt
 │   └── CMakeLists.txt
+├── src
+│   └── calculator
+│       ├── addition.c
+│       ├── addition.h
+│       ├── division.c
+│       ├── division.h
+│       ├── main.c
+│       ├── multiplication.c
+│       ├── multiplication.h
+│       ├── subtraction.c
+│       └── subtraction.h
 ├── .clang-format
-├── EMPTY
+├── CMakeLists.txt
 ├── .gitignore
 └── README.md
 ```
-
-If you get a file named EMPTY in the root of the directory, that means the combination you chose hasn't been implemented yet.
-
