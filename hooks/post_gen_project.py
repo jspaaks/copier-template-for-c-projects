@@ -1,32 +1,48 @@
 import os
+from pathlib import Path
+import shutil
 
+def remove_assets():
+    p = Path("assets")
+    shutil.rmtree(p)
+
+def remove_external():
+    p = Path("My project doesn't have external dependencies")
+    shutil.rmtree(p)
 
 def main():
 
-    rm_external = "{% if cookiecutter._keep_external_directory -%} false {%- else -%} true {%- endif %}",
-    rm_include = "{% if cookiecutter.keep_include_directory -%} false {%- else -%} true {%- endif %}",
+    produces = "{{ cookiecutter.produces }}"
+    wo_external = "{{ cookiecutter.external_directory }}" == "My project doesn't have external dependencies"
+    wo_assets = "{{ cookiecutter.keep_assets }}" == "False"
+    nested = "{{ cookiecutter.nested }}" == "True"
 
-    paths = []
-    if rm_external:
-        base = "My project doesn't have external dependencies"
-        paths.append(os.path.join(base, "adding", "src", "adding.c"))
-        paths.append(os.path.join(base, "adding", "src"))
-        paths.append(os.path.join(base, "adding", "include", "adding.h"))
-        paths.append(os.path.join(base, "adding", "include"))
-        paths.append(os.path.join(base, "adding", "CMakeLists.txt"))
-        paths.append(os.path.join(base, "adding"))
-        paths.append(base)
+    base = Path(
+        "produces",
+        {
+            "an executable": "exe",
+            "a library": "lib",
+            "both": "both"
+        }[produces],
+        "wo-external" if wo_external else "with-external",
+        "nested" if nested else "flat"
+    )
+    srcs = [
+        Path(base, ".codeblocks"),
+        Path(base, "src"),
+        Path(base, "CMakeLists.txt")
+    ]
+    if produces in ["a library", "both"]:
+        srcs.append(Path(base, "include"))
 
-    if rm_include:
-        base = "include"
-        paths.append(os.path.join(base, "lib1", "header1.h"))
-        paths.append(os.path.join(base, "lib1"))
-        paths.append(os.path.join(base))
+    tgt = Path(".")
+    for src in srcs:
+        shutil.move(src, tgt)
+    shutil.rmtree(Path("produces"))
 
+    if wo_assets: remove_assets()
+    if wo_external: remove_external()
 
-    for path in paths:
-        if path and os.path.exists(path):
-            os.unlink(path) if os.path.isfile(path) else os.rmdir(path)
 
 if __name__ == "__main__":
     main()

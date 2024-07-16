@@ -15,25 +15,83 @@ Then run cookiecutter with this repo's URL as argument:
 cookiecutter https://github.com/jspaaks/cookiecutter-codeblocks-cmake-c
 ```
 
-Cookiecutter will then ask you a few questions. Choosing default options generates a layout like this with some
+Cookiecutter will then ask you a few questions, see the output below.
+
+```text
+  [1/6] What artifact(s) does the new project produce?
+    1 - an executable
+    2 - a library
+    3 - both
+    Choose from [1/2/3] (1): 
+  [2/6] Do you want to organize components into subdirectories under src/? [y/n] (y): 
+  [3/6] What is the name of the new project?
+        Use [A-Za-z0-9_-.]+ (calculator): 
+  [4/6] What should the build directory be called?
+    1 - build
+    2 - built
+    3 - generated
+    Choose from [1/2/3] (1): 
+  [5/6] What should the directory that contains external dependencies be called?
+    1 - external
+    2 - third_party
+    3 - lib
+    4 - submodules
+    5 - subprojects
+    6 - My project doesn't have external dependencies
+    Choose from [1/2/3/4/5/6] (1): 
+  [6/6] Does the project use assets like images, sound, fonts, etc? [y/n] (y): 
+```
+
+Choosing default options as in the example above generates a layout like this with some
 example files to get you started:
 
 ```txt
-.
-└── template
-    ├── .clang-format
-    ├── CMakeLists.txt
-    ├── .codeblocks
-    │   └── project.cbp
-    ├── external
-    │   └── adding
-    │       ├── CMakeLists.txt
-    │       ├── include
-    │       │   └── adding.h
-    │       └── src
-    │           └── adding.c
-    ├── .gitignore
-    ├── README.md
-    └── src
-        └── main.c
+calculator/
+├── assets
+│   ├── fonts
+│   │   ├── CMakeLists.txt
+│   │   ├── font.ttf
+│   │   └── README.md
+│   ├── images
+│   │   ├── CMakeLists.txt
+│   │   ├── image.bmp
+│   │   └── README.md
+│   ├── sounds
+│   │   ├── CMakeLists.txt
+│   │   ├── README.md
+│   │   └── sound.wav
+│   └── CMakeLists.txt
+├── build
+│   ├── cmake
+│   │   └── .gitkeep
+│   ├── codeblocks
+│   │   └── .gitkeep
+│   └── .gitkeep
+├── .codeblocks
+│   └── project.cbp
+├── external
+│   ├── libtheirs
+│   │   ├── include
+│   │   │   ├── their_addition.h
+│   │   │   └── their_subtraction.h
+│   │   ├── src
+│   │   │   ├── their_addition.c
+│   │   │   └── their_subtraction.c
+│   │   └── CMakeLists.txt
+│   └── CMakeLists.txt
+├── src
+│   └── calculator
+│       ├── addition.c
+│       ├── addition.h
+│       ├── division.c
+│       ├── division.h
+│       ├── main.c
+│       ├── multiplication.c
+│       ├── multiplication.h
+│       ├── subtraction.c
+│       └── subtraction.h
+├── .clang-format
+├── CMakeLists.txt
+├── .gitignore
+└── README.md
 ```

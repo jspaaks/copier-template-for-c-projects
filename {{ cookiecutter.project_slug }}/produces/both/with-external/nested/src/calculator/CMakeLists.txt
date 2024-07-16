@@ -1,0 +1,51 @@
+cmake_minimum_required(VERSION 3.21...3.28)
+
+project(project LANGUAGES C)
+
+list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
+
+add_executable(calculator)
+
+target_compile_definitions(
+    calculator
+    PRIVATE
+        $<$<CONFIG:Debug>:DEBUG>
+)
+
+target_compile_features(
+    calculator
+    PRIVATE
+        c_std_23
+)
+
+target_compile_options(
+    calculator
+    PRIVATE
+        -Wall
+        -Wextra
+        -pedantic
+        $<$<CONFIG:Debug>:-g>
+        $<$<CONFIG:Debug>:-O0>
+        $<$<CONFIG:Release>:-Werror>
+)
+
+target_include_directories(
+    calculator
+    PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/libours
+)
+
+target_link_libraries(
+    calculator
+    PRIVATE
+        m
+        ours
+)
+
+target_sources(
+    calculator
+    PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}/main.c
+)
+
+install(TARGETS calculator)
