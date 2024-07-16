@@ -25,7 +25,7 @@
 					<Add option="-std=c2x" />
 					<Add option="-ggdb" />
 					<Add option="-g" />
-					<Add directory="../external/libtheirs/include" />
+					<Add directory="../{{ cookiecutter.external_directory }}/libtheirs/include" />
 				</Compiler>
 			</Target>
 			<Target title="debug-libours">
@@ -47,7 +47,7 @@
 					<Add option="-ggdb" />
 					<Add option="-g" />
 					<Add directory="../include" />
-					<Add directory="../external/libtheirs/include" />
+					<Add directory="../{{ cookiecutter.external_directory }}/libtheirs/include" />
 				</Compiler>
 				<Linker>
 					<Add library="theirs" />
