@@ -34,8 +34,6 @@ TODO
 - review necessity of rpath for combinations that have one level of indirection in their libraries
 - review virtual target when there is just one target
 - check what happens if user chooses different name, e.g. directory name of produces/both/with-external/nested/src/calculator is fixed atm.
-- make including cmake build optional via question
-- make including codeblocks build optional via question
 - add testing framework(s), e.g.
    - googletest
    - criterion
