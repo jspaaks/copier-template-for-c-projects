@@ -14,6 +14,23 @@ def remove_codeblocks():
     for p in paths:
         shutil.rmtree(p)
 
+def remove_cmake():
+    paths = [
+        Path("assets", "fonts", "CMakeLists.txt"),
+        Path("assets", "images", "CMakeLists.txt"),
+        Path("assets", "sounds", "CMakeLists.txt"),
+        Path("assets", "CMakeLists.txt"),
+        Path("build", "cmake"),
+        Path("{{ cookiecutter.external_directory }}", "libtheirs", "CMakeLists.txt"),
+        Path("{{ cookiecutter.external_directory }}", "CMakeLists.txt"),
+        Path("src", "calculator", "CMakeLists.txt"),
+        Path("src", "libours", "CMakeLists.txt"),
+        Path("src", "CMakeLists.txt"),
+        Path("CMakeLists.txt")
+    ]
+    for p in paths:
+        shutil.rmtree(p) if os.path.isdir(p) else p.unlink(missing_ok=True)
+
 def remove_external():
     p = Path("My project doesn't have external dependencies")
     shutil.rmtree(p)
@@ -25,8 +42,9 @@ def main():
     wo_assets = "{{ cookiecutter.keep_assets }}" == "False"
     nested = "{{ cookiecutter.nested }}" == "True"
     wo_codeblocks = "{{ cookiecutter.add_codeblocks }}" == "False"
+    wo_cmake = "{{ cookiecutter.add_cmake }}" == "False"
 
-    base = Path(
+    src = Path(
         "produces",
         {
             "an executable": "exe",
@@ -36,21 +54,13 @@ def main():
         "wo-external" if wo_external else "with-external",
         "nested" if nested else "flat"
     )
-    srcs = [
-        Path(base, ".codeblocks"),
-        Path(base, "src"),
-        Path(base, "CMakeLists.txt")
-    ]
-    if produces in ["a library", "both"]:
-        srcs.append(Path(base, "include"))
-
     tgt = Path(".")
-    for src in srcs:
-        shutil.move(src, tgt)
+    shutil.copytree(src, tgt, dirs_exist_ok=True)
     shutil.rmtree(Path("produces"))
 
     if wo_assets: remove_assets()
     if wo_codeblocks: remove_codeblocks()
+    if wo_cmake: remove_cmake()
     if wo_external: remove_external()
 
 
