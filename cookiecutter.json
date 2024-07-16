@@ -5,7 +5,8 @@
     "project_slug": "What is the name of the new project?\n        Use [A-Za-z0-9_-.]+",
     "build_directory": "What should the build directory be called?",
     "external_directory": "What should the directory that contains external dependencies be called?",
-    "keep_assets": "Does the project use assets like images, sound, fonts, etc?"
+    "keep_assets": "Does the project use assets like images, sound, fonts, etc?",
+    "add_codeblocks": "Add a Code::Blocks IDE configuration?"
   },
   "produces": [
     "an executable",
@@ -27,5 +28,6 @@
     "subprojects",
     "My project doesn't have external dependencies"
   ],
-  "keep_assets": true
+  "keep_assets": true,
+  "add_codeblocks": true
 }

@@ -6,6 +6,14 @@ def remove_assets():
     p = Path("assets")
     shutil.rmtree(p)
 
+def remove_codeblocks():
+    paths = [
+        Path(".codeblocks"),
+        Path("build", "codeblocks")
+    ]
+    for p in paths:
+        shutil.rmtree(p)
+
 def remove_external():
     p = Path("My project doesn't have external dependencies")
     shutil.rmtree(p)
@@ -16,6 +24,7 @@ def main():
     wo_external = "{{ cookiecutter.external_directory }}" == "My project doesn't have external dependencies"
     wo_assets = "{{ cookiecutter.keep_assets }}" == "False"
     nested = "{{ cookiecutter.nested }}" == "True"
+    wo_codeblocks = "{{ cookiecutter.add_codeblocks }}" == "False"
 
     base = Path(
         "produces",
@@ -41,6 +50,7 @@ def main():
     shutil.rmtree(Path("produces"))
 
     if wo_assets: remove_assets()
+    if wo_codeblocks: remove_codeblocks()
     if wo_external: remove_external()
 
 
