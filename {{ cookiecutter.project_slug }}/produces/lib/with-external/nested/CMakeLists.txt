@@ -55,8 +55,10 @@ target_link_libraries(
 target_sources(
     ours
     PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}/src/libours/addition.c
         ${CMAKE_CURRENT_LIST_DIR}/src/libours/division.c
         ${CMAKE_CURRENT_LIST_DIR}/src/libours/multiplication.c
+        ${CMAKE_CURRENT_LIST_DIR}/src/libours/subtraction.c
 )
 
 install(TARGETS ours)
