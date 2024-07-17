@@ -4,7 +4,7 @@
 	<Project>
 		<Option title="{{ cookiecutter.project_slug }}" />
 		<Option pch_mode="2" />
-		<Option default_target="debug-exe" />
+		<Option default_target="debug-{{ cookiecutter.exename }}" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="debug-libtheirs">
@@ -28,8 +28,8 @@
 					<Add directory="../{{ cookiecutter.external_directory }}/libtheirs/include" />
 				</Compiler>
 			</Target>
-			<Target title="debug-exe">
-				<Option output="../{{ cookiecutter.build_directory }}/codeblocks/debug/bin/calculator" prefix_auto="1" extension_auto="1" />
+			<Target title="debug-{{ cookiecutter.exename }}">
+				<Option output="../{{ cookiecutter.build_directory }}/codeblocks/debug/bin/{{ cookiecutter.exename }}" prefix_auto="1" extension_auto="1" />
 				<Option object_output="../{{ cookiecutter.build_directory }}/codeblocks/debug/obj" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -46,7 +46,6 @@
 					<Add option="-std=c2x" />
 					<Add option="-ggdb" />
 					<Add option="-g" />
-					<Add directory="../include" />
 					<Add directory="../{{ cookiecutter.external_directory }}/libtheirs/include" />
 				</Compiler>
 				<Linker>
@@ -58,7 +57,7 @@
 			</Target>
 		</Build>
 		<VirtualTargets>
-			<Add alias="debug" targets="debug-libtheirs;debug-exe;" />
+			<Add alias="debug" targets="debug-libtheirs;debug-{{ cookiecutter.exename }};" />
 		</VirtualTargets>
 		<Unit filename="../{{ cookiecutter.external_directory }}/libtheirs/include/their_addition.h">
 			<Option target="debug-libtheirs" />
@@ -75,38 +74,37 @@
 			<Option target="debug-libtheirs" />
 		</Unit>
 		<Unit filename="../src/addition.h">
-			<Option target="debug-exe" />
+			<Option target="debug-{{ cookiecutter.exename }}" />
 		</Unit>
 		<Unit filename="../src/division.h">
-			<Option target="debug-exe" />
+			<Option target="debug-{{ cookiecutter.exename }}" />
 		</Unit>
 		<Unit filename="../src/multiplication.h">
-			<Option target="debug-exe" />
+			<Option target="debug-{{ cookiecutter.exename }}" />
 		</Unit>
 		<Unit filename="../src/subtraction.h">
-			<Option target="debug-exe" />
+			<Option target="debug-{{ cookiecutter.exename }}" />
 		</Unit>
 		<Unit filename="../src/addition.c">
 			<Option compilerVar="CC" />
-			<Option target="debug-exe" />
+			<Option target="debug-{{ cookiecutter.exename }}" />
 		</Unit>
 		<Unit filename="../src/division.c">
 			<Option compilerVar="CC" />
-			<Option target="debug-exe" />
+			<Option target="debug-{{ cookiecutter.exename }}" />
 		</Unit>
 		<Unit filename="../src/main.c">
 			<Option compilerVar="CC" />
-			<Option target="debug-exe" />
+			<Option target="debug-{{ cookiecutter.exename }}" />
 		</Unit>
 		<Unit filename="../src/multiplication.c">
 			<Option compilerVar="CC" />
-			<Option target="debug-exe" />
+			<Option target="debug-{{ cookiecutter.exename }}" />
 		</Unit>
 		<Unit filename="../src/subtraction.c">
 			<Option compilerVar="CC" />
-			<Option target="debug-exe" />
+			<Option target="debug-{{ cookiecutter.exename }}" />
 		</Unit>
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
-
