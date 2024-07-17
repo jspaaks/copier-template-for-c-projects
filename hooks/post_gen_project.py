@@ -57,11 +57,11 @@ def main():
     elif produces == "a library":
         assert exename == ENTER_TO_SKIP, "Expected executable name to be empty / <Press enter to skip>"
         assert libname != ENTER_TO_SKIP, "Expected library name to not be empty / <Press enter to skip>"
-        assert libname[:2] == "lib", f"Expected library name to start with 'lib' but was { libname }"
+        assert libname[:3] == "lib", "Expected library name to start with 'lib' but was {}".format(libname)
     elif produces == "both":
         assert exename != ENTER_TO_SKIP, "Expected executable name to not be empty / <Press enter to skip>"
         assert libname != ENTER_TO_SKIP, "Expected library name to not be empty / <Press enter to skip>"
-        assert libname[:3] == "lib", f"Expected library name to start with 'lib' but was { libname }"
+        assert libname[:3] == "lib", "Expected library name to start with 'lib' but was {}".format(libname)
 
 
     src = Path(
