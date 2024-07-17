@@ -55,7 +55,6 @@ example files to get you started:
 ```txt
 calculator-project/
 ├── assets
-│   ├── CMakeLists.txt
 │   ├── fonts
 │   │   ├── CMakeLists.txt
 │   │   ├── font.ttf
@@ -64,36 +63,44 @@ calculator-project/
 │   │   ├── CMakeLists.txt
 │   │   ├── image.bmp
 │   │   └── README.md
-│   └── sounds
-│       ├── CMakeLists.txt
-│       ├── README.md
-│       └── sound.wav
+│   ├── sounds
+│   │   ├── CMakeLists.txt
+│   │   ├── README.md
+│   │   └── sound.wav
+│   └── CMakeLists.txt
 ├── build
 │   ├── cmake
-│   └── codeblocks
-├── CMakeLists.txt
+│   │   └── .gitkeep
+│   ├── codeblocks
+│   │   └── .gitkeep
+│   └── .gitkeep
+├── .codeblocks
+│   └── project.cbp
 ├── external
-│   ├── CMakeLists.txt
-│   └── libtheirs
-│       ├── CMakeLists.txt
-│       ├── include
-│       │   ├── their_addition.h
-│       │   └── their_subtraction.h
-│       └── src
-│           ├── their_addition.c
-│           └── their_subtraction.c
-├── README.md
-└── src
-    └── calculator
-        ├── addition.c
-        ├── addition.h
-        ├── division.c
-        ├── division.h
-        ├── main.c
-        ├── multiplication.c
-        ├── multiplication.h
-        ├── subtraction.c
-        └── subtraction.h
+│   ├── libtheirs
+│   │   ├── include
+│   │   │   ├── their_addition.h
+│   │   │   └── their_subtraction.h
+│   │   ├── src
+│   │   │   ├── their_addition.c
+│   │   │   └── their_subtraction.c
+│   │   └── CMakeLists.txt
+│   └── CMakeLists.txt
+├── src
+│   └── calculator
+│       ├── addition.c
+│       ├── addition.h
+│       ├── division.c
+│       ├── division.h
+│       ├── main.c
+│       ├── multiplication.c
+│       ├── multiplication.h
+│       ├── subtraction.c
+│       └── subtraction.h
+├── .clang-format
+├── CMakeLists.txt
+├── .gitignore
+└── README.md
 
-14 directories, 27 files
+15 directories, 33 files
 ```
