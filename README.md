@@ -1,4 +1,4 @@
-# Cookiecutter template for Code::Blocks project
+# Cookiecutter template for C projects
 
 Cookiecutter template for generating a somewhat generic project that can be built
 with CMake and has the right configuration to be used in Code::Blocks editor.
