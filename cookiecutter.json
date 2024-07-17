@@ -18,8 +18,8 @@
     "a library",
     "both"
   ],
-  "exename": "{% if cookiecutter.produces != 'a library' %}calculator{% else  %}<Press enter to skip>{% endif %}",
-  "libname": "{% if cookiecutter.produces != 'an executable' %}lib{{ cookiecutter.exename }}{% else %}<Press enter to skip>{% endif %}",
+  "exename": "{% if cookiecutter.produces == 'an executable' %}calculator{% elif cookiecutter.produces == 'a library' %}<Press enter to skip>{% elif cookiecutter.produces == 'both' %}calculator{% endif %}",
+  "libname": "{% if cookiecutter.produces == 'an executable' %}<Press enter to skip{% elif cookiecutter.produces == 'a library' %}libcalculator{% elif cookiecutter.produces == 'both' %}libcalculator{% endif %}",
   "nested": true,
   "build_directory": [
     "build",
