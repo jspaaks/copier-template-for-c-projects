@@ -13,6 +13,8 @@
 9. codeblocks project builds
 10. codeblocks project runs
 
+## results 
+
 |      |               |        |                                                                                        | checked    | state |
 | ---  | ---           | ---    | ---                                                                                    | ---        | ---   |
 | both | with-external | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/with-external/flat)   | 2024-07-17 | ok    |
@@ -29,7 +31,7 @@
 | lib  | wo-external   | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/wo-external/nested)    | 2024-07-17 | ok    |
 
 
-TODO
+## TODO
 
 1. review necessity of rpath for combinations that have one level of indirection in their libraries
 1. review virtual target when there is just one target
@@ -37,5 +39,6 @@ TODO
    1. googletest
    1. criterion
    1. check
+   1. kyua
 1. review usage of multiple `project` across nested CMakeLists.txt
 1. review usage of multiple CMAKE_BUILD_TYPE and CMAKE_INSTALL_PREFIX across nested CMakeLists.txt
