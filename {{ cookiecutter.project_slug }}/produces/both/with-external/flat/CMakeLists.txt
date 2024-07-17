@@ -12,6 +12,7 @@ endif()
 
 {% if cookiecutter.add_assets -%}
 add_subdirectory(assets)
+
 {% endif -%}
 
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/libtheirs)
