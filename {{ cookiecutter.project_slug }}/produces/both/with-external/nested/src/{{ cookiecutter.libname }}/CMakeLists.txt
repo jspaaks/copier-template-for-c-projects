@@ -4,22 +4,25 @@ project(project LANGUAGES C)
 
 list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
 
-add_library(ours SHARED)
+add_library(tgt_{{ cookiecutter.libname }} SHARED)
+
+set_property(TARGET tgt_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME {{ cookiecutter.libname[3:] }})
+
 
 target_compile_definitions(
-    ours
+    tgt_{{ cookiecutter.libname }}
     PRIVATE
         $<$<CONFIG:Debug>:DEBUG>
 )
 
 target_compile_features(
-    ours
+    tgt_{{ cookiecutter.libname }}
     PRIVATE
         c_std_23
 )
 
 target_compile_options(
-    ours
+    tgt_{{ cookiecutter.libname }}
     PRIVATE
         -Wall
         -Wextra
@@ -30,20 +33,20 @@ target_compile_options(
 )
 
 target_include_directories(
-    ours
+    tgt_{{ cookiecutter.libname }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/libours
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/{{ cookiecutter.libname }}
         ${CMAKE_CURRENT_LIST_DIR}/../../{{ cookiecutter.external_directory }}/libtheirs/include
 )
 
 target_link_libraries(
-    ours
+    tgt_{{ cookiecutter.libname }}
     PRIVATE
         theirs
 )
 
 target_sources(
-    ours
+    tgt_{{ cookiecutter.libname }}
     PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/addition.c
         ${CMAKE_CURRENT_LIST_DIR}/division.c
@@ -51,4 +54,4 @@ target_sources(
         ${CMAKE_CURRENT_LIST_DIR}/subtraction.c
 )
 
-install(TARGETS ours)
+install(TARGETS tgt_{{ cookiecutter.libname }})

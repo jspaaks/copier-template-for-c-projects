@@ -14,5 +14,5 @@ endif()
 add_subdirectory(assets)
 {% endif -%}
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/libtheirs)
-add_subdirectory(src/calculator)
-add_subdirectory(src/libours)
+add_subdirectory(src/{{ cookiecutter.exename }})
+add_subdirectory(src/{{ cookiecutter.libname }})
