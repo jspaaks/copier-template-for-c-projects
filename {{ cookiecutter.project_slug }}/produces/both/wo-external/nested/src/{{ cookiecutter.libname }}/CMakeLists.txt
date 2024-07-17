@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.21...3.28)
+
 project(project LANGUAGES C)
 
 list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
@@ -6,7 +7,6 @@ list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
 add_library(tgt_{{ cookiecutter.libname }} SHARED)
 
 set_property(TARGET tgt_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME {{ cookiecutter.libname[3:] }})
-
 
 target_compile_definitions(
     tgt_{{ cookiecutter.libname }}
