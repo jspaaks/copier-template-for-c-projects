@@ -13,5 +13,5 @@ endif()
 {% if cookiecutter.add_assets -%}
 add_subdirectory(assets)
 {% endif -%}
-add_subdirectory(src/calculator)
-add_subdirectory(src/libours)
+add_subdirectory(src/{{ cookiecutter.exename }})
+add_subdirectory(src/{{ cookiecutter.libname }})

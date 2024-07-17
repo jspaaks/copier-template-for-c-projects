@@ -1,22 +1,27 @@
 cmake_minimum_required(VERSION 3.21...3.28)
 project(project LANGUAGES C)
 
-add_library(ours SHARED)
+list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
+
+add_library(tgt_{{ cookiecutter.libname }} SHARED)
+
+set_property(TARGET tgt_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME {{ cookiecutter.libname[3:] }})
+
 
 target_compile_definitions(
-    ours
+    tgt_{{ cookiecutter.libname }}
     PRIVATE
         $<$<CONFIG:Debug>:DEBUG>
 )
 
 target_compile_features(
-    ours
+    tgt_{{ cookiecutter.libname }}
     PRIVATE
         c_std_23
 )
 
 target_compile_options(
-    ours
+    tgt_{{ cookiecutter.libname }}
     PRIVATE
         -Wall
         -Wextra
@@ -27,16 +32,16 @@ target_compile_options(
 )
 
 target_include_directories(
-    ours
+    tgt_{{ cookiecutter.libname }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/libours
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/{{ cookiecutter.libname }}
 )
 
 target_sources(
-    ours
+    tgt_{{ cookiecutter.libname }}
     PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/division.c
         ${CMAKE_CURRENT_LIST_DIR}/multiplication.c
 )
 
-install(TARGETS ours)
+install(TARGETS tgt_{{ cookiecutter.libname }})

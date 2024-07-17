@@ -4,22 +4,24 @@ project(project LANGUAGES C)
 
 list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
 
-add_executable(calculator)
+add_executable(tgt_{{ cookiecutter.exename }})
+
+set_property(TARGET tgt_{{ cookiecutter.exename }} PROPERTY OUTPUT_NAME {{ cookiecutter.exename }})
 
 target_compile_definitions(
-    calculator
+    tgt_{{ cookiecutter.exename }}
     PRIVATE
         $<$<CONFIG:Debug>:DEBUG>
 )
 
 target_compile_features(
-    calculator
+    tgt_{{ cookiecutter.exename }}
     PRIVATE
         c_std_23
 )
 
 target_compile_options(
-    calculator
+    tgt_{{ cookiecutter.exename }}
     PRIVATE
         -Wall
         -Wextra
@@ -30,22 +32,22 @@ target_compile_options(
 )
 
 target_include_directories(
-    calculator
+    tgt_{{ cookiecutter.exename }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/libours
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/{{ cookiecutter.libname }}
 )
 
 target_link_libraries(
-    calculator
+    tgt_{{ cookiecutter.exename }}
     PRIVATE
         m
-        ours
+        tgt_{{ cookiecutter.libname }}
 )
 
 target_sources(
-    calculator
+    tgt_{{ cookiecutter.exename }}
     PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/main.c
 )
 
-install(TARGETS calculator)
+install(TARGETS tgt_{{ cookiecutter.exename }})
