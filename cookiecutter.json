@@ -1,22 +1,26 @@
 {
   "__prompts__" : {
-    "produces": "What artifact(s) does the new project produce?",
-    "nested": "Do you want to organize components into subdirectories under src/?",
     "project_slug": "What is the name of the new project?\n        Use [A-Za-z0-9_-.]+",
+    "produces": "What artifact(s) does the new project produce?",
+    "exename": "If any, what is the name of the executable?\n         Use [A-Za-z0-9_-.]+",
+    "libname": "If any, what is the name of the library?\n         Use lib[A-Za-z0-9_-.]+)",
+    "nested": "Do you want to organize components into subdirectories under src/?",
     "build_directory": "What should the build directory be called?",
     "external_directory": "What should the directory that contains external dependencies be called?",
-    "keep_assets": "Does the project use assets like images, sound, fonts, etc?",
+    "add_assets": "Does the project use assets like images, sound, fonts, etc?",
     "add_cmake": "Add a CMake build configuration?",
     "add_codeblocks": "Add a Code::Blocks IDE configuration?",
     "add_clang_format": "Add a clang-format configuration?"
   },
+  "project_slug": "calculator-project",
   "produces": [
     "an executable",
     "a library",
     "both"
   ],
+  "exename": "{% if cookiecutter.produces != 'a library' %}calculator{% else  %}<Press enter to skip>{% endif %}",
+  "libname": "{% if cookiecutter.produces != 'an executable' %}lib{{ cookiecutter.exename }}{% else %}<Press enter to skip>{% endif %}",
   "nested": true,
-  "project_slug": "{% if cookiecutter.produces in ['an executable', 'both'] -%}calculator{%- else -%}libours{% endif %}",
   "build_directory": [
     "build",
     "built",
@@ -30,7 +34,7 @@
     "subprojects",
     "My project doesn't have external dependencies"
   ],
-  "keep_assets": true,
+  "add_assets": true,
   "add_cmake": true,
   "add_codeblocks": true,
   "add_clang_format": true

@@ -41,12 +41,28 @@ def remove_external():
 def main():
 
     produces = "{{ cookiecutter.produces }}"
+    exename = "{{ cookiecutter.exename }}"
+    libname = "{{ cookiecutter.libname }}"
     wo_external = "{{ cookiecutter.external_directory }}" == "My project doesn't have external dependencies"
-    wo_assets = "{{ cookiecutter.keep_assets }}" == "False"
+    wo_assets = "{{ cookiecutter.add_assets }}" == "False"
     nested = "{{ cookiecutter.nested }}" == "True"
     wo_codeblocks = "{{ cookiecutter.add_codeblocks }}" == "False"
     wo_cmake = "{{ cookiecutter.add_cmake }}" == "False"
     wo_clang_format = "{{ cookiecutter.add_clang_format }}" == "False"
+
+    ENTER_TO_SKIP = "<Press enter to skip>"
+    if produces == "an executable":
+        assert exename != ENTER_TO_SKIP, "Expected executable name to not be empty / <Press enter to skip>"
+        assert libname == ENTER_TO_SKIP, "Expected library name to be empty / <Press enter to skip>"
+    elif produces == "a library":
+        assert exename == ENTER_TO_SKIP, "Expected executable name to be empty / <Press enter to skip>"
+        assert libname != ENTER_TO_SKIP, "Expected library name to not be empty / <Press enter to skip>"
+        assert libname[:2] == "lib", f"Expected library name to start with 'lib' but was { libname }"
+    elif produces == "both":
+        assert exename != ENTER_TO_SKIP, "Expected executable name to not be empty / <Press enter to skip>"
+        assert libname != ENTER_TO_SKIP, "Expected library name to not be empty / <Press enter to skip>"
+        assert libname[:3] == "lib", f"Expected library name to start with 'lib' but was { libname }"
+
 
     src = Path(
         "produces",
