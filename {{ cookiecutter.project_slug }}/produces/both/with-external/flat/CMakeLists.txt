@@ -73,6 +73,7 @@ install(TARGETS tgt_{{ cookiecutter.exename }})
 #
 
 add_library(tgt_{{ cookiecutter.libname }} SHARED)
+
 set_property(TARGET tgt_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME {{ cookiecutter.libname[3:] }})
 
 target_compile_definitions(
