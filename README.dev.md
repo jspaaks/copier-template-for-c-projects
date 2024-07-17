@@ -31,10 +31,12 @@
 
 TODO
 
-- review necessity of rpath for combinations that have one level of indirection in their libraries
-- review virtual target when there is just one target
-- check what happens if user chooses different name, e.g. directory name of produces/both/with-external/nested/src/calculator is fixed atm.
-- add testing framework(s), e.g.
-   - googletest
-   - criterion
-   - check
+1. check what happens if user chooses different name, e.g. directory name of produces/both/with-external/nested/src/calculator is fixed atm.
+1. review necessity of rpath for combinations that have one level of indirection in their libraries
+1. review virtual target when there is just one target
+1. add testing framework(s), e.g.
+   1. googletest
+   1. criterion
+   1. check
+1. review usage of multiple `project` across nested CMakeLists.txt
+1. review usage of multiple CMAKE_BUILD_TYPE and CMAKE_INSTALL_PREFIX across nested CMakeLists.txt
