@@ -10,12 +10,24 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   set_property(CACHE CMAKE_INSTALL_PREFIX PROPERTY VALUE "${CMAKE_BINARY_DIR}/dist")
 endif()
 
+#
+#
+#
+
 {% if cookiecutter.add_assets -%}
 add_subdirectory(assets)
+
+#
+#
+#
 
 {% endif -%}
 
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/libtheirs)
+
+#
+#
+#
 
 list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
 
@@ -69,3 +81,11 @@ target_sources(
 )
 
 install(TARGETS tgt_{{ cookiecutter.libname }})
+
+{% if cookiecutter.add_test -%}
+#
+#
+#
+
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/test)
+{%- endif %}
