@@ -64,3 +64,11 @@ target_sources(
 )
 
 install(TARGETS tgt_{{ cookiecutter.libname }})
+
+{% if cookiecutter.add_test -%}
+#
+#
+#
+
+add_subdirectory(test/{{ cookiecutter.libname }})
+{% endif -%}
