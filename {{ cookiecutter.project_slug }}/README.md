@@ -17,7 +17,7 @@ cmake ../..
 # build the project
 make
 
-# install the project to <repo>/build/dist
+# install the project to <repo>/build/cmake/dist
 make install
 {% if cookiecutter.produces in ["exe", "both"] %}
 # run the program to see if it works
@@ -48,6 +48,21 @@ Should output something like:
 {% endif -%}
 ```
 
+{% if cookiecutter.add_test -%}
+## Testing
+
+The tests require that [Criterion](https://github.com/Snaipe/Criterion) is installed on the system, e.g. with
+
+```shell
+sudo apt install libcriterion-dev
+```
+
+Run the tests with
+
+```shell
+./dist/bin/tests
+```
+{% endif -%}
 {% endif -%}
 
 {% if cookiecutter.add_codeblocks -%}
