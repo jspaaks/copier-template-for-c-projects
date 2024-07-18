@@ -32,7 +32,7 @@ target_compile_options(
 target_include_directories(
     tgt_tests
     PRIVATE
-        ${PROJECT_ROOT}/include/{{ cookiecutter.libname }}
+        ${PROJECT_ROOT}/include
 )
 
 target_link_directories(

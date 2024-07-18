@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.21...3.28)
 
 project(project LANGUAGES C)
 
+set(PROJECT_ROOT ${CMAKE_CURRENT_LIST_DIR}/../..)
+
 list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
 
 add_library(tgt_{{ cookiecutter.libname }} SHARED)
@@ -34,8 +36,8 @@ target_compile_options(
 target_include_directories(
     tgt_{{ cookiecutter.libname }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/{{ cookiecutter.libname }}
-        ${CMAKE_CURRENT_LIST_DIR}/../../{{ cookiecutter.external_directory }}/libtheirs/include
+        ${PROJECT_ROOT}/include
+        ${PROJECT_ROOT}/{{ cookiecutter.external_directory }}/libtheirs/include
 )
 
 target_link_libraries(
@@ -47,10 +49,10 @@ target_link_libraries(
 target_sources(
     tgt_{{ cookiecutter.libname }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/addition.c
-        ${CMAKE_CURRENT_LIST_DIR}/division.c
-        ${CMAKE_CURRENT_LIST_DIR}/multiplication.c
-        ${CMAKE_CURRENT_LIST_DIR}/subtraction.c
+        ${PROJECT_ROOT}/src/{{ cookiecutter.libname }}/addition.c
+        ${PROJECT_ROOT}/src/{{ cookiecutter.libname }}/division.c
+        ${PROJECT_ROOT}/src/{{ cookiecutter.libname }}/multiplication.c
+        ${PROJECT_ROOT}/src/{{ cookiecutter.libname }}/subtraction.c
 )
 
 install(TARGETS tgt_{{ cookiecutter.libname }})

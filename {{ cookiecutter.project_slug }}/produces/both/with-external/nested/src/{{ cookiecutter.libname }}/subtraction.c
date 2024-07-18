@@ -1,4 +1,4 @@
-#include "subtraction.h"
+#include "{{ cookiecutter.libname }}/subtraction.h"
 #include "their_subtraction.h"
 
 int subtract(int a, int b) {

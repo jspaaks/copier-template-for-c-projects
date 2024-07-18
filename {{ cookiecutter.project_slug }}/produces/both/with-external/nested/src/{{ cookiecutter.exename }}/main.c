@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <math.h>
-#include "addition.h"
-#include "division.h"
-#include "multiplication.h"
-#include "subtraction.h"
+#include "{{ cookiecutter.libname }}/addition.h"
+#include "{{ cookiecutter.libname }}/division.h"
+#include "{{ cookiecutter.libname }}/multiplication.h"
+#include "{{ cookiecutter.libname }}/subtraction.h"
 
 int main (void) {
     fprintf(stdout, "-- test compile definitions\n");

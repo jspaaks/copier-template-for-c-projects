@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.21...3.28)
 
 project(project LANGUAGES C)
 
+set(PROJECT_ROOT ${CMAKE_CURRENT_LIST_DIR}/../..)
+
 list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
 
 add_executable(tgt_{{ cookiecutter.exename }})
@@ -34,7 +36,7 @@ target_compile_options(
 target_include_directories(
     tgt_{{ cookiecutter.exename }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/{{ cookiecutter.libname }}
+        ${PROJECT_ROOT}/include
 )
 
 target_link_libraries(
@@ -47,7 +49,7 @@ target_link_libraries(
 target_sources(
     tgt_{{ cookiecutter.exename }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/main.c
+        ${PROJECT_ROOT}/src/{{ cookiecutter.exename }}/main.c
 )
 
 install(TARGETS tgt_{{ cookiecutter.exename }})
