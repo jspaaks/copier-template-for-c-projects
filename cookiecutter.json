@@ -2,8 +2,8 @@
   "__prompts__" : {
     "project_slug": "What is the name of the new project?\n        Use [A-Za-z0-9_-.]+",
     "produces": "What artifact(s) does the new project produce?",
-    "exename": "If any, what is the name of the executable?\n         Use [A-Za-z0-9_-.]+",
     "libname": "If any, what is the name of the library?\n         Use lib[A-Za-z0-9_-.]+)",
+    "exename": "If any, what is the name of the executable?\n         Use [A-Za-z0-9_-.]+",
     "nested": "Do you want to organize components into subdirectories under src/?",
     "build_directory": "What should the build directory be called?",
     "external_directory": "What should the directory that contains external dependencies be called?",
@@ -15,12 +15,12 @@
   },
   "project_slug": "calculator-project",
   "produces": [
-    "an executable",
     "a library",
+    "an executable",
     "both"
   ],
-  "exename": "{% if cookiecutter.produces == 'an executable' %}calculator{% elif cookiecutter.produces == 'a library' %}<Press enter to skip>{% elif cookiecutter.produces == 'both' %}calculator{% endif %}",
   "libname": "{% if cookiecutter.produces == 'an executable' %}<Press enter to skip>{% elif cookiecutter.produces == 'a library' %}libcalculator{% elif cookiecutter.produces == 'both' %}libcalculator{% endif %}",
+  "exename": "{% if cookiecutter.produces == 'an executable' %}calculator{% elif cookiecutter.produces == 'a library' %}<Press enter to skip>{% elif cookiecutter.produces == 'both' %}calculator{% endif %}",
   "nested": true,
   "build_directory": [
     "build",
