@@ -50,6 +50,6 @@
 1. review usage of multiple `project` across nested CMakeLists.txt
 1. review usage of multiple CMAKE_BUILD_TYPE and CMAKE_INSTALL_PREFIX across nested CMakeLists.txt
 1. review usage of `-I../../include/libcalculator` with `#include "addition.h"` vs. `-I../../include` with `#include "libcalculator/addition.h"`
-1. review strategy for when to split into multiple CMakeLists.txt
+1. review strategy for when to split into multiple CMakeLists.txt (affects where files like libcalculator.so are produced under build/cmake in turn affecting link flags)
 1. rename target for theirs to be consistent with the other targets
 1. add CMakeLists.txt to include so they can be installed
