@@ -12,33 +12,43 @@
 8. file exists for every file in codeblocks filetree
 9. codeblocks project builds
 10. codeblocks project runs
+11. tests run
 
 ## results 
 
 |      |               |        |                                                                                        | checked    | state |
 | ---  | ---           | ---    | ---                                                                                    | ---        | ---   |
 | both | with-external | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/with-external/flat)   | 2024-07-17 | ok    |
-| both | with-external | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/with-external/nested) | 2024-07-17 | ok    |
-| both | wo-external   | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/wo-external/flat)     | 2024-07-17 | ok    |
-| both | wo-external   | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/wo-external/nested)   | 2024-07-17 | ok    |
-| exe  | with-external | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/with-external/flat)    | 2024-07-17 | ok    |
-| exe  | with-external | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/with-external/nested)  | 2024-07-17 | ok    |
-| exe  | wo-external   | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/wo-external/flat)      | 2024-07-17 | ok    |
-| exe  | wo-external   | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/wo-external/nested)    | 2024-07-17 | ok    |
-| lib  | with-external | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/with-external/flat)    | 2024-07-17 | ok    |
-| lib  | with-external | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/with-external/nested)  | 2024-07-17 | ok    |
-| lib  | wo-external   | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/wo-external/flat)      | 2024-07-17 | ok    |
-| lib  | wo-external   | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/wo-external/nested)    | 2024-07-17 | ok    |
+| both | with-external | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/with-external/nested) | 2024-07-17 | ?     |
+| both | wo-external   | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/wo-external/flat)     | 2024-07-17 | ?     |
+| both | wo-external   | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/wo-external/nested)   | 2024-07-17 | ?     |
+| exe  | with-external | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/with-external/flat)    | 2024-07-17 | ?     |
+| exe  | with-external | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/with-external/nested)  | 2024-07-17 | ?     |
+| exe  | wo-external   | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/wo-external/flat)      | 2024-07-17 | ?     |
+| exe  | wo-external   | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/wo-external/nested)    | 2024-07-17 | ?     |
+| lib  | with-external | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/with-external/flat)    | 2024-07-17 | ?     |
+| lib  | with-external | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/with-external/nested)  | 2024-07-17 | ?     |
+| lib  | wo-external   | flat   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/wo-external/flat)      | 2024-07-17 | ?     |
+| lib  | wo-external   | nested | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/wo-external/nested)    | 2024-07-17 | ?     |
 
 
 ## TODO
 
+1. add testing framework(s), e.g.
+   1. criterion [https://github.com/Snaipe/Criterion](https://github.com/Snaipe/Criterion)
+   1. googletest [https://github.com/google/googletest](https://github.com/google/googletest)
+   1. check [https://github.com/libcheck/check/](https://github.com/libcheck/check/), [https://libcheck.github.io/check/](https://libcheck.github.io/check/)
+   1. ~kyua~ [https://github.com/freebsd/kyua](https://github.com/freebsd/kyua)
+   1. Unity [https://www.throwtheswitch.org/unity](https://www.throwtheswitch.org/unity), [https://github.com/ThrowTheSwitch/Unity](https://github.com/ThrowTheSwitch/Unity)
+   1. CMocka? [https://lwn.net/Articles/558106/](https://lwn.net/Articles/558106/)
+   1. Catch2?
+   1. acutest?
+1. review usage of `#include "libcalculator/addition.h"` vs `#include "calculator/addition.h"`
+1. consider setting PROJECT_ROOT in CMakeLists.txt files and using it in all paths
 1. review necessity of rpath for combinations that have one level of indirection in their libraries
 1. review virtual target when there is just one target
-1. add testing framework(s), e.g.
-   1. googletest
-   1. criterion
-   1. check
-   1. kyua
 1. review usage of multiple `project` across nested CMakeLists.txt
 1. review usage of multiple CMAKE_BUILD_TYPE and CMAKE_INSTALL_PREFIX across nested CMakeLists.txt
+1. review usage of `-I../../include/libcalculator` with `#include "addition.h"` vs. `-I../../include` with `#include "libcalculator/addition.h"`
+1. review strategy for when to split into multiple CMakeLists.txt
+1. rename target for theirs to be consistent with the other targets
