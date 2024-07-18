@@ -8,6 +8,7 @@
     "build_directory": "What should the build directory be called?",
     "external_directory": "What should the directory that contains external dependencies be called?",
     "add_assets": "Does the project use assets like images, sound, fonts, etc?",
+    "add_test": "Does the project use tests?",
     "add_cmake": "Add a CMake build configuration?",
     "add_codeblocks": "Add a Code::Blocks IDE configuration?",
     "add_clang_format": "Add a clang-format configuration?"
@@ -35,6 +36,7 @@
     "My project doesn't have external dependencies"
   ],
   "add_assets": true,
+  "add_test": true,
   "add_cmake": true,
   "add_codeblocks": true,
   "add_clang_format": true
