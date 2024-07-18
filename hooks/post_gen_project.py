@@ -38,39 +38,48 @@ def remove_external():
     p = Path("My project doesn't have external dependencies")
     shutil.rmtree(p)
 
+def remove_test():
+    p = Path("test")
+    shutil.rmtree(p)
+
 def main():
 
-    produces = "{{ cookiecutter.produces }}"
+    produceslib = "{{ cookiecutter.produces }}" in ["a library", "both"]
+    producesexe = "{{ cookiecutter.produces }}" in ["an executable", "both"]
     exename = "{{ cookiecutter.exename }}"
     libname = "{{ cookiecutter.libname }}"
     wo_external = "{{ cookiecutter.external_directory }}" == "My project doesn't have external dependencies"
     wo_assets = "{{ cookiecutter.add_assets }}" == "False"
-    nested = "{{ cookiecutter.nested }}" == "True"
+    wo_test = "{{ cookiecutter.add_test }}" == "False"
     wo_codeblocks = "{{ cookiecutter.add_codeblocks }}" == "False"
     wo_cmake = "{{ cookiecutter.add_cmake }}" == "False"
     wo_clang_format = "{{ cookiecutter.add_clang_format }}" == "False"
+    nested = "{{ cookiecutter.nested }}" == "True"
 
-    ENTER_TO_SKIP = "<Press enter to skip>"
-    if produces == "an executable":
-        assert exename != ENTER_TO_SKIP, "Expected executable name to not be empty / <Press enter to skip>"
-        assert libname == ENTER_TO_SKIP, "Expected library name to be empty / <Press enter to skip>"
-    elif produces == "a library":
-        assert exename == ENTER_TO_SKIP, "Expected executable name to be empty / <Press enter to skip>"
-        assert libname != ENTER_TO_SKIP, "Expected library name to not be empty / <Press enter to skip>"
-        assert libname[:3] == "lib", "Expected library name to start with 'lib' but was {}".format(libname)
-    elif produces == "both":
-        assert exename != ENTER_TO_SKIP, "Expected executable name to not be empty / <Press enter to skip>"
-        assert libname != ENTER_TO_SKIP, "Expected library name to not be empty / <Press enter to skip>"
-        assert libname[:3] == "lib", "Expected library name to start with 'lib' but was {}".format(libname)
 
+    EMPTYVALUE = "<Press enter to skip>"
+    if not produceslib and libname != EMPTYVALUE:
+        print("\nExpected library name to be empty but was '{}'.\n".format(libname))
+        return 1
+    if produceslib and libname[:3] != "lib":
+        print("\nExpected library name to start with 'lib' but was '{}'.\n".format(libname))
+        return 1
+
+    if not producesexe and exename != EMPTYVALUE:
+        print("\nExpected executable name to be empty but was '{}'.\n".format(exename))
+        return 1
+
+    if not produceslib and not wo_test:
+        print("\nProject doesn't produce a library to test against.\n")
+        return 1
 
     src = Path(
         "produces",
         {
-            "an executable": "exe",
-            "a library": "lib",
-            "both": "both"
-        }[produces],
+            (True, False): "exe",
+            (False, True): "lib",
+            (True, True): "both"
+        }[(producesexe, produceslib)],
         "wo-external" if wo_external else "with-external",
         "nested" if nested else "flat"
     )
@@ -83,7 +92,9 @@ def main():
     if wo_clang_format: remove_clang_format()
     if wo_cmake: remove_cmake()
     if wo_external: remove_external()
+    if wo_test: remove_test()
 
 
 if __name__ == "__main__":
-    main()
+    rc = main()
+    exit(rc)
