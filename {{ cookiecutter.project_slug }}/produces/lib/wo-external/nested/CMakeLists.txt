@@ -12,8 +12,12 @@ endif()
 
 {% if cookiecutter.add_assets -%}
 add_subdirectory(assets)
-{% endif -%}
 
+#
+#
+#
+
+{% endif -%}
 add_library(tgt_{{ cookiecutter.libname }} SHARED)
 
 set_property(TARGET tgt_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME {{ cookiecutter.libname[3:] }})
@@ -55,3 +59,11 @@ target_sources(
 )
 
 install(TARGETS tgt_{{ cookiecutter.libname }})
+{% if cookiecutter.add_test -%}
+
+#
+#
+#
+
+add_subdirectory(test/{{ cookiecutter.libname }})
+{% endif -%}
