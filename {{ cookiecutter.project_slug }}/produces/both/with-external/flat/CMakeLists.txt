@@ -10,11 +10,11 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   set_property(CACHE CMAKE_INSTALL_PREFIX PROPERTY VALUE "${CMAKE_BINARY_DIR}/dist")
 endif()
 
-{% if cookiecutter.add_assets -%}
 #
 #
 #
 
+{% if cookiecutter.add_assets -%}
 add_subdirectory(assets)
 
 #
