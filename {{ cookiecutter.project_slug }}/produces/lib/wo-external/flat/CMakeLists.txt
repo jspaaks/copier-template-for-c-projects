@@ -11,7 +11,15 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif()
 
 {% if cookiecutter.add_assets -%}
+#
+#
+#
+
 add_subdirectory(assets)
+
+#
+#
+#
 
 {% endif -%}
 
@@ -57,3 +65,10 @@ target_sources(
 
 install(TARGETS tgt_{{ cookiecutter.libname }})
 
+{% if cookiecutter.add_test -%}
+#
+#
+#
+
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/test)
+{%- endif %}
