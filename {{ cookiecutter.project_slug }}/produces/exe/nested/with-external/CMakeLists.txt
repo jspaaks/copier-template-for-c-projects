@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.21...3.28)
 
+set(PROJECT_ROOT ${CMAKE_CURRENT_LIST_DIR})
+
 project(project LANGUAGES C)
 
 if (NOT CMAKE_BUILD_TYPE)
@@ -11,7 +13,7 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif()
 
 {% if cookiecutter.add_assets -%}
-add_subdirectory(assets)
+add_subdirectory(${PROJECT_ROOT}/assets)
 {% endif -%}
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/libtheirs)
 
@@ -47,7 +49,7 @@ target_compile_options(
 target_include_directories(
     tgt_{{ cookiecutter.exename }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/libtheirs/include
+        ${PROJECT_ROOT}/{{ cookiecutter.external_directory }}/libtheirs/include
 )
 
 target_link_libraries(
@@ -60,11 +62,11 @@ target_link_libraries(
 target_sources(
     tgt_{{ cookiecutter.exename }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/src/{{ cookiecutter.exename }}/addition.c
-        ${CMAKE_CURRENT_LIST_DIR}/src/{{ cookiecutter.exename }}/division.c
-        ${CMAKE_CURRENT_LIST_DIR}/src/{{ cookiecutter.exename }}/main.c
-        ${CMAKE_CURRENT_LIST_DIR}/src/{{ cookiecutter.exename }}/multiplication.c
-        ${CMAKE_CURRENT_LIST_DIR}/src/{{ cookiecutter.exename }}/subtraction.c
+        ${PROJECT_ROOT}/src/{{ cookiecutter.exename }}/addition.c
+        ${PROJECT_ROOT}/src/{{ cookiecutter.exename }}/division.c
+        ${PROJECT_ROOT}/src/{{ cookiecutter.exename }}/main.c
+        ${PROJECT_ROOT}/src/{{ cookiecutter.exename }}/multiplication.c
+        ${PROJECT_ROOT}/src/{{ cookiecutter.exename }}/subtraction.c
 )
 
 install(TARGETS tgt_{{ cookiecutter.exename }})
