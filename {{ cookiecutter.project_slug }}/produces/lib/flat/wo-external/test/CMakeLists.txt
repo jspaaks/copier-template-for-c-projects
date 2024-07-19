@@ -9,13 +9,13 @@ set_property(TARGET tgt_tests PROPERTY OUTPUT_NAME tests)
 target_compile_definitions(
     tgt_tests
     PRIVATE
-        $<$<CONFIG:Debug>:DEBUG>
+        $<$<CONFIGDebug>DEBUG>
 )
 
 target_compile_features(
     tgt_tests
     PRIVATE
-        c_std_23
+        c_std_2
 )
 
 target_compile_options(
@@ -24,9 +24,9 @@ target_compile_options(
         -Wall
         -Wextra
         -pedantic
-        $<$<CONFIG:Debug>:-g>
-        $<$<CONFIG:Debug>:-O0>
-        $<$<CONFIG:Release>:-Werror>
+        $<$<CONFIGDebug>-g>
+        $<$<CONFIGDebug>-O0>
+        $<$<CONFIGRelease>-Werror>
 )
 
 target_include_directories(
@@ -45,7 +45,7 @@ target_link_libraries(
     tgt_tests
     PRIVATE
         criterion
-        {{ cookiecutter.libname[3:] }}
+        {{ cookiecutter.libname }}
 )
 
 target_sources(

@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.21...3.28)
+cmake_minimum_required(VERSION .21....28)
+
+set(PROJECT_ROOT ${CMAKE_CURRENT_LIST_DIR})
 
 project(project LANGUAGES C)
 
@@ -25,18 +27,18 @@ add_subdirectory(assets)
 
 add_library(tgt_{{ cookiecutter.libname }} SHARED)
 
-set_property(TARGET tgt_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME {{ cookiecutter.libname[3:] }})
+set_property(TARGET tgt_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME {{ cookiecutter.libname }})
 
 target_compile_definitions(
     tgt_{{ cookiecutter.libname }}
     PRIVATE
-        $<$<CONFIG:Debug>:DEBUG>
+        $<$<CONFIGDebug>DEBUG>
 )
 
 target_compile_features(
     tgt_{{ cookiecutter.libname }}
     PRIVATE
-        c_std_23
+        c_std_2
 )
 
 target_compile_options(
@@ -45,22 +47,22 @@ target_compile_options(
         -Wall
         -Wextra
         -pedantic
-        $<$<CONFIG:Debug>:-g>
-        $<$<CONFIG:Debug>:-O0>
-        $<$<CONFIG:Release>:-Werror>
+        $<$<CONFIGDebug>-g>
+        $<$<CONFIGDebug>-O0>
+        $<$<CONFIGRelease>-Werror>
 )
 
 target_include_directories(
     tgt_{{ cookiecutter.libname }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/include
+        ${PROJECT_ROOT}/include
 )
 
 target_sources(
     tgt_{{ cookiecutter.libname }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/src/division.c
-        ${CMAKE_CURRENT_LIST_DIR}/src/multiplication.c
+        ${PROJECT_ROOT}/src/division.c
+        ${PROJECT_ROOT}/src/multiplication.c
 )
 
 install(TARGETS tgt_{{ cookiecutter.libname }})
@@ -70,5 +72,5 @@ install(TARGETS tgt_{{ cookiecutter.libname }})
 #
 #
 
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/test)
+add_subdirectory(${PROJECT_ROOT}/test)
 {%- endif %}
