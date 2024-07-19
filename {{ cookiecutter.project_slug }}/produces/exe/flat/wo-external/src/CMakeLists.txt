@@ -37,12 +37,6 @@ target_compile_options(
         $<$<CONFIG:Release>:-Werror>
 )
 
-target_include_directories(
-    tgt_exe_{{ cookiecutter.exename }}
-    PRIVATE
-        ${PROJECT_ROOT}/include
-)
-
 target_link_libraries(
     tgt_exe_{{ cookiecutter.exename }}
     PRIVATE
