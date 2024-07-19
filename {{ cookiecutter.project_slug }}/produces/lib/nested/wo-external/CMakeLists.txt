@@ -1,6 +1,8 @@
-cmake_minimum_required(VERSION 3.21...3.28)
+cmake_minimum_required(VERSION .21....28)
 
 project(project LANGUAGES C)
+
+set(PROJECT_ROOT ${CMAKE_CURRENT_LIST_DIR})
 
 if (NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Debug)
@@ -11,7 +13,7 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif()
 
 {% if cookiecutter.add_assets -%}
-add_subdirectory(assets)
+add_subdirectory(${PROJECT_ROOT}/assets)
 
 #
 #
@@ -20,18 +22,18 @@ add_subdirectory(assets)
 {% endif -%}
 add_library(tgt_{{ cookiecutter.libname }} SHARED)
 
-set_property(TARGET tgt_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME {{ cookiecutter.libname[3:] }})
+set_property(TARGET tgt_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME {{ cookiecutter.libname }})
 
 target_compile_definitions(
     tgt_{{ cookiecutter.libname }}
     PRIVATE
-        $<$<CONFIG:Debug>:DEBUG>
+        $<$<CONFIGDebug>DEBUG>
 )
 
 target_compile_features(
     tgt_{{ cookiecutter.libname }}
     PRIVATE
-        c_std_23
+        c_std_2
 )
 
 target_compile_options(
@@ -40,22 +42,22 @@ target_compile_options(
         -Wall
         -Wextra
         -pedantic
-        $<$<CONFIG:Debug>:-g>
-        $<$<CONFIG:Debug>:-O0>
-        $<$<CONFIG:Release>:-Werror>
+        $<$<CONFIGDebug>-g>
+        $<$<CONFIGDebug>-O0>
+        $<$<CONFIGRelease>-Werror>
 )
 
 target_include_directories(
     tgt_{{ cookiecutter.libname }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/include/{{ cookiecutter.libname }}
+        ${PROJECT_ROOT}/include/
 )
 
 target_sources(
     tgt_{{ cookiecutter.libname }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/src/{{ cookiecutter.libname }}/division.c
-        ${CMAKE_CURRENT_LIST_DIR}/src/{{ cookiecutter.libname }}/multiplication.c
+        ${PROJECT_ROOT}/src/{{ cookiecutter.libname }}/division.c
+        ${PROJECT_ROOT}/src/{{ cookiecutter.libname }}/multiplication.c
 )
 
 install(TARGETS tgt_{{ cookiecutter.libname }})
@@ -65,5 +67,5 @@ install(TARGETS tgt_{{ cookiecutter.libname }})
 #
 #
 
-add_subdirectory(test/{{ cookiecutter.libname }})
+add_subdirectory(${PROJECT_ROOT}/test/{{ cookiecutter.libname }})
 {% endif -%}
