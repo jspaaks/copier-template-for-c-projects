@@ -91,9 +91,9 @@
 			{%- endif %}
 		</Build>
 		<VirtualTargets>
-			<Add alias="vtgt_exe_{{ cookiecutter.exename }}_dbg" targets="tgt_lib_their_dbg;tgt_lib_{{ cookiecutter.libname }}_dbg;tgt_exe_{{ cookiecutter.exename }}_dbg;" />
+			<Add alias="vtgt_exe_{{ cookiecutter.exename }}_dbg" targets="tgt_lib_{{ cookiecutter.libname }}_dbg;tgt_exe_{{ cookiecutter.exename }}_dbg;" />
 			{%- if cookiecutter.add_test %}
-			<Add alias="vtgt_exe_test_{{ cookiecutter.libname }}_dbg" targets="tgt_lib_their_dbg;tgt_lib_{{ cookiecutter.libname }}_dbg;tgt_exe_test_{{ cookiecutter.libname }}_dbg;" />
+			<Add alias="vtgt_exe_test_{{ cookiecutter.libname }}_dbg" targets="tgt_lib_{{ cookiecutter.libname }}_dbg;tgt_exe_test_{{ cookiecutter.libname }}_dbg;" />
 			{%- endif %}
 		</VirtualTargets>
 		<Unit filename="../include/{{ cookiecutter.libname }}/division.h">
