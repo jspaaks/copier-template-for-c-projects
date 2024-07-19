@@ -40,7 +40,8 @@ def remove_external():
 
 def remove_test():
     p = Path("test")
-    shutil.rmtree(p)
+    if p.is_dir():
+        shutil.rmtree(p)
 
 def main():
 
