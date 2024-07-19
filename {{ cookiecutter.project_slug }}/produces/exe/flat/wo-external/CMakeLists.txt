@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.21...3.28)
 
+set(PROJECT_ROOT ${CMAKE_CURRENT_LIST_DIR})
+
 project(project LANGUAGES C)
 
 if (NOT CMAKE_BUILD_TYPE)
@@ -11,7 +13,7 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif()
 
 {% if cookiecutter.add_assets -%}
-add_subdirectory(assets)
+add_subdirectory(${PROJECT_ROOT}/assets)
 
 {% endif -%}
 
@@ -53,9 +55,9 @@ target_link_libraries(
 target_sources(
     tgt_{{ cookiecutter.exename }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/src/division.c
-        ${CMAKE_CURRENT_LIST_DIR}/src/main.c
-        ${CMAKE_CURRENT_LIST_DIR}/src/multiplication.c
+        ${PROJECT_ROOT}/src/division.c
+        ${PROJECT_ROOT}/src/main.c
+        ${PROJECT_ROOT}/src/multiplication.c
 )
 
 install(TARGETS tgt_{{ cookiecutter.exename }})
