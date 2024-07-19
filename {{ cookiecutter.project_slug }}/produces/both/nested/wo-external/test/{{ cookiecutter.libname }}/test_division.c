@@ -1,5 +1,5 @@
 #include <criterion/criterion.h>
-#include "division.h"
+#include "{{ cookiecutter.libname }}/division.h"
 
 
 Test(division, one){

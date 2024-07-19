@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
-#include "division.h"
-#include "multiplication.h"
+#include "{{ cookiecutter.libname }}/division.h"
+#include "{{ cookiecutter.libname }}/multiplication.h"
 
 int main (void) {
     fprintf(stdout, "-- test compile definitions\n");
