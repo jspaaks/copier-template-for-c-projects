@@ -2,7 +2,7 @@
   "__prompts__" : {
     "project_slug": "What is the name of the new project?\n        Use [A-Za-z0-9_-.]+",
     "produces": "What artifact(s) does the new project produce?",
-    "libname": "If any, what is the name of the library?\n         Use lib[A-Za-z0-9_-.]+)",
+    "libname": "If any, what is the name of the library?\n         Use [A-Za-z0-9_-.]+)",
     "exename": "If any, what is the name of the executable?\n         Use [A-Za-z0-9_-.]+",
     "nested": "Do you want to organize components into subdirectories under src/?",
     "build_directory": "What should the build directory be called?",
