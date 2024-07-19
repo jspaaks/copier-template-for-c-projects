@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.21...3.28)
+cmake_minimum_required(VERSION .21....28)
+
+set(PROJECT_ROOT ${CMAKE_CURRENT_LIST_DIR})
 
 project(project LANGUAGES C)
 
@@ -10,24 +12,24 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   set_property(CACHE CMAKE_INSTALL_PREFIX PROPERTY VALUE "${CMAKE_BINARY_DIR}/dist")
 endif()
 
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory }}/libtheirs)
+add_subdirectory(${PROJECT_ROOT}/{{ cookiecutter.external_directory }}/libtheirs)
 
 list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
 
 add_library(tgt_{{ cookiecutter.libname }} SHARED)
 
-set_property(TARGET tgt_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME {{ cookiecutter.libname[3:] }})
+set_property(TARGET tgt_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME {{ cookiecutter.libname }})
 
 target_compile_definitions(
     tgt_{{ cookiecutter.libname }}
     PRIVATE
-        $<$<CONFIG:Debug>:DEBUG>
+        $<$<CONFIGDebug>DEBUG>
 )
 
 target_compile_features(
     tgt_{{ cookiecutter.libname }}
     PRIVATE
-        c_std_23
+        c_std_2
 )
 
 target_compile_options(
@@ -36,16 +38,16 @@ target_compile_options(
         -Wall
         -Wextra
         -pedantic
-        $<$<CONFIG:Debug>:-g>
-        $<$<CONFIG:Debug>:-O0>
-        $<$<CONFIG:Release>:-Werror>
+        $<$<CONFIGDebug>-g>
+        $<$<CONFIGDebug>-O0>
+        $<$<CONFIGRelease>-Werror>
 )
 
 target_include_directories(
     tgt_{{ cookiecutter.libname }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/{{ cookiecutter.external_directory}}/libtheirs/include
-        ${CMAKE_CURRENT_LIST_DIR}/include/{{ cookiecutter.libname }}
+        ${PROJECT_ROOT}/{{ cookiecutter.external_directory}}/libtheirs/include
+        ${PROJECT_ROOT}/include
 )
 
 target_link_libraries(
@@ -57,10 +59,10 @@ target_link_libraries(
 target_sources(
     tgt_{{ cookiecutter.libname }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/src/{{ cookiecutter.libname }}/addition.c
-        ${CMAKE_CURRENT_LIST_DIR}/src/{{ cookiecutter.libname }}/division.c
-        ${CMAKE_CURRENT_LIST_DIR}/src/{{ cookiecutter.libname }}/multiplication.c
-        ${CMAKE_CURRENT_LIST_DIR}/src/{{ cookiecutter.libname }}/subtraction.c
+        ${PROJECT_ROOT}/src/{{ cookiecutter.libname }}/addition.c
+        ${PROJECT_ROOT}/src/{{ cookiecutter.libname }}/division.c
+        ${PROJECT_ROOT}/src/{{ cookiecutter.libname }}/multiplication.c
+        ${PROJECT_ROOT}/src/{{ cookiecutter.libname }}/subtraction.c
 )
 
 install(TARGETS tgt_{{ cookiecutter.libname }})
@@ -70,5 +72,5 @@ install(TARGETS tgt_{{ cookiecutter.libname }})
 #
 #
 
-add_subdirectory(test/{{ cookiecutter.libname }})
+add_subdirectory(${PROJECT_ROOT}/test/{{ cookiecutter.libname }})
 {% endif -%}
