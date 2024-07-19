@@ -4,10 +4,10 @@
 	<Project>
 		<Option title="{{ cookiecutter.project_slug }}" />
 		<Option pch_mode="2" />
-		<Option default_target="debug-{{ cookiecutter.exename }}" />
+		<Option default_target="vtgt_exe_{{ cookiecutter.exename }}_dbg" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="debug-{{ cookiecutter.exename }}">
+			<Target title="tgt_exe_{{ cookiecutter.exename }}_dbg">
 				<Option output="../{{ cookiecutter.build_directory }}/codeblocks/debug/bin/{{ cookiecutter.exename }}" prefix_auto="1" extension_auto="1" />
 				<Option object_output="../{{ cookiecutter.build_directory }}/codeblocks/debug/obj" />
 				<Option type="1" />
@@ -26,33 +26,28 @@
 					<Add option="-ggdb" />
 					<Add option="-g" />
 				</Compiler>
-				<Linker>
-					<Add option='-Wl,-rpath,../build/codeblocks/debug/lib' />
-					<Add library="m" />
-					<Add directory="../{{ cookiecutter.build_directory }}/codeblocks/debug/lib" />
-				</Linker>
 			</Target>
 		</Build>
 		<VirtualTargets>
-			<Add alias="debug" targets="debug-{{ cookiecutter.exename }};" />
+			<Add alias="vtgt_exe_{{ cookiecutter.exename }}_dbg" targets="tgt_exe_{{ cookiecutter.exename }}_dbg;" />
 		</VirtualTargets>
 		<Unit filename="../src/{{ cookiecutter.exename }}/division.h">
-			<Option target="debug-{{ cookiecutter.exename }}" />
+			<Option target="tgt_exe_{{ cookiecutter.exename }}_dbg" />
 		</Unit>
-		<Unit filename="../src/{{ cookiecutter.exename }}//multiplication.h">
-			<Option target="debug-{{ cookiecutter.exename }}" />
+		<Unit filename="../src/{{ cookiecutter.exename }}/multiplication.h">
+			<Option target="tgt_exe_{{ cookiecutter.exename }}_dbg" />
 		</Unit>
-		<Unit filename="../src/{{ cookiecutter.exename }}//division.c">
+		<Unit filename="../src/{{ cookiecutter.exename }}/division.c">
 			<Option compilerVar="CC" />
-			<Option target="debug-{{ cookiecutter.exename }}" />
+			<Option target="tgt_exe_{{ cookiecutter.exename }}_dbg" />
 		</Unit>
 		<Unit filename="../src/{{ cookiecutter.exename }}/main.c">
 			<Option compilerVar="CC" />
-			<Option target="debug-{{ cookiecutter.exename }}" />
+			<Option target="tgt_exe_{{ cookiecutter.exename }}_dbg" />
 		</Unit>
-		<Unit filename="../src/{{ cookiecutter.exename }}//multiplication.c">
+		<Unit filename="../src/{{ cookiecutter.exename }}/multiplication.c">
 			<Option compilerVar="CC" />
-			<Option target="debug-{{ cookiecutter.exename }}" />
+			<Option target="tgt_exe_{{ cookiecutter.exename }}_dbg" />
 		</Unit>
 		<Extensions />
 	</Project>
