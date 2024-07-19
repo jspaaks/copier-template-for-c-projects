@@ -4,7 +4,7 @@ list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
 
 add_executable(tgt_exe_tests)
 
-set_property(TARGET tgt_exe_tests PROPERTY OUTPUT_NAME tests)
+set_property(TARGET tgt_exe_tests PROPERTY OUTPUT_NAME test_{{ cookiecutter.libname }})
 
 target_compile_definitions(
     tgt_exe_tests
