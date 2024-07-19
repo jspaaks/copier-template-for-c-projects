@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.21...3.28)
 
+set(PROJECT_ROOT ${CMAKE_CURRENT_LIST_DIR})
+
 project(project LANGUAGES C)
 
 if (NOT CMAKE_BUILD_TYPE)
@@ -15,7 +17,7 @@ endif()
 #
 #
 
-add_subdirectory(assets)
+add_subdirectory(${PROJECT_ROOT}/assets)
 
 #
 #
@@ -25,24 +27,24 @@ add_subdirectory(assets)
 
 list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
 
-add_executable(tgt_{{ cookiecutter.exename }})
+add_executable(tgt_exe_{{ cookiecutter.exename }})
 
-set_property(TARGET tgt_{{ cookiecutter.exename }} PROPERTY OUTPUT_NAME {{ cookiecutter.exename }})
+set_property(TARGET tgt_exe_{{ cookiecutter.exename }} PROPERTY OUTPUT_NAME {{ cookiecutter.exename }})
 
 target_compile_definitions(
-    tgt_{{ cookiecutter.exename }}
+    tgt_exe_{{ cookiecutter.exename }}
     PRIVATE
         $<$<CONFIG:Debug>:DEBUG>
 )
 
 target_compile_features(
-    tgt_{{ cookiecutter.exename }}
+    tgt_exe_{{ cookiecutter.exename }}
     PRIVATE
         c_std_23
 )
 
 target_compile_options(
-    tgt_{{ cookiecutter.exename }}
+    tgt_exe_{{ cookiecutter.exename }}
     PRIVATE
         -Wall
         -Wextra
@@ -53,48 +55,48 @@ target_compile_options(
 )
 
 target_include_directories(
-    tgt_{{ cookiecutter.exename }}
+    tgt_exe_{{ cookiecutter.exename }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/include
+        ${PROJECT_ROOT}/include
 )
 
 target_link_libraries(
-    tgt_{{ cookiecutter.exename }}
+    tgt_exe_{{ cookiecutter.exename }}
     PRIVATE
         m
-        tgt_{{ cookiecutter.libname }}
+        {{ cookiecutter.libname }}
 )
 
 target_sources(
-    tgt_{{ cookiecutter.exename }}
+    tgt_exe_{{ cookiecutter.exename }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/src/main.c
+        ${PROJECT_ROOT}/src/main.c
 )
 
-install(TARGETS tgt_{{ cookiecutter.exename }})
+install(TARGETS tgt_exe_{{ cookiecutter.exename }})
 
 #
 #
 #
 
-add_library(tgt_{{ cookiecutter.libname }} SHARED)
+add_library(tgt_lib_{{ cookiecutter.libname }} SHARED)
 
-set_property(TARGET tgt_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME {{ cookiecutter.libname[3:] }})
+set_property(TARGET tgt_lib_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME {{ cookiecutter.libname }})
 
 target_compile_definitions(
-    tgt_{{ cookiecutter.libname }}
+    tgt_lib_{{ cookiecutter.libname }}
     PRIVATE
         $<$<CONFIG:Debug>:DEBUG>
 )
 
 target_compile_features(
-    tgt_{{ cookiecutter.libname }}
+    tgt_lib_{{ cookiecutter.libname }}
     PRIVATE
         c_std_23
 )
 
 target_compile_options(
-    tgt_{{ cookiecutter.libname }}
+    tgt_lib_{{ cookiecutter.libname }}
     PRIVATE
         -Wall
         -Wextra
@@ -105,24 +107,24 @@ target_compile_options(
 )
 
 target_include_directories(
-    tgt_{{ cookiecutter.libname }}
+    tgt_lib_{{ cookiecutter.libname }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/include
+        ${PROJECT_ROOT}/include
 )
 
 target_sources(
-    tgt_{{ cookiecutter.libname }}
+    tgt_lib_{{ cookiecutter.libname }}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/src/division.c
-        ${CMAKE_CURRENT_LIST_DIR}/src/multiplication.c
+        ${PROJECT_ROOT}/src/division.c
+        ${PROJECT_ROOT}/src/multiplication.c
 )
 
-install(TARGETS tgt_{{ cookiecutter.libname }})
+install(TARGETS tgt_lib_{{ cookiecutter.libname }})
 
 {% if cookiecutter.add_test -%}
 #
 #
 #
 
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/test)
+add_subdirectory(${PROJECT_ROOT}/test)
 {%- endif %}
