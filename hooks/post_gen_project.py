@@ -61,8 +61,13 @@ def main():
     if not produceslib and libname != EMPTYVALUE:
         print("\nExpected library name to be empty but was '{}'.\n".format(libname))
         return 1
-    if produceslib and libname[:3] != "lib":
-        print("\nExpected library name to start with 'lib' but was '{}'.\n".format(libname))
+
+    if produceslib and libname[:3] == "lib":
+        print("\nExpected library name not to start with 'lib' but was '{}'.\n".format(libname))
+        return 1
+
+    if produceslib and producesexe and libname == exename:
+        print("\nLibrary and executable should not be named the same.\n")
         return 1
 
     if not producesexe and exename != EMPTYVALUE:
@@ -80,8 +85,8 @@ def main():
             (False, True): "lib",
             (True, True): "both"
         }[(producesexe, produceslib)],
-        "wo-external" if wo_external else "with-external",
-        "nested" if nested else "flat"
+        "nested" if nested else "flat",
+        "wo-external" if wo_external else "with-external"
     )
     tgt = Path(".")
     shutil.copytree(src, tgt, dirs_exist_ok=True)
