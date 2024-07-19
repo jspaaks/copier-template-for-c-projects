@@ -1,5 +1,5 @@
 #include <criterion/criterion.h>
-#include "subtraction.h"
+#include "{{ cookiecutter.libname }}/subtraction.h"
 
 
 Test(subtraction, one){

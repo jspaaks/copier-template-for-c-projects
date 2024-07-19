@@ -28,7 +28,7 @@
 | exe  | nested | wo-external   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/wo-external/nested)    | 2024-07-19 | ok    |
 | lib  | flat   | with-external | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/with-external/flat)    | 2024-07-19 | ok    |
 | lib  | flat   | wo-external   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/wo-external/flat)      | 2024-07-19 | ok    |
-| lib  | nested | with-external | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/with-external/nested)  | 2024-07-17 | ?     |
+| lib  | nested | with-external | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/with-external/nested)  | 2024-07-19 | ok    |
 | lib  | nested | wo-external   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/wo-external/nested)    | 2024-07-17 | ?     |
 
 ## TODO
@@ -54,3 +54,4 @@
 1. review usage of multiple CMAKE_BUILD_TYPE and CMAKE_INSTALL_PREFIX across nested CMakeLists.txt
 1. review strategy for when to split into multiple CMakeLists.txt (affects where files like libcalculator.so are produced under build/cmake in turn affecting link flags)
 1. add CMakeLists.txt to include so they can be installed
+1. check target name for tests e.g. lib/nested/with-external 
