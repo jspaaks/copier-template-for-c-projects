@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<FileVersion major="1" minor="0" />
+	{%- if cookiecutter.add_test %}
+	<ActiveTarget name="vtgt_exe_test_{{ cookiecutter.libname }}_dbg" />
+	{%- else %}
+	<ActiveTarget name="vtgt_exe_{{ cookiecutter.exename }}_dbg" />
+	{%- endif %}
+</CodeBlocks_layout_file>
