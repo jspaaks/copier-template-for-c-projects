@@ -1,8 +1,14 @@
 cmake_minimum_required(VERSION 3.21...3.28)
 
-project(project LANGUAGES C)
-
 set(PROJECT_ROOT ${CMAKE_CURRENT_LIST_DIR}/../..)
+
+if (NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Debug)
+endif()
+
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+  set_property(CACHE CMAKE_INSTALL_PREFIX PROPERTY VALUE "${CMAKE_BINARY_DIR}/dist")
+endif()
 
 list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
 
@@ -37,13 +43,13 @@ target_include_directories(
     tgt_lib_{{ cookiecutter.libname }}
     PRIVATE
         ${PROJECT_ROOT}/include
-        ${PROJECT_ROOT}/{{ cookiecutter.external_directory }}/libtheirs/include
+        ${PROJECT_ROOT}/{{ cookiecutter.external_directory }}/their/include
 )
 
 target_link_libraries(
     tgt_lib_{{ cookiecutter.libname }}
     PRIVATE
-        theirs
+        tgt_lib_their
 )
 
 target_sources(

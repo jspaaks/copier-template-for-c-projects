@@ -20,7 +20,7 @@
 | ---  | ---    | ---           | ---                                                                                    | ---        | ---   |
 | both | flat   | with-external | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/with-external/flat)   | 2024-07-19 | ok    |
 | both | flat   | wo-external   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/wo-external/flat)     | 2024-07-19 | ok    |
-| both | nested | with-external | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/with-external/nested) | 2024-07-17 | ?     |
+| both | nested | with-external | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/with-external/nested) | 2024-07-19 | ok    |
 | both | nested | wo-external   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/wo-external/nested)   | 2024-07-17 | ?     |
 | exe  | flat   | with-external | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/with-external/flat)    | 2024-07-17 | ?     |
 | exe  | flat   | wo-external   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/wo-external/flat)      | 2024-07-17 | ?     |
