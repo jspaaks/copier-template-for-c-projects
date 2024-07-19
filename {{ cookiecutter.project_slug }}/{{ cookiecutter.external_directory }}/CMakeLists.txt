@@ -1,1 +1,1 @@
-add_subdirectory(libtheirs)
+add_subdirectory(their)
