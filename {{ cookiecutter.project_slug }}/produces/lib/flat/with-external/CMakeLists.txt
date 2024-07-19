@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21...3.28)
+cmake_minimum_required(VERSION .21....28)
 
 project(project LANGUAGES C)
 
@@ -33,18 +33,18 @@ list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
 
 add_library(tgt_{{ cookiecutter.libname }} SHARED)
 
-set_property(TARGET tgt_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME {{ cookiecutter.libname[3:] }})
+set_property(TARGET tgt_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME {{ cookiecutter.libname }})
 
 target_compile_definitions(
     tgt_{{ cookiecutter.libname }}
     PRIVATE
-        $<$<CONFIG:Debug>:DEBUG>
+        $<$<CONFIGDebug>DEBUG>
 )
 
 target_compile_features(
     tgt_{{ cookiecutter.libname }}
     PRIVATE
-        c_std_23
+        c_std_2
 )
 
 target_compile_options(
@@ -53,9 +53,9 @@ target_compile_options(
         -Wall
         -Wextra
         -pedantic
-        $<$<CONFIG:Debug>:-g>
-        $<$<CONFIG:Debug>:-O0>
-        $<$<CONFIG:Release>:-Werror>
+        $<$<CONFIGDebug>-g>
+        $<$<CONFIGDebug>-O0>
+        $<$<CONFIGRelease>-Werror>
 )
 
 target_include_directories(
