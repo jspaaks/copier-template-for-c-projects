@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21...3.28)
+cmake_minimum_required(VERSION 3.23...3.28)
 
 set(PROJECT_ROOT ${CMAKE_CURRENT_LIST_DIR}/..)
 

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21...3.28)
+cmake_minimum_required(VERSION 3.23...3.28)
 
 set(PROJECT_ROOT ${CMAKE_CURRENT_LIST_DIR}/../..)
 
@@ -59,6 +59,20 @@ target_sources(
         ${PROJECT_ROOT}/src/{{ cookiecutter.libname }}/division.c
         ${PROJECT_ROOT}/src/{{ cookiecutter.libname }}/multiplication.c
         ${PROJECT_ROOT}/src/{{ cookiecutter.libname }}/subtraction.c
+    PUBLIC
+        FILE_SET fset_lib_{{ cookiecutter.libname }}_headers
+        TYPE HEADERS
+        BASE_DIRS
+            ${PROJECT_ROOT}/include
+        FILES
+            ${PROJECT_ROOT}/include/{{ cookiecutter.libname }}/addition.h
+            ${PROJECT_ROOT}/include/{{ cookiecutter.libname }}/division.h
+            ${PROJECT_ROOT}/include/{{ cookiecutter.libname }}/multiplication.h
+            ${PROJECT_ROOT}/include/{{ cookiecutter.libname }}/subtraction.h
+
 )
 
-install(TARGETS tgt_lib_{{ cookiecutter.libname }})
+install(TARGETS tgt_lib_{{ cookiecutter.libname }}
+    LIBRARY
+    FILE_SET fset_lib_{{ cookiecutter.libname }}_headers
+)
