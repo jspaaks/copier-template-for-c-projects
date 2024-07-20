@@ -35,12 +35,6 @@ target_include_directories(
         ${PROJECT_ROOT}/include
 )
 
-target_link_directories(
-    tgt_exe_test_{{ cookiecutter.libname }}
-    PRIVATE
-        ${PROJECT_ROOT}/build/cmake/src/{{ cookiecutter.libname }}
-)
-
 target_link_libraries(
     tgt_exe_test_{{ cookiecutter.libname }}
     PRIVATE
