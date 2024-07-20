@@ -63,6 +63,19 @@ target_sources(
         ${PROJECT_ROOT}/src/division.c
         ${PROJECT_ROOT}/src/multiplication.c
         ${PROJECT_ROOT}/src/subtraction.c
+    PUBLIC
+        FILE_SET fset_lib_{{ cookiecutter.libname }}_headers
+        TYPE HEADERS
+        BASE_DIRS
+            ${PROJECT_ROOT}/include
+        FILES
+            ${PROJECT_ROOT}/include/addition.h
+            ${PROJECT_ROOT}/include/division.h
+            ${PROJECT_ROOT}/include/multiplication.h
+            ${PROJECT_ROOT}/include/subtraction.h
 )
 
-install(TARGETS tgt_lib_{{ cookiecutter.libname }})
+install(TARGETS tgt_lib_{{ cookiecutter.libname }}
+    LIBRARY
+    FILE_SET fset_lib_{{ cookiecutter.libname }}_headers
+)
