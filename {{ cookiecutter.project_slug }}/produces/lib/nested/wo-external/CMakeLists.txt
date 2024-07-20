@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION .21....28)
+cmake_minimum_required(VERSION 3.21...3.28)
 
 project(project LANGUAGES C)
 
@@ -14,58 +14,8 @@ endif()
 
 {% if cookiecutter.add_assets -%}
 add_subdirectory(${PROJECT_ROOT}/assets)
-
-#
-#
-#
-
 {% endif -%}
-add_library(tgt_{{ cookiecutter.libname }} SHARED)
-
-set_property(TARGET tgt_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME {{ cookiecutter.libname }})
-
-target_compile_definitions(
-    tgt_{{ cookiecutter.libname }}
-    PRIVATE
-        $<$<CONFIGDebug>DEBUG>
-)
-
-target_compile_features(
-    tgt_{{ cookiecutter.libname }}
-    PRIVATE
-        c_std_2
-)
-
-target_compile_options(
-    tgt_{{ cookiecutter.libname }}
-    PRIVATE
-        -Wall
-        -Wextra
-        -pedantic
-        $<$<CONFIGDebug>-g>
-        $<$<CONFIGDebug>-O0>
-        $<$<CONFIGRelease>-Werror>
-)
-
-target_include_directories(
-    tgt_{{ cookiecutter.libname }}
-    PRIVATE
-        ${PROJECT_ROOT}/include/
-)
-
-target_sources(
-    tgt_{{ cookiecutter.libname }}
-    PRIVATE
-        ${PROJECT_ROOT}/src/{{ cookiecutter.libname }}/division.c
-        ${PROJECT_ROOT}/src/{{ cookiecutter.libname }}/multiplication.c
-)
-
-install(TARGETS tgt_{{ cookiecutter.libname }})
+add_subdirectory(${PROJECT_ROOT}/src/{{ cookiecutter.libname }})
 {% if cookiecutter.add_test -%}
-
-#
-#
-#
-
 add_subdirectory(${PROJECT_ROOT}/test/{{ cookiecutter.libname }})
-{% endif -%}
+{%- endif %}

@@ -1,4 +1,4 @@
-#include "multiplication.h"
+#include "{{ cookiecutter.libname }}/multiplication.h"
 
 
 int multiply (int a, int b) {

@@ -9,13 +9,13 @@ set_property(TARGET tgt_exe_test_{{ cookiecutter.libname }} PROPERTY OUTPUT_NAME
 target_compile_definitions(
     tgt_exe_test_{{ cookiecutter.libname }}
     PRIVATE
-        $<$<CONFIGDebug>DEBUG>
+        $<$<CONFIG:Debug>:DEBUG>
 )
 
 target_compile_features(
     tgt_exe_test_{{ cookiecutter.libname }}
     PRIVATE
-        c_std_2
+        c_std_23
 )
 
 target_compile_options(
@@ -24,21 +24,15 @@ target_compile_options(
         -Wall
         -Wextra
         -pedantic
-        $<$<CONFIGDebug>-g>
-        $<$<CONFIGDebug>-O0>
-        $<$<CONFIGRelease>-Werror>
+        $<$<CONFIG:Debug>:-g>
+        $<$<CONFIG:Debug>:-O0>
+        $<$<CONFIG:Release>:-Werror>
 )
 
 target_include_directories(
     tgt_exe_test_{{ cookiecutter.libname }}
     PRIVATE
-        ${PROJECT_ROOT}/include/{{ cookiecutter.libname }}
-)
-
-target_link_directories(
-    tgt_exe_test_{{ cookiecutter.libname }}
-    PRIVATE
-        ${PROJECT_ROOT}/build/cmake
+        ${PROJECT_ROOT}/include
 )
 
 target_link_libraries(

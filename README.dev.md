@@ -29,7 +29,7 @@
 | lib  | flat   | with-external | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/with-external/flat)    | 2024-07-19 | ok    |
 | lib  | flat   | wo-external   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/wo-external/flat)      | 2024-07-19 | ok    |
 | lib  | nested | with-external | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/with-external/nested)  | 2024-07-19 | ok    |
-| lib  | nested | wo-external   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/wo-external/nested)    | 2024-07-17 | ?     |
+| lib  | nested | wo-external   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/wo-external/nested)    | 2024-07-20 | ok    |
 
 ## TODO
 
@@ -39,6 +39,10 @@
 1. rename target for theirs to be consistent with the other targets
 1. add test files to codeblocks project config file as Unit
 1. add test target to codeblocks project files for building the ./tests binary
+1. review usage of multiple `project` across nested CMakeLists.txt
+1. review strategy for when to split into multiple CMakeLists.txt (affects where files like libcalculator.so are produced under build/cmake in turn affecting link flags)
+1. check target name for tests e.g. lib/nested/with-external 
+
 
 1. add more testing framework(s), e.g.
    1. googletest [https://github.com/google/googletest](https://github.com/google/googletest)
@@ -50,8 +54,6 @@
    1. acutest?
 1. review necessity of rpath for combinations that have one level of indirection in their libraries
 1. review virtual target when there is just one target
-1. review usage of multiple `project` across nested CMakeLists.txt
 1. review usage of multiple CMAKE_BUILD_TYPE and CMAKE_INSTALL_PREFIX across nested CMakeLists.txt
-1. review strategy for when to split into multiple CMakeLists.txt (affects where files like libcalculator.so are produced under build/cmake in turn affecting link flags)
-1. add CMakeLists.txt to include so they can be installed
-1. check target name for tests e.g. lib/nested/with-external 
+1. add CMakeLists.txt to include/ so the headers can be installed
+1. review need for target_link_directories in CMakeLists.txt
