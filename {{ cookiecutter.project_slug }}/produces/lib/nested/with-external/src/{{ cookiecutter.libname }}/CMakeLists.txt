@@ -69,7 +69,6 @@ target_sources(
             ${PROJECT_ROOT}/include/{{ cookiecutter.libname }}/division.h
             ${PROJECT_ROOT}/include/{{ cookiecutter.libname }}/multiplication.h
             ${PROJECT_ROOT}/include/{{ cookiecutter.libname }}/subtraction.h
-
 )
 
 install(TARGETS tgt_lib_{{ cookiecutter.libname }}
