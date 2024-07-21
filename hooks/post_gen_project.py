@@ -63,10 +63,6 @@ def main():
         print("\nExpected library name to be empty but was '{}'.\n".format(libname))
         return 1
 
-    if produceslib and libname[:3] == "lib":
-        print("\nExpected library name not to start with 'lib' but was '{}'.\n".format(libname))
-        return 1
-
     if produceslib and producesexe and libname == exename:
         print("\nLibrary and executable should not be named the same.\n")
         return 1
