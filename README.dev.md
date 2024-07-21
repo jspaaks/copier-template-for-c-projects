@@ -45,4 +45,3 @@
 1. review virtual target when there is just one target
 1. review usage of multiple CMAKE_BUILD_TYPE and CMAKE_INSTALL_PREFIX across nested CMakeLists.txt
 1. review usage of `#include "operations_addition.h"` for flat trees
-1. review usage of lib* as name for libraries
