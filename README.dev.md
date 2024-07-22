@@ -16,20 +16,20 @@
 
 ## results 
 
-|      |        |               |                                                                                        | checked    | state |
-| ---  | ---    | ---           | ---                                                                                    | ---        | ---   |
-| both | flat   | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/both/with-external/flat)   | 2024-07-20 | ok    |
-| both | flat   | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/both/wo-external/flat)     | 2024-07-20 | ok    |
-| both | nested | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/both/with-external/nested) | 2024-07-20 | ok    |
-| both | nested | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/both/wo-external/nested)   | 2024-07-20 | ok    |
-| exe  | flat   | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/exe/with-external/flat)    | 2024-07-20 | ok    |
-| exe  | flat   | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/exe/wo-external/flat)      | 2024-07-20 | ok    |
-| exe  | nested | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/exe/with-external/nested)  | 2024-07-20 | ok    |
-| exe  | nested | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/exe/wo-external/nested)    | 2024-07-20 | ok    |
-| lib  | flat   | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/lib/with-external/flat)    | 2024-07-20 | ok    |
-| lib  | flat   | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/lib/wo-external/flat)      | 2024-07-20 | ok    |
-| lib  | nested | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/lib/with-external/nested)  | 2024-07-20 | ok    |
-| lib  | nested | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/lib/wo-external/nested)    | 2024-07-20 | ok    |
+|      |        |               |                                                                                        | checked | state |
+| ---  | ---    | ---           | ---                                                                                    | ---     | ---   |
+| both | flat   | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/both/with-external/flat)   | 2024-07-20 | ok      |
+| both | flat   | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/both/wo-external/flat)     | 2024-07-20 | ok      |
+| both | nested | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/both/with-external/nested) | 2024-07-22 | ok      |
+| both | nested | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/both/wo-external/nested)   | 2024-07-20 | ?       |
+| exe  | flat   | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/exe/with-external/flat)    | 2024-07-20 | ?       |
+| exe  | flat   | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/exe/wo-external/flat)      | 2024-07-20 | ?       |
+| exe  | nested | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/exe/with-external/nested)  | 2024-07-20 | ?       |
+| exe  | nested | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/exe/wo-external/nested)    | 2024-07-20 | ?       |
+| lib  | flat   | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/lib/with-external/flat)    | 2024-07-20 | ?       |
+| lib  | flat   | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/lib/wo-external/flat)      | 2024-07-20 | ?       |
+| lib  | nested | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/lib/with-external/nested)  | 2024-07-20 | ?       |
+| lib  | nested | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/lib/wo-external/nested)    | 2024-07-20 | ?       |
 
 ## TODO
 
