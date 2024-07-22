@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="{{ project_slug }}" />
+		<Option title="{{ projectname }}" />
 		<Option pch_mode="2" />
 		<Option default_target="vtgt_exe_{{ exename }}_dbg" />
 		<Option compiler="gcc" />
@@ -49,7 +49,7 @@
 					<Add directory="../{{ external_directory }}/their/include" />
 				</Compiler>
 				<Linker>
-					<Add option="-Wl,-rpath,../build/codeblocks/debug/lib" />
+					<Add option="-Wl,-rpath,../{{ build_directory }}/codeblocks/debug/lib" />
 					<Add library="m" />
 					<Add library="their" />
 					<Add directory="../{{ build_directory }}/codeblocks/debug/lib" />

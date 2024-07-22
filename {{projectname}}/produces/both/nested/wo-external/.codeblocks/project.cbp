@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="{{ project_slug }}" />
+		<Option title="{{ projectname }}" />
 		<Option pch_mode="2" />
 		{%- if add_test %}
 		<Option default_target="vtgt_exe_test_{{ libname }}_dbg" />
@@ -53,7 +53,7 @@
 					<Add directory="../include" />
 				</Compiler>
 				<Linker>
-					<Add option="-Wl,-rpath,../build/codeblocks/debug/lib" />
+					<Add option="-Wl,-rpath,../{{ build_directory }}/codeblocks/debug/lib" />
 					<Add library="m" />
 					<Add library="{{ libname }}" />
 					<Add directory="../{{ build_directory }}/codeblocks/debug/lib" />
@@ -82,7 +82,7 @@
 					<Add directory="../include" />
 				</Compiler>
 				<Linker>
-					<Add option="-Wl,-rpath,../build/codeblocks/debug/lib" />
+					<Add option="-Wl,-rpath,../{{ build_directory }}/codeblocks/debug/lib" />
 					<Add library="{{ libname }}" />
 					<Add library="criterion" />
 					<Add directory="../{{ build_directory }}/codeblocks/debug/lib" />
