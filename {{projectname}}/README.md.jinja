@@ -23,7 +23,7 @@ make
 make install
 {% if produces in ["exe", "both"] %}
 # run the program to see if it works
-./dist/bin/{{ project_slug }}
+./dist/bin/{{ exename }}
 ```
 
 Should output something like:
@@ -62,7 +62,7 @@ sudo apt install libcriterion-dev
 Run the tests with
 
 ```shell
-./dist/bin/tests
+./dist/bin/test_{{ libname }} -j1 --verbose
 ```
 {% endif -%}
 {% endif -%}
