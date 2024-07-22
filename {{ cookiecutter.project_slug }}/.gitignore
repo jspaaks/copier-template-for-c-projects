@@ -1,3 +1,0 @@
-/{{ cookiecutter.build_directory }}
-/cachegrind.out.*
-/callgrind.out.*
