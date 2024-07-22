@@ -7,7 +7,7 @@ _exclude:
 
 projectname:
     type: str
-    help: "What is the name of the new project? (Use [A-Za-z0-9_-.]+)"
+    help: What is the name of the new project? (Use [A-Za-z0-9_-.]+)
     default: calculator-project
 
 producesexe:
@@ -17,7 +17,7 @@ producesexe:
 
 exename:
     type: str
-    help: "What is the name of the executable? (Use [A-Za-z0-9_-.]+)"
+    help: What is the name of the executable? (Use [A-Za-z0-9_-.]+)
     when: "{{ producesexe }}"
     default: calculator
 
@@ -28,7 +28,7 @@ produceslib:
 
 libname:
     type: str
-    help: "What is the name of the library? (Use [A-Za-z0-9_-.]+)"
+    help: What is the name of the library? (Use [A-Za-z0-9_-.]+)
     when: "{{ produceslib }}"
     default: operations
 
@@ -40,6 +40,11 @@ libpurpose:
       'To facilitate testing': testing-only
       'To be consumed by third parties': consumption-only
     when: "{{ producesexe or produceslib }}"
+
+nested:
+    type: bool
+    help: "Do you want to organize components into subdirectories under src/?"
+    default: true
 
 build_directory:
     type: str
@@ -96,3 +101,9 @@ add_clang_format:
     help: Add a clang-format configuration?
     default: true
     when: "{{ producesexe or produceslib }}"
+
+case:
+    type: str
+    help: "What is the value of 'case'?"
+    default: "{%- if producesexe and produceslib -%}both{%- elif producesexe -%}exe{%- elif produceslib -%}lib{%- endif -%}-{%- if nested -%}nested{%- else -%}flat{%- endif -%}-{%- if add_external -%}with-external{%- else -%}wo-external{%- endif -%}"
+    when: false
