@@ -21,7 +21,7 @@ make
 
 # install the project to <repo>/build/cmake/dist
 make install
-{% if produces in ["exe", "both"] %}
+{% if producesexe %}
 # run the program to see if it works
 ./dist/bin/{{ exename }}
 ```
@@ -42,7 +42,7 @@ Should output something like:
    divide(2, 3) = 0
    multiply(2, 3) = 6
 
-{% if external_directory != "My project doesn't have external dependencies" -%}
+{% if add_external -%}
 -- test external library
    add(2, 3) = 5
    subtract(2, 3) = -1
