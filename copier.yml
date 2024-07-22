@@ -39,7 +39,7 @@ libpurpose:
       'To facilitate testing and to be consumed by third parties': both
       'To facilitate testing': testing-only
       'To be consumed by third parties': consumption-only
-    when: "{{ producesexe or produceslib }}"
+    when: "{{ produceslib }}"
 
 nested:
     type: bool
@@ -82,7 +82,7 @@ add_test:
     type: bool
     help: Does the project use tests?
     default: true
-    when: "{{ producesexe or produceslib }}"
+    when: "{{ produceslib }}"
 
 add_cmake:
     type: bool
