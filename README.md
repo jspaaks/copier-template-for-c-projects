@@ -18,12 +18,13 @@ copier copy https://github.com/jspaaks/cookiecutter-codeblocks-cmake-c
 `copier` will then ask you a few questions, see the output below.
 
 ```text
-``
+TODO add questions
+```
 
 Choosing default options as in the example above generates a layout like this with some
 example files to get you started:
 
-```txt
+```text
 calculator-project/
 ├── assets
 │   ├── fonts
