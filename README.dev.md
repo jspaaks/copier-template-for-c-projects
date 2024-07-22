@@ -16,8 +16,8 @@
 
 ## results 
 
-|      |        |               |                                                                                        | checked | state |
-| ---  | ---    | ---           | ---                                                                                    | ---     | ---   |
+|      |        |               |                                                                           | checked    | state   |
+| ---  | ---    | ---           | ---                                                                       | ---        | ---     |
 | both | flat   | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/both/with-external/flat)   | 2024-07-20 | ok      |
 | both | flat   | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/both/wo-external/flat)     | 2024-07-20 | ok      |
 | both | nested | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/both/with-external/nested) | 2024-07-22 | ok      |
