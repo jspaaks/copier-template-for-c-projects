@@ -26,7 +26,7 @@
 | exe  | flat   | wo-external   |                                                                           | 2024-07-22 | ok      |
 | exe  | nested | with-external |                                                                           | 2024-07-22 | ok      |
 | exe  | nested | wo-external   |                                                                           | 2024-07-22 | ok      |
-| lib  | flat   | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/lib/with-external/flat)    | 2024-07-20 | ?       |
+| lib  | flat   | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/lib/with-external/flat)    | 2024-07-22 | ok      |
 | lib  | flat   | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/lib/wo-external/flat)      | 2024-07-20 | ?       |
 | lib  | nested | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/lib/with-external/nested)  | 2024-07-20 | ?       |
 | lib  | nested | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/lib/wo-external/nested)    | 2024-07-20 | ?       |
@@ -45,3 +45,4 @@
 1. review virtual target when there is just one target
 1. review usage of multiple CMAKE_BUILD_TYPE and CMAKE_INSTALL_PREFIX across nested CMakeLists.txt
 1. review usage of `#include "operations_addition.h"` for flat trees
+1. lib-flat-witrh-external doesnt have .codeblocks/project.layout
