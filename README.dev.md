@@ -24,7 +24,7 @@
 | both | nested | wo-external   |                                                                           | 2024-07-22 | ok      |
 | exe  | flat   | with-external |                                                                           | 2024-07-22 | ok      |
 | exe  | flat   | wo-external   |                                                                           | 2024-07-22 | ok      |
-| exe  | nested | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/exe/with-external/nested)  | 2024-07-20 | ?       |
+| exe  | nested | with-external |                                                                           | 2024-07-22 | ok      |
 | exe  | nested | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/exe/wo-external/nested)    | 2024-07-20 | ?       |
 | lib  | flat   | with-external | [link](%7B%7B%20project_slug%20%7D%7D/produces/lib/with-external/flat)    | 2024-07-20 | ?       |
 | lib  | flat   | wo-external   | [link](%7B%7B%20project_slug%20%7D%7D/produces/lib/wo-external/flat)      | 2024-07-20 | ?       |
