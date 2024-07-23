@@ -18,7 +18,34 @@ copier copy https://github.com/jspaaks/cookiecutter-codeblocks-cmake-c
 `copier` will then ask you a few questions, see the output below.
 
 ```text
-TODO add questions
+🎤 What is the name of the new project? (Use [A-Za-z0-9_-.]+)
+   calculator-project
+🎤 Does the project produce an executable?
+   Yes
+🎤 What is the name of the executable? (Use [A-Za-z0-9_-.]+)
+   calculator
+🎤 Does the project produce a library?
+   Yes
+🎤 What is the name of the library? (Use [A-Za-z0-9_-.]+)
+   operations
+🎤 What is the purpose of the library?
+   To facilitate testing and to be consumed by third parties
+🎤 Do you want to organize components into subdirectories under src/?
+   Yes
+🎤 What should the build directory be called?
+   build
+🎤 Does the project have external dependencies?
+   No
+🎤 Does the project use assets like images, sound, fonts, etc?
+   No
+🎤 Does the project use tests?
+   Yes
+🎤 Add a CMake build configuration?
+   Yes
+🎤 Add a Code::Blocks IDE configuration?
+   Yes
+🎤 Add a clang-format configuration?
+   Yes
 ```
 
 Choosing default options as in the example above generates a layout like this with some
