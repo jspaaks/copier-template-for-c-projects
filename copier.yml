@@ -1,0 +1,109 @@
+_exclude:
+  - .git
+  - copier.yml
+  - README.md
+  - README.dev.md
+  - hooks
+
+projectname:
+    type: str
+    help: What is the name of the new project? (Use [A-Za-z0-9_-.]+)
+    default: calculator-project
+
+producesexe:
+    type: bool
+    help: Does the project produce an executable?
+    default: true
+
+exename:
+    type: str
+    help: What is the name of the executable? (Use [A-Za-z0-9_-.]+)
+    when: "{{ producesexe }}"
+    default: calculator
+
+produceslib:
+    type: bool
+    help: Does the project produce a library?
+    default: true
+
+libname:
+    type: str
+    help: What is the name of the library? (Use [A-Za-z0-9_-.]+)
+    when: "{{ produceslib }}"
+    default: operations
+
+libpurpose:
+    type: str
+    help: What is the purpose of the library?
+    choices:
+      'To facilitate testing and to be consumed by third parties': both
+      'To facilitate testing': testing-only
+      'To be consumed by third parties': consumption-only
+    when: "{{ produceslib }}"
+
+nested:
+    type: bool
+    help: "Do you want to organize components into subdirectories under src/?"
+    default: true
+
+build_directory:
+    type: str
+    help: What should the build directory be called?
+    choices:
+      build: null
+      built: null
+      generated: null
+    when: "{{ producesexe or produceslib }}"
+
+add_external:
+    type: bool
+    help: Does the project have external dependencies?
+    default: false
+    when: "{{ producesexe or produceslib }}"
+
+external_directory:
+    type: str
+    help: What should the directory that contains external dependencies be called?
+    choices:
+      external: null
+      third_party: null
+      lib: null
+      submodules: null
+      subprojects: null
+    when: "{{ add_external and (producesexe or produceslib) }}"
+
+add_assets:
+    type: bool
+    help: Does the project use assets like images, sound, fonts, etc?
+    default: false
+    when: "{{ producesexe or produceslib }}"
+
+add_test:
+    type: bool
+    help: Does the project use tests?
+    default: true
+    when: "{{ produceslib }}"
+
+add_cmake:
+    type: bool
+    help: Add a CMake build configuration?
+    default: true
+    when: "{{ producesexe or produceslib }}"
+
+add_codeblocks:
+    type: bool
+    help: Add a Code::Blocks IDE configuration?
+    default: true
+    when: "{{ producesexe or produceslib }}"
+
+add_clang_format:
+    type: bool
+    help: Add a clang-format configuration?
+    default: true
+    when: "{{ producesexe or produceslib }}"
+
+case:
+    type: str
+    help: "What is the value of 'case'?"
+    default: "{%- if producesexe and produceslib -%}both{%- elif producesexe -%}exe{%- elif produceslib -%}lib{%- endif -%}-{%- if nested -%}nested{%- else -%}flat{%- endif -%}-{%- if add_external -%}with-external{%- else -%}wo-external{%- endif -%}"
+    when: false

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="{{ projectname }}" />
+		<Option pch_mode="2" />
+		<Option default_target="vtgt_exe_{{ exename }}_dbg" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="tgt_exe_{{ exename }}_dbg">
+				<Option output="../{{ build_directory }}/codeblocks/debug/bin/{{ exename }}" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../{{ build_directory }}/codeblocks/debug/obj" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option projectCompilerOptionsRelation="1" />
+				<Option projectLinkerOptionsRelation="1" />
+				<Option projectIncludeDirsRelation="1" />
+				<Option projectResourceIncludeDirsRelation="1" />
+				<Option projectLibDirsRelation="1" />
+				<Compiler>
+					<Add option="-O0" />
+					<Add option="-pedantic" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-std=c2x" />
+					<Add option="-ggdb" />
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="vtgt_exe_{{ exename }}_dbg" targets="tgt_exe_{{ exename }}_dbg;" />
+		</VirtualTargets>
+		<Unit filename="../src/{{ exename }}/division.h">
+			<Option target="tgt_exe_{{ exename }}_dbg" />
+		</Unit>
+		<Unit filename="../src/{{ exename }}/multiplication.h">
+			<Option target="tgt_exe_{{ exename }}_dbg" />
+		</Unit>
+		<Unit filename="../src/{{ exename }}/division.c">
+			<Option compilerVar="CC" />
+			<Option target="tgt_exe_{{ exename }}_dbg" />
+		</Unit>
+		<Unit filename="../src/{{ exename }}/main.c">
+			<Option compilerVar="CC" />
+			<Option target="tgt_exe_{{ exename }}_dbg" />
+		</Unit>
+		<Unit filename="../src/{{ exename }}/multiplication.c">
+			<Option compilerVar="CC" />
+			<Option target="tgt_exe_{{ exename }}_dbg" />
+		</Unit>
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

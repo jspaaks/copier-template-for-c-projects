@@ -16,20 +16,20 @@
 
 ## results 
 
-|      |        |               |                                                                                        | checked    | state |
-| ---  | ---    | ---           | ---                                                                                    | ---        | ---   |
-| both | flat   | with-external | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/with-external/flat)   | 2024-07-20 | ok    |
-| both | flat   | wo-external   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/wo-external/flat)     | 2024-07-20 | ok    |
-| both | nested | with-external | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/with-external/nested) | 2024-07-20 | ok    |
-| both | nested | wo-external   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/both/wo-external/nested)   | 2024-07-20 | ok    |
-| exe  | flat   | with-external | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/with-external/flat)    | 2024-07-20 | ok    |
-| exe  | flat   | wo-external   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/wo-external/flat)      | 2024-07-20 | ok    |
-| exe  | nested | with-external | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/with-external/nested)  | 2024-07-20 | ok    |
-| exe  | nested | wo-external   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/exe/wo-external/nested)    | 2024-07-20 | ok    |
-| lib  | flat   | with-external | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/with-external/flat)    | 2024-07-20 | ok    |
-| lib  | flat   | wo-external   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/wo-external/flat)      | 2024-07-20 | ok    |
-| lib  | nested | with-external | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/with-external/nested)  | 2024-07-20 | ok    |
-| lib  | nested | wo-external   | [link](%7B%7B%20cookiecutter.project_slug%20%7D%7D/produces/lib/wo-external/nested)    | 2024-07-20 | ok    |
+|      |        |               | checked    | state   |
+| ---  | ---    | ---           | ---        | ---     |
+| both | flat   | with-external | 2024-07-22 | ok      |
+| both | flat   | wo-external   | 2024-07-22 | ok      |
+| both | nested | with-external | 2024-07-22 | ok      |
+| both | nested | wo-external   | 2024-07-22 | ok      |
+| exe  | flat   | with-external | 2024-07-22 | ok      |
+| exe  | flat   | wo-external   | 2024-07-22 | ok      |
+| exe  | nested | with-external | 2024-07-22 | ok      |
+| exe  | nested | wo-external   | 2024-07-22 | ok      |
+| lib  | flat   | with-external | 2024-07-22 | ok      |
+| lib  | flat   | wo-external   | 2024-07-22 | ok      |
+| lib  | nested | with-external | 2024-07-22 | ok      |
+| lib  | nested | wo-external   | 2024-07-22 | ok      |
 
 ## TODO
 
@@ -45,4 +45,7 @@
 1. review virtual target when there is just one target
 1. review usage of multiple CMAKE_BUILD_TYPE and CMAKE_INSTALL_PREFIX across nested CMakeLists.txt
 1. review usage of `#include "operations_addition.h"` for flat trees
-1. review usage of lib* as name for libraries
+1. lib-flat-witrh-external doesnt have .codeblocks/project.layout
+1. lib-nest-with-external/src/addition.c is missing its own include header
+1. lib-nest-with-external/src/multiplication.c is missing its own include header
+1. lib-nest-with-external/src/subtraction.c is missing its own include header
