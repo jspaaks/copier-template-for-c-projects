@@ -1,7 +1,6 @@
 #include <criterion/criterion.h>
 #include "subtraction.h"
 
-
 Test(subtraction, one){
     int actual = subtract(2, 3);
     int expected = -1;

@@ -1,7 +1,6 @@
 #include <criterion/criterion.h>
 #include "multiplication.h"
 
-
 Test(multiplication, one){
     int actual = multiply(2, 3);
     int expected = 6;
