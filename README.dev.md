@@ -46,6 +46,3 @@
 1. review usage of multiple CMAKE_BUILD_TYPE and CMAKE_INSTALL_PREFIX across nested CMakeLists.txt
 1. review usage of `#include "operations_addition.h"` for flat trees
 1. lib-flat-witrh-external doesnt have .codeblocks/project.layout
-1. lib-nest-with-external/src/addition.c is missing its own include header
-1. lib-nest-with-external/src/multiplication.c is missing its own include header
-1. lib-nest-with-external/src/subtraction.c is missing its own include header
