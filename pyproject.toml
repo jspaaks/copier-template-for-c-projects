@@ -1,0 +1,6 @@
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--verbose --maxfail=1"
+testpaths = [
+    "fuzzy"
+]

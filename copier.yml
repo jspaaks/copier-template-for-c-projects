@@ -1,9 +1,12 @@
 _exclude:
   - .git
+  - .gitignore
   - copier.yml
+  - fuzzy
+  - pyproject.toml
   - README.md
   - README.dev.md
-  - hooks
+  - venv
 
 projectname:
     type: str
