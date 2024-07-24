@@ -21,6 +21,7 @@ def get_parameterizations():
         copier_config = yaml.safe_load(fid)
     boolset = {True, False}
     data = {
+        "add_answers": boolset,
         "add_assets": boolset,
         "add_clang_format": boolset,
         "add_cmake": boolset,
@@ -54,6 +55,7 @@ def generated(tmp_path_factory, request):
     """
 
     defaults = {
+        "add_answers": False,
         "add_assets": True,
         "add_clang_format": True,
         "add_cmake": True,
@@ -82,7 +84,7 @@ def generated(tmp_path_factory, request):
     data_file = inputdir / "data.yml"
     with open(data_file, "wt") as fid:
         yaml.dump(answers, fid)
-    subprocess.run(["copier", "copy", "--data-file", data_file, "--vcs-ref=HEAD", "./template", outputdir ])
+    subprocess.run(f"copier copy --data-file { str(data_file) } --vcs-ref=HEAD template { str(outputdir) }", shell=True, check=True)
     return {
         "answers": answers,
         "directory": outputdir

@@ -64,3 +64,8 @@ addopts = "--maxfail=1"
 testpaths = [
     "fuzzy"
 ]
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+[tool.setuptools.packages.find]
+where = ["fuzzy"]

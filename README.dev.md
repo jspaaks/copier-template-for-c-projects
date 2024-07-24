@@ -1,6 +1,19 @@
 # Development notes
 
-## checks
+## Testing
+
+Directory fuzzy contains fuzzy tests. Run with:
+
+```shell
+python3 -m venv venv
+source venv/bin/activate
+pip install .[testing]
+NFUZZY=10 pytest fuzzy/test_template.py -ra --verbose
+```
+
+## Other stuff
+
+### checks
 
 1. cmake runs
 2. make runs
@@ -14,7 +27,7 @@
 10. codeblocks project builds
 11. codeblocks project runs
 
-## results 
+### results 
 
 |      |        |               | checked    | state   |
 | ---  | ---    | ---           | ---        | ---     |
@@ -31,7 +44,7 @@
 | lib  | nested | with-external | 2024-07-22 | ok      |
 | lib  | nested | wo-external   | 2024-07-22 | ok      |
 
-## TODO
+### TODO
 
 1. add more testing framework(s), e.g.
    1. googletest [https://github.com/google/googletest](https://github.com/google/googletest)
