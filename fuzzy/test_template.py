@@ -3,8 +3,8 @@ import subprocess
 import yaml
 from pathlib import Path
 import itertools
-import os
 import random
+import os
 
 
 def get_parameterization(keys, values):
