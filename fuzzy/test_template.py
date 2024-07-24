@@ -84,7 +84,7 @@ def generated(tmp_path_factory, request):
     data_file = inputdir / "data.yml"
     with open(data_file, "wt") as fid:
         yaml.dump(answers, fid)
-    subprocess.run(f"copier copy --data-file { str(data_file) } --vcs-ref=HEAD template { str(outputdir) }", shell=True, check=True)
+    subprocess.run(f"copier copy --data-file { str(data_file) } --vcs-ref=HEAD . { str(outputdir) }", shell=True, check=True)
     return {
         "answers": answers,
         "directory": outputdir
@@ -132,8 +132,12 @@ def test_clang_format_generation(generated):
     assert meets_expected_presence(ispresent=add_clang_format, files=files)
 
 def test_cmake_generation(generated):
-    add_assets, add_cmake, add_external, add_test, build_directory, exename, external_directory, libname, nested, producesexe, produceslib, projectname = \
-            get_answers(generated["answers"], "add_assets", "add_cmake", "add_external", "add_test", "build_directory", "exename", "external_directory", "libname", "nested", "producesexe", "produceslib", "projectname")
+    add_assets, add_cmake, add_external, add_test, build_directory, \
+    exename, external_directory, libname, nested, producesexe, \
+    produceslib, projectname = \
+            get_answers(generated["answers"], "add_assets", "add_cmake", "add_external", "add_test", "build_directory", \
+                                              "exename", "external_directory", "libname", "nested", "producesexe", \
+                                              "produceslib", "projectname")
     base = generated["directory"] / projectname
     directories = [ base / build_directory / "cmake" ]
     files = [ base / "CMakeLists.txt" ]
@@ -161,13 +165,15 @@ def test_cmake_generation(generated):
     if add_external:
         files += [
             base / external_directory / "CMakeLists.txt",
+            base / external_directory / "their" / "CMakeLists.txt",
+            base / external_directory / "their" / "src" / "their" / "CMakeLists.txt"
         ]
     assert meets_expected_presence(ispresent=add_cmake, directories=directories, files=files)
 
 
 def test_codeblocks_generation(generated):
-    add_codeblocks, projectname, build_directory = \
-            get_answers(generated["answers"], "add_codeblocks", "projectname", "build_directory")
+    add_codeblocks, build_directory, projectname = \
+            get_answers(generated["answers"], "add_codeblocks", "build_directory", "projectname")
     base = generated["directory"] / projectname
     directories = [
         base / build_directory / "codeblocks"
@@ -177,3 +183,65 @@ def test_codeblocks_generation(generated):
         base / ".codeblocks" / "project.layout"
     ]
     assert meets_expected_presence(ispresent=add_codeblocks, directories=directories, files=files)
+
+
+def test_external_generation(generated):
+    add_cmake, add_external, external_directory, projectname = get_answers(generated["answers"], "add_cmake", "add_external","external_directory", "projectname")
+    base = generated["directory"] / projectname
+    directories = [
+        base / external_directory / "their" / "include" / "their",
+        base / external_directory / "their" / "include",
+        base / external_directory / "their" / "src" / "their",
+        base / external_directory / "their" / "src",
+        base / external_directory / "their"
+    ]
+    files = [
+        base / external_directory / "their" / "include" / "their" / "addition.h",
+        base / external_directory / "their" / "include" / "their" / "subtraction.h",
+        base / external_directory / "their" / "src" / "their" / "addition.c",
+        base / external_directory / "their" / "src" / "their" / "subtraction.c"
+    ]
+    if add_cmake:
+        files += [
+            base / external_directory / "their" / "src" / "their" / "CMakeLists.txt",
+            base / external_directory / "their" / "CMakeLists.txt",
+            base / external_directory / "CMakeLists.txt"
+        ]
+    assert meets_expected_presence(ispresent=add_external, directories=directories, files=files)
+
+
+def test_test_generation(generated):
+    add_external, add_test, libname, nested, produceslib, projectname = get_answers(generated["answers"], "add_external", "add_test", "libname", "nested", "produceslib", "projectname")
+    base = generated["directory"] / projectname
+    directories = []
+    files = []
+    if produceslib:
+        if nested:
+            directories += [
+                base / "test",
+                base / "test" / libname
+            ]
+            files += [
+                base / "test" / libname / "test_division.c",
+                base / "test" / libname / "test_multiplication.c"
+            ]
+            if add_external:
+                files += [
+                    base / "test" / libname / "test_addition.c",
+                    base / "test" / libname / "test_subtraction.c"
+                ]
+        else:
+            directories += [
+                base / "test"
+            ]
+            files += [
+                base / "test" / "test_division.c",
+                base / "test" / "test_multiplication.c"
+            ]
+            if add_external:
+                files += [
+                    base / "test" / "test_addition.c",
+                    base / "test" / "test_subtraction.c"
+                ]
+
+    assert meets_expected_presence(ispresent=add_test, directories=directories, files=files)
