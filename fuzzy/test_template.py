@@ -82,7 +82,7 @@ def generated(tmp_path_factory, request):
     data_file = inputdir / "data.yml"
     with open(data_file, "wt") as fid:
         yaml.dump(answers, fid)
-    subprocess.run(["copier", "copy", "--data-file", data_file, "--vcs-ref=HEAD", ".", outputdir ])
+    subprocess.run(["copier", "copy", "--data-file", data_file, "--vcs-ref=HEAD", "./template", outputdir ])
     return {
         "answers": answers,
         "directory": outputdir
@@ -92,10 +92,10 @@ def generated(tmp_path_factory, request):
 def meets_expected_presence(*, ispresent=True, directories=None, files=None):
     if directories is not None:
         for d in directories:
-            assert True if d is None else ispresent == d.is_dir(), d
+            assert True if d is None else ispresent == d.is_dir(), f"Directory '{ d }' was unexpectedly { "not present" if ispresent else "present" }."
     if files is not None:
         for f in files:
-            assert True if f is None else ispresent == f.is_file(), f
+            assert True if f is None else ispresent == f.is_file(), f"File '{ f }' was unexpectedly { "not present" if ispresent else "present" }."
     return True
 
 def get_answers(answers, *keys):
@@ -130,7 +130,8 @@ def test_clang_format_generation(generated):
     assert meets_expected_presence(ispresent=add_clang_format, files=files)
 
 def test_cmake_generation(generated):
-    add_assets, add_cmake, add_external, add_test, build_directory, exename, external_directory, libname, nested, producesexe, produceslib, projectname = get_answers(generated["answers"], "add_assets", "add_cmake", "add_external", "add_test", "build_directory", "exename", "external_directory", "libname", "nested", "producesexe", "produceslib", "projectname")
+    add_assets, add_cmake, add_external, add_test, build_directory, exename, external_directory, libname, nested, producesexe, produceslib, projectname = \
+            get_answers(generated["answers"], "add_assets", "add_cmake", "add_external", "add_test", "build_directory", "exename", "external_directory", "libname", "nested", "producesexe", "produceslib", "projectname")
     base = generated["directory"] / projectname
     directories = [ base / build_directory / "cmake" ]
     files = [ base / "CMakeLists.txt" ]
@@ -149,12 +150,12 @@ def test_cmake_generation(generated):
             if add_test:
                 files += [ base / "test" / "CMakeLists.txt" ]
     if add_assets:
-            files += [
-                base / "assets" / "CMakeLists.txt",
-                base / "assets" / "fonts" / "CMakeLists.txt",
-                base / "assets" / "images" / "CMakeLists.txt",
-                base / "assets" / "sounds" / "CMakeLists.txt"
-            ]
+        files += [
+            base / "assets" / "CMakeLists.txt",
+            base / "assets" / "fonts" / "CMakeLists.txt",
+            base / "assets" / "images" / "CMakeLists.txt",
+            base / "assets" / "sounds" / "CMakeLists.txt"
+        ]
     if add_external:
         files += [
             base / external_directory / "CMakeLists.txt",

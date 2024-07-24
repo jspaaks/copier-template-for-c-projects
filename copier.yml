@@ -1,15 +1,4 @@
-_exclude:
-  - .git
-  - .gitignore
-  - .pytest_cache
-  - *.egg-info
-  - build
-  - copier.yml
-  - fuzzy
-  - pyproject.toml
-  - README.md
-  - README.dev.md
-  - venv
+_subdirectory: template
 
 projectname:
     type: str
@@ -107,6 +96,11 @@ add_clang_format:
     help: Add a clang-format configuration?
     default: true
     when: "{{ producesexe or produceslib }}"
+
+add_answers:
+    type: bool
+    help: Do you want to include a copy of the answers you just provided as .copier-answers.yml?
+    default: false
 
 case:
     type: str
