@@ -1,6 +1,7 @@
 _exclude:
   - .git
   - .gitignore
+  - .pytest_cache
   - copier.yml
   - fuzzy
   - pyproject.toml
