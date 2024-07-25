@@ -51,5 +51,5 @@ jobs:
 
       - name: Run fuzzy tests
         run: |
-          echo "Skip inception tests because gcc version is too low to support c23 features"
-          NFUZZY=10 python3 -m pytest -ra -m 'not inception'
+          echo "Deselect 'inception' tests because gcc version is too low to support c23 features"
+          NFUZZY=250 python3 -m pytest -ra -m 'not inception'
