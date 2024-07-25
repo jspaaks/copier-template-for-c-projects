@@ -218,7 +218,7 @@ def test_generated_tests_and_exe(generated):
             get_answers(generated["answers"], "add_cmake", "add_test", "build_directory", "exename", "libname", "producesexe", "produceslib", "projectname")
     if not add_cmake:
         pytest.skip("add_cmake is False, can't generate library, executable, or test executable")
-    prepend = f"cd { generated["directory"] }/{ projectname }/{ build_directory  }/cmake"
+    prepend = f"cd { generated['directory'] }/{ projectname }/{ build_directory  }/cmake"
     cmds = [
         (f"{ prepend } && cmake ../..", f"Could not run 'cmake ../..' in { projectname }/{ build_directory  }/cmake"),
         (f"{ prepend } && make", f"Could not run 'make' in { projectname }/{ build_directory  }/cmake"),
