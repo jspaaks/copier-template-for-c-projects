@@ -1,0 +1,46 @@
+name: testing
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  testing:
+    name: py${{ matrix.python-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['ubuntu-latest', 'macos-latest', 'windows-latest']
+        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Show python info
+        run: |
+          which python3
+          python3 --version
+
+      - name: Upgrade pip, setuptools and wheel
+        run: |
+          python3 -m pip install --upgrade pip setuptools wheel
+
+      - name: Make a virtual environment named 'venv'
+        run: python3 -m venv venv
+
+      - name: Activate the virtual environment named 'venv'
+        run: ./source venv/bin/activate
+
+      - name: Install the template with its testing dependencies
+        run: python3 -m pip install .[testing]
+
+      - name: Run fuzzy tests
+        run: NFUZZY=10 python3 -m pytest -ra
