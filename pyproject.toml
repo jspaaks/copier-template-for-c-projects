@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+[project]
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
+authors = [
+    { name = "Jurriaan H. Spaaks", email = "jhspaaks@hotmail.com" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: Apache Software License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development",
+    "Topic :: Utilities"
+]
+dependencies = [
+    "copier >= 9.0, <10"
+]
+description = "Copier template for C projects."
+keywords = [
+    "copier",
+    "template",
+    "C"
+]
+license = {text = "Apache Software License"}
+name = "copier_template_for_c_projects"
+readme = "README.md"
+requires-python = ">=3.8"
+version = "0.1.0"
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+[project.urls]
+Repository = "https://github.com/jspaaks/copier-template-for-c-projects"
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+[project.optional-dependencies]
+testing = [
+    "pytest >= 6",
+    "PyYAML >= 6.0"
+]
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--maxfail=1"
+testpaths = [
+    "fuzzy"
+]
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+[tool.setuptools.packages.find]
+where = ["fuzzy"]

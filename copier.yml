@@ -1,9 +1,4 @@
-_exclude:
-  - .git
-  - copier.yml
-  - README.md
-  - README.dev.md
-  - hooks
+_subdirectory: template
 
 projectname:
     type: str
@@ -101,6 +96,11 @@ add_clang_format:
     help: Add a clang-format configuration?
     default: true
     when: "{{ producesexe or produceslib }}"
+
+add_answers:
+    type: bool
+    help: Do you want to include a copy of the answers you just provided as .copier-answers.yml?
+    default: false
 
 case:
     type: str
