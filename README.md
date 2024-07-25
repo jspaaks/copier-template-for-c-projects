@@ -115,3 +115,35 @@ calculator-project/
 
 21 directories, 39 files
 ```
+
+The project should build out of the box using CMake
+
+```shell
+cd calculator-project/build/cmake
+cmake ../..
+```
+
+Next run `make` to build the libary / executable / test executable
+
+```shell
+make
+```
+
+Then install (by default, to `calculator-project/build/cmake/dist`, can be configured by setting `CMAKE_INSTALL_PREFIX`)
+
+```shell
+make install
+```
+
+Run the executable with:
+
+```shell
+./dist/bin/calculator
+```
+
+Run the tests with:
+
+```shell
+./dist/bin/test_operations
+./dist/bin/test_operations -j1 --verbose  # for easier to interpret output
+```
