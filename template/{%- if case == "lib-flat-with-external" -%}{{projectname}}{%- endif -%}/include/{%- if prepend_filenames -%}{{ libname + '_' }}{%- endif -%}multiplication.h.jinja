@@ -1,0 +1,6 @@
+#ifndef {% if prepend_filenames %}{{ (libname + '_') | upper }}{% endif %}MULTIPLICATION_H
+#define {% if prepend_filenames %}{{ (libname + '_') | upper }}{% endif %}MULTIPLICATION_H
+
+int {% if prepend_symbols %}{{ libname + '_' }}{% endif %}multiply (int, int);
+
+#endif

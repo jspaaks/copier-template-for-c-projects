@@ -1,0 +1,6 @@
+#include "{% if prepend_filenames %}{{ libname + '_' }}{% endif %}subtraction.h"
+#include "their/subtraction.h"
+
+int {% if prepend_symbols %}{{ libname + '_' }}{% endif %}subtract (int a, int b) {
+    return their_subtract(a, b);
+}

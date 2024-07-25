@@ -1,14 +1,14 @@
 #include <criterion/criterion.h>
 #include "{{ libname }}/multiplication.h"
 
-Test(multiplication, one){
-    int actual = multiply(2, 3);
+Test({% if prepend_symbols %}{{ libname + '_' }}{% endif %}multiplication, one){
+    int actual = {% if prepend_symbols %}{{ libname + '_' }}{% endif %}multiply(2, 3);
     int expected = 6;
     cr_assert(actual == expected);
 }
 
-Test(multiplication, two){
-    int actual = multiply(2, -3);
+Test({% if prepend_symbols %}{{ libname + '_' }}{% endif %}multiplication, two){
+    int actual = {% if prepend_symbols %}{{ libname + '_' }}{% endif %}multiply(2, -3);
     int expected = -6;
     cr_assert(actual == expected);
 }

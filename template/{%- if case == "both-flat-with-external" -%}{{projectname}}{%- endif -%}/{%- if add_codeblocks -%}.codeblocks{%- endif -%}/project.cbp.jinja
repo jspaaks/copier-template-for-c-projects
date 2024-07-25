@@ -136,23 +136,23 @@
 			<Option compilerVar="CC" />
 			<Option target="tgt_lib_their_dbg" />
 		</Unit>
-		<Unit filename="../include/addition.h">
+		<Unit filename="../include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}addition.h">
 			<Option target="tgt_lib_{{ libname }}_dbg" />
 		</Unit>
-		<Unit filename="../include/division.h">
+		<Unit filename="../include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}division.h">
 			<Option target="tgt_lib_{{ libname }}_dbg" />
 		</Unit>
-		<Unit filename="../include/multiplication.h">
+		<Unit filename="../include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.h">
 			<Option target="tgt_lib_{{ libname }}_dbg" />
 		</Unit>
-		<Unit filename="../include/subtraction.h">
+		<Unit filename="../include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}subtraction.h">
 			<Option target="tgt_lib_{{ libname }}_dbg" />
 		</Unit>
-		<Unit filename="../src/addition.c">
+		<Unit filename="../src/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}addition.c">
 			<Option compilerVar="CC" />
 			<Option target="tgt_lib_{{ libname }}_dbg" />
 		</Unit>
-		<Unit filename="../src/division.c">
+		<Unit filename="../src/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}division.c">
 			<Option compilerVar="CC" />
 			<Option target="tgt_lib_{{ libname }}_dbg" />
 		</Unit>
@@ -160,28 +160,28 @@
 			<Option compilerVar="CC" />
 			<Option target="tgt_exe_{{ exename }}_dbg" />
 		</Unit>
-		<Unit filename="../src/multiplication.c">
+		<Unit filename="../src/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.c">
 			<Option compilerVar="CC" />
 			<Option target="tgt_lib_{{ libname }}_dbg" />
 		</Unit>
-		<Unit filename="../src/subtraction.c">
+		<Unit filename="../src/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}subtraction.c">
 			<Option compilerVar="CC" />
 			<Option target="tgt_lib_{{ libname }}_dbg" />
 		</Unit>
 		{%- if add_test %}
-		<Unit filename="../test/test_addition.c">
+		<Unit filename="../test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}addition.c">
 			<Option compilerVar="CC" />
 			<Option target="tgt_exe_test_{{ libname }}_dbg" />
 		</Unit>
-		<Unit filename="../test/test_division.c">
+		<Unit filename="../test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}division.c">
 			<Option compilerVar="CC" />
 			<Option target="tgt_exe_test_{{ libname }}_dbg" />
 		</Unit>
-		<Unit filename="../test/test_multiplication.c">
+		<Unit filename="../test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.c">
 			<Option compilerVar="CC" />
 			<Option target="tgt_exe_test_{{ libname }}_dbg" />
 		</Unit>
-		<Unit filename="../test/test_subtraction.c">
+		<Unit filename="../test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}subtraction.c">
 			<Option compilerVar="CC" />
 			<Option target="tgt_exe_test_{{ libname }}_dbg" />
 		</Unit>

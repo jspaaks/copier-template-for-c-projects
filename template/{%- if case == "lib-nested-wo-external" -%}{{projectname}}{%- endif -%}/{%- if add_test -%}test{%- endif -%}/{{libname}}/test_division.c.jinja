@@ -1,14 +1,14 @@
 #include <criterion/criterion.h>
 #include "{{ libname }}/division.h"
 
-Test(division, one){
-    int actual = divide(2, 3);
+Test({% if prepend_symbols %}{{ libname + '_' }}{% endif %}division, one){
+    int actual = {% if prepend_symbols %}{{ libname + '_' }}{% endif %}divide(2, 3);
     int expected = 0;
     cr_assert(actual == expected);
 }
 
-Test(division, two){
-    int actual = divide(2, -3);
+Test({% if prepend_symbols %}{{ libname + '_' }}{% endif %}division, two){
+    int actual = {% if prepend_symbols %}{{ libname + '_' }}{% endif %}divide(2, -3);
     int expected = 0;
     cr_assert(actual == expected);
 }

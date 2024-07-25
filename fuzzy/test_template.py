@@ -244,8 +244,9 @@ def test_generated_tests_and_exe(generated):
 
 
 def test_test_generation(generated):
-    add_external, add_test, libname, nested, produceslib, projectname = \
-            get_answers(generated["answers"], "add_external", "add_test", "libname", "nested", "produceslib", "projectname")
+    add_external, add_test, libpurpose, libname, nested, produceslib, projectname = \
+            get_answers(generated["answers"], "add_external", "add_test", "libpurpose", "libname", "nested", "produceslib", "projectname")
+    prepend_filenames = produceslib and libpurpose in ['consumption-only', 'both'] and not nested
     base = generated["directory"] / projectname
     directories = []
     files = []
@@ -268,14 +269,25 @@ def test_test_generation(generated):
             directories += [
                 base / "test"
             ]
-            files += [
-                base / "test" / "test_division.c",
-                base / "test" / "test_multiplication.c"
-            ]
-            if add_external:
+            if prepend_filenames:
                 files += [
-                    base / "test" / "test_addition.c",
-                    base / "test" / "test_subtraction.c"
+                    base / "test" / f"test_{ libname }_division.c",
+                    base / "test" / f"test_{ libname }_multiplication.c"
                 ]
+                if add_external:
+                    files += [
+                        base / "test" / f"test_{ libname }_addition.c",
+                        base / "test" / f"test_{ libname }_subtraction.c"
+                    ]
+            else:
+                files += [
+                    base / "test" / "test_division.c",
+                    base / "test" / "test_multiplication.c"
+                ]
+                if add_external:
+                    files += [
+                        base / "test" / "test_addition.c",
+                        base / "test" / "test_subtraction.c"
+                    ]
 
     assert meets_expected_presence(ispresent=add_test, directories=directories, files=files)

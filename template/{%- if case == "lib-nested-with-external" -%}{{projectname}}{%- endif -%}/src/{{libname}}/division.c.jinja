@@ -1,5 +1,5 @@
 #include "{{ libname }}/division.h"
 
-int divide (int a, int b) {
+int {% if prepend_symbols %}{{ libname + '_' }}{% endif %}divide (int a, int b) {
     return a / b;
 }

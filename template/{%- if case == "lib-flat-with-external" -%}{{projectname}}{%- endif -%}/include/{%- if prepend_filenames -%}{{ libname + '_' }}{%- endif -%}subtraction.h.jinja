@@ -1,0 +1,6 @@
+#ifndef {% if prepend_filenames %}{{ (libname + '_') | upper }}{% endif %}SUBTRACTION_H
+#define {% if prepend_filenames %}{{ (libname + '_') | upper }}{% endif %}SUBTRACTION_H
+
+int {% if prepend_symbols %}{{ libname + '_' }}{% endif %}subtract (int, int);
+
+#endif

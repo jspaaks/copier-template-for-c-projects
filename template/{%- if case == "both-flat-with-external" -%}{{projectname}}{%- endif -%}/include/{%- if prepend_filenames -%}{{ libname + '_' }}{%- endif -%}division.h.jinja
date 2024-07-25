@@ -1,0 +1,6 @@
+#ifndef {% if prepend_filenames %}{{ (libname + '_') | upper }}{% endif %}DIVISION_H
+#define {% if prepend_filenames %}{{ (libname + '_') | upper }}{% endif %}DIVISION_H
+
+int {% if prepend_symbols %}{{ libname + '_' }}{% endif %}divide (int, int);
+
+#endif

@@ -1,0 +1,5 @@
+#include "{% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.h"
+
+int {% if prepend_symbols %}{{ libname + '_' }}{% endif %}multiply (int a, int b) {
+    return a * b;
+}

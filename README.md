@@ -1,6 +1,6 @@
 # Copier template for C projects
 
-Copier template for generating a somewhat generic C project that can be built
+Copier template for generating a generic C project that can be built
 with CMake and has the right configuration to be used in Code::Blocks editor.
 
 To use, first install [`copier` from PyPI](https://pypi.org/project/copier/).
@@ -35,9 +35,11 @@ copier copy https://github.com/jspaaks/cookiecutter-codeblocks-cmake-c
 🎤 What should the build directory be called?
    build
 🎤 Does the project have external dependencies?
-   No
+   Yes
+🎤 What should the directory that contains external dependencies be called?
+   external
 🎤 Does the project use assets like images, sound, fonts, etc?
-   No
+   Yes
 🎤 Does the project use tests?
    Yes
 🎤 Add a CMake build configuration?
@@ -45,6 +47,8 @@ copier copy https://github.com/jspaaks/cookiecutter-codeblocks-cmake-c
 🎤 Add a Code::Blocks IDE configuration?
    Yes
 🎤 Add a clang-format configuration?
+   Yes
+🎤 Do you want to include a copy of the answers you just provided as .copier-answers.yml?
    Yes
 ```
 
@@ -85,6 +89,7 @@ calculator-project/
 │   │   ├── src
 │   │   │   └── their
 │   │   │       ├── addition.c
+│   │   │       ├── CMakeLists.txt
 │   │   │       └── subtraction.c
 │   │   └── CMakeLists.txt
 │   └── CMakeLists.txt
@@ -95,6 +100,9 @@ calculator-project/
 │       ├── multiplication.h
 │       └── subtraction.h
 ├── src
+│   ├── calculator
+│   │   ├── CMakeLists.txt
+│   │   └── main.c
 │   └── operations
 │       ├── addition.c
 │       ├── CMakeLists.txt
@@ -112,24 +120,24 @@ calculator-project/
 ├── CMakeLists.txt
 ├── .gitignore
 └── README.md
-
-21 directories, 39 files
+22 directories, 42 files
 ```
 
-The project should build out of the box using CMake
+The generated project should build out of the box using CMake:
 
 ```shell
 cd calculator-project/build/cmake
 cmake ../..
 ```
 
-Next run `make` to build the libary / executable / test executable
+Next run `make` to build the libary / executable / test executable:
 
 ```shell
 make
 ```
 
-Then install (by default, to `calculator-project/build/cmake/dist`, can be configured by setting `CMAKE_INSTALL_PREFIX`)
+Then install (by default, to `calculator-project/build/cmake/dist`, can be configured by
+setting `CMAKE_INSTALL_PREFIX` when calling `cmake`):
 
 ```shell
 make install
@@ -145,5 +153,5 @@ Run the tests with:
 
 ```shell
 ./dist/bin/test_operations
-./dist/bin/test_operations -j1 --verbose  # for easier to interpret output
+./dist/bin/test_operations -j1 --verbose  # for easier-to-interpret output
 ```

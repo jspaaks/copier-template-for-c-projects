@@ -1,6 +1,6 @@
-#include "their/addition.h"
 #include "{{ libname }}/addition.h"
+#include "their/addition.h"
 
-int add (int a, int b) {
+int {% if prepend_symbols %}{{ libname + '_' }}{% endif %}add (int a, int b) {
     return their_add(a, b);
 }
