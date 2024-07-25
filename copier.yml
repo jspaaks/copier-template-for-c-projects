@@ -40,6 +40,7 @@ nested:
     type: bool
     help: "Do you want to organize components into subdirectories under src/?"
     default: true
+    when: "{{ producesexe or produceslib }}"
 
 build_directory:
     type: str
@@ -53,7 +54,7 @@ build_directory:
 add_external:
     type: bool
     help: Does the project have external dependencies?
-    default: false
+    default: true
     when: "{{ producesexe or produceslib }}"
 
 external_directory:
@@ -70,7 +71,7 @@ external_directory:
 add_assets:
     type: bool
     help: Does the project use assets like images, sound, fonts, etc?
-    default: false
+    default: true
     when: "{{ producesexe or produceslib }}"
 
 add_test:
@@ -100,10 +101,23 @@ add_clang_format:
 add_answers:
     type: bool
     help: Do you want to include a copy of the answers you just provided as .copier-answers.yml?
-    default: false
+    default: true
+    when: "{{ producesexe or produceslib }}"
 
 case:
     type: str
     help: "What is the value of 'case'?"
     default: "{%- if producesexe and produceslib -%}both{%- elif producesexe -%}exe{%- elif produceslib -%}lib{%- endif -%}-{%- if nested -%}nested{%- else -%}flat{%- endif -%}-{%- if add_external -%}with-external{%- else -%}wo-external{%- endif -%}"
+    when: false
+
+prepend_symbols:
+    type: bool
+    help: Prepend symbols with '{{ libname + "_" }}' to help avoid name collisions?
+    default: "{{ produceslib and libpurpose in ['consumption-only', 'both'] }}"
+    when: false
+
+prepend_filenames:
+    type : bool
+    help: Prepend filenames with '{{ libname + "_" }}' to help avoid name collisions?
+    default: "{{ prepend_symbols and not nested }}"
     when: false
