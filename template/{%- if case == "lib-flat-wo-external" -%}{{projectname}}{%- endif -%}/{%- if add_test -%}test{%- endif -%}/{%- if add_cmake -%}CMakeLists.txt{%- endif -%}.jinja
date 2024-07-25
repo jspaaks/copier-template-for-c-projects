@@ -4,7 +4,7 @@ list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
 
 add_executable(tgt_exe_test_{{ libname }})
 
-set_property(TARGET tgt_exe_test_{{ libname }} PROPERTY OUTPUT_NAME test_{{ libname}})
+set_property(TARGET tgt_exe_test_{{ libname }} PROPERTY OUTPUT_NAME test_{{ libname }})
 
 target_compile_definitions(
     tgt_exe_test_{{ libname }}
@@ -45,8 +45,8 @@ target_link_libraries(
 target_sources(
     tgt_exe_test_{{ libname }}
     PRIVATE
-        ${PROJECT_ROOT}/test/test_division.c
-        ${PROJECT_ROOT}/test/test_multiplication.c
+        ${PROJECT_ROOT}/test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}division.c
+        ${PROJECT_ROOT}/test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.c
 )
 
 install(TARGETS tgt_exe_test_{{ libname }})

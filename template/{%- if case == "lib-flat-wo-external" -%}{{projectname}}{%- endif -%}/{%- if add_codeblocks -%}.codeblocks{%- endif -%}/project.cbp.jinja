@@ -68,26 +68,26 @@
 			<Add alias="vtgt_exe_test_{{ libname }}_dbg" targets="tgt_lib_{{ libname }}_dbg;tgt_exe_test_{{ libname }}_dbg;" />
 			{%- endif %}
 		</VirtualTargets>
-		<Unit filename="../include/division.h">
+		<Unit filename="../include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}division.h">
 			<Option target="tgt_lib_{{ libname }}_dbg" />
 		</Unit>
-		<Unit filename="../include/multiplication.h">
+		<Unit filename="../include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.h">
 			<Option target="tgt_lib_{{ libname }}_dbg" />
 		</Unit>
-		<Unit filename="../src/division.c">
+		<Unit filename="../src/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}division.c">
 			<Option compilerVar="CC" />
 			<Option target="tgt_lib_{{ libname }}_dbg" />
 		</Unit>
-		<Unit filename="../src/multiplication.c">
+		<Unit filename="../src/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.c">
 			<Option compilerVar="CC" />
 			<Option target="tgt_lib_{{ libname }}_dbg" />
 		</Unit>
 		{%- if add_test %}
-		<Unit filename="../test/test_division.c">
+		<Unit filename="../test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}division.c">
 			<Option compilerVar="CC" />
 			<Option target="tgt_exe_test_{{ libname }}_dbg" />
 		</Unit>
-		<Unit filename="../test/test_multiplication.c">
+		<Unit filename="../test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.c">
 			<Option compilerVar="CC" />
 			<Option target="tgt_exe_test_{{ libname }}_dbg" />
 		</Unit>
