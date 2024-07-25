@@ -45,10 +45,10 @@ target_link_libraries(
 target_sources(
     tgt_exe_test_{{ libname }}
     PRIVATE
-        ${PROJECT_ROOT}/test/test_addition.c
-        ${PROJECT_ROOT}/test/test_division.c
-        ${PROJECT_ROOT}/test/test_multiplication.c
-        ${PROJECT_ROOT}/test/test_subtraction.c
+        ${PROJECT_ROOT}/test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}addition.c
+        ${PROJECT_ROOT}/test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}division.c
+        ${PROJECT_ROOT}/test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.c
+        ${PROJECT_ROOT}/test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}subtraction.c
 )
 
 install(TARGETS tgt_exe_test_{{ libname }})
