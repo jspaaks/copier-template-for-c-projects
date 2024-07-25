@@ -50,4 +50,6 @@ jobs:
         run: python3 -m pip install .[testing]
 
       - name: Run fuzzy tests
-        run: NFUZZY=10 python3 -m pytest -ra
+        run: |
+          echo "Skip inception tests because gcc version is too low to support c23 features"
+          NFUZZY=10 python3 -m pytest -ra -m 'not inception'

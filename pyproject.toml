@@ -64,6 +64,9 @@ addopts = "--maxfail=1"
 testpaths = [
     "fuzzy"
 ]
+markers = [
+    "inception: tests that test whether the generated tests run successfully"
+]
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 

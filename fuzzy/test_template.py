@@ -213,6 +213,7 @@ def test_external_generation(generated):
     assert meets_expected_presence(ispresent=add_external, directories=directories, files=files)
 
 
+@pytest.mark.inception
 def test_generated_tests_and_exe(generated):
     add_cmake, add_test, build_directory, exename, libname, producesexe, produceslib, projectname = \
             get_answers(generated["answers"], "add_cmake", "add_test", "build_directory", "exename", "libname", "producesexe", "produceslib", "projectname")
