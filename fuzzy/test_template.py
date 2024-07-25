@@ -100,10 +100,10 @@ def get_answers(answers, *keys):
 def meets_expected_presence(*, ispresent=True, directories=None, files=None):
     if directories is not None:
         for d in directories:
-            assert True if d is None else ispresent == d.is_dir(), f"Directory '{ d }' was unexpectedly { "not present" if ispresent else "present" }."
+            assert True if d is None else ispresent == d.is_dir(), f"Directory '{ d }' was unexpectedly { 'not present' if ispresent else 'present' }."
     if files is not None:
         for f in files:
-            assert True if f is None else ispresent == f.is_file(), f"File '{ f }' was unexpectedly { "not present" if ispresent else "present" }."
+            assert True if f is None else ispresent == f.is_file(), f"File '{ f }' was unexpectedly { 'not present' if ispresent else 'present' }."
     return True
 
 
