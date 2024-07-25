@@ -55,7 +55,6 @@ By changing the value of `NFUZZY`, you can run more or fewer fuzzy tests.
 
 ### TODO
 
-1. review usage of `#include "operations_addition.h"` for flat trees
 1. add more testing framework(s), e.g.
     1. googletest [https://github.com/google/googletest](https://github.com/google/googletest)
     1. check [https://github.com/libcheck/check/](https://github.com/libcheck/check/), [https://libcheck.github.io/check/](https://libcheck.github.io/check/)
