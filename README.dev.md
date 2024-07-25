@@ -2,7 +2,10 @@
 
 ## Testing
 
-Directory fuzzy contains fuzzy tests. Run with:
+Running the tests requires python libraries specified in `pyproject.toml`,
+as well as `cmake` and `make` binaries, and `Criterion` testing library.
+
+Directory `fuzzy` contains fuzzy tests. Run with:
 
 ```shell
 python3 -m venv venv
@@ -10,6 +13,8 @@ source venv/bin/activate
 pip install .[testing]
 NFUZZY=10 pytest fuzzy/test_template.py -ra --verbose
 ```
+
+By changing the value of `NFUZZY`, you can run more or fewer fuzzy tests.
 
 ## Other stuff
 
