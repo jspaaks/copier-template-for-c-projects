@@ -1,0 +1,6 @@
+#include "{% if prepend_filenames %}{{ libname + '_' }}{% endif %}addition.h"
+#include "their/addition.h"
+
+int {% if prepend_symbols %}{{ libname + '_' }}{% endif %}add (int a, int b) {
+    return their_add(a, b);
+}

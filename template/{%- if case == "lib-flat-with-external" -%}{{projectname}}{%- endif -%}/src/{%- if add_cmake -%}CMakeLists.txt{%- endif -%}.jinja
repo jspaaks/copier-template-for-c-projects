@@ -59,20 +59,20 @@ target_link_libraries(
 target_sources(
     tgt_lib_{{ libname }}
     PRIVATE
-        ${PROJECT_ROOT}/src/addition.c
-        ${PROJECT_ROOT}/src/division.c
-        ${PROJECT_ROOT}/src/multiplication.c
-        ${PROJECT_ROOT}/src/subtraction.c
+        ${PROJECT_ROOT}/src/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}addition.c
+        ${PROJECT_ROOT}/src/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}division.c
+        ${PROJECT_ROOT}/src/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.c
+        ${PROJECT_ROOT}/src/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}subtraction.c
     PUBLIC
         FILE_SET fset_lib_{{ libname }}_headers
         TYPE HEADERS
         BASE_DIRS
             ${PROJECT_ROOT}/include
         FILES
-            ${PROJECT_ROOT}/include/addition.h
-            ${PROJECT_ROOT}/include/division.h
-            ${PROJECT_ROOT}/include/multiplication.h
-            ${PROJECT_ROOT}/include/subtraction.h
+            ${PROJECT_ROOT}/include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}addition.h
+            ${PROJECT_ROOT}/include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}division.h
+            ${PROJECT_ROOT}/include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.h
+            ${PROJECT_ROOT}/include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}subtraction.h
 )
 
 install(TARGETS tgt_lib_{{ libname }}
