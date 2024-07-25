@@ -1,0 +1,6 @@
+#ifndef {% if prepend_symbols %}{{ (libname + '_') | upper }}{% endif %}ADDITION_H
+#define {% if prepend_symbols %}{{ (libname + '_') | upper }}{% endif %}ADDITION_H
+
+int {% if prepend_symbols %}{{ libname + '_' }}{% endif %}add (int, int);
+
+#endif
