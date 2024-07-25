@@ -37,7 +37,7 @@ jobs:
         run: python3 -m venv venv
 
       - name: Activate the virtual environment named 'venv'
-        run: ./source venv/bin/activate
+        run: source venv/bin/activate
 
       - name: Install the template with its testing dependencies
         run: python3 -m pip install .[testing]
