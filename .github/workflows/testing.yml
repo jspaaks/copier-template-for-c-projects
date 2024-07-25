@@ -14,10 +14,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['ubuntu-latest', 'macos-latest', 'windows-latest']
+        os: ['ubuntu-latest'] #, 'macos-latest', 'windows-latest']
         python-version: ['3.8', '3.9', '3.10', '3.11', '3.12']
     steps:
-      - uses: actions/checkout@v4
+
+      - name: Install Criterion
+        run: sudo apt-get install -y libcriterion-dev
+
+      - name: Get a copy of the repository contents
+        uses: actions/checkout@v4
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
@@ -33,8 +38,7 @@ jobs:
           gcc --version
 
       - name: Upgrade pip, setuptools and wheel
-        run: |
-          python3 -m pip install --upgrade pip setuptools wheel
+        run: python3 -m pip install --upgrade pip setuptools wheel
 
       - name: Make a virtual environment named 'venv'
         run: python3 -m venv venv
