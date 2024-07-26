@@ -18,6 +18,9 @@ jobs:
         python-version: ['3.8', '3.9', '3.10', '3.11', '3.12']
     steps:
 
+      - name: cmake --version
+        run: cmake --version
+
       - if: matrix.os == 'ubuntu-24.04'
         name: (ubuntu-24.04) Install Criterion
         run: sudo apt-get install -y libcriterion-dev
@@ -25,6 +28,19 @@ jobs:
       - if: matrix.os == 'macos-14'
         name: (macos-14) Install Criterion
         run: brew install criterion
+
+      - if: matrix.os == 'windows-2022'
+        name: (windows-2022) Install Criterion
+        run: |
+          echo "TODO"
+          Invoke-WebRequest https://github.com/Snaipe/Criterion/archive/refs/tags/v2.4.2.tar.gz -OutFile criterion.tar.gz
+          tar -xvf criterion.tar.gz
+          cd criterion
+          mkdir build
+          cd build
+          cmake ..
+          cmake --build .
+          cmake --install .
 
       - if: matrix.os == 'windows-2022'
         name: (windows-2022) Desperate try to allow long pathnames
@@ -42,9 +58,6 @@ jobs:
         run: |
           which python
           python --version
-
-      - name: cmake --version
-        run: cmake --version
 
       - name: Upgrade pip, setuptools and wheel
         run: python -m pip install --upgrade pip setuptools wheel
@@ -74,14 +87,10 @@ jobs:
       - if: matrix.os == 'macos-14'
         name: (macos-14) Run fuzzy tests
         run: CC='gcc-14 -I/opt/homebrew/include -L/opt/homebrew/lib' NFUZZY=100 python -m pytest -ra --verbose
-        # -I/opt/homebrew/Cellar
-        # -I/opt/homebrew/Cellar/criterion
-        # -I/opt/homebrew/Cellar/include
-        # -I/opt/homebrew/include
 
       - if: matrix.os == 'windows-2022'
         name: (windows-2022) Run fuzzy tests except those marked 'inception'
         run: |
           $Env:NFUZZY = '100'
-          python -m pytest -ra --verbose -m 'not inception'
+          python -m pytest -ra --verbose
 
