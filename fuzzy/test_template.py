@@ -215,15 +215,18 @@ def test_external_generation(generated):
 
 @pytest.mark.inception
 def test_generated_tests_and_exe(generated):
+    def tuplify(cmdstr):
+        return (f"{ prepend } && { cmdstr }", f"'{ cmdstr }' from { projectname }/{ build_directory  }/cmake did not run successfully.", )
+
     add_cmake, add_test, build_directory, exename, libname, producesexe, produceslib, projectname = \
             get_answers(generated["answers"], "add_cmake", "add_test", "build_directory", "exename", "libname", "producesexe", "produceslib", "projectname")
     if not add_cmake:
         pytest.skip("add_cmake is False, can't generate library, executable, or test executable")
     prepend = f"cd { generated['directory'] }/{ projectname }/{ build_directory  }/cmake"
     cmds = [
-        (f"{ prepend } && cmake ../..", f"Could not run 'cmake ../..' in { projectname }/{ build_directory  }/cmake"),
-        (f"{ prepend } && make", f"Could not run 'make' in { projectname }/{ build_directory  }/cmake"),
-        (f"{ prepend } && make install", f"Could not run 'make install' in { projectname }/{ build_directory  }/cmake")
+        tuplify("cmake ../.."),
+        tuplify("cmake --build ."),
+        tuplify("cmake --install .")
     ]
     if producesexe:
         cmds.append(
