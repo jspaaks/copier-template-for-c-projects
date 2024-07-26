@@ -55,18 +55,18 @@ jobs:
         run: python3 -m pip install .[testing]
 
       - if: matrix.os == 'ubuntu-latest'
-        name: (${{matrix.os}}) Run fuzzy tests exception those marked 'inception'
+        name: ('ubuntu-latest') Run fuzzy tests except those marked 'inception'
         run: |
           gcc --version
           echo "Deselect 'inception' tests because gcc version is too low to support c23 features"
           NFUZZY=100 python3 -m pytest -ra -m 'not inception'
 
       - if: matrix.os == 'macos-latest'
-        name: (${{matrix.os}}) Run fuzzy tests
+        name: ('macos-latest') Run fuzzy tests
         run: |
           NFUZZY=100 python3 -m pytest -ra
 
       - if: matrix.os == 'windows-latest'
-        name: (${{matrix.os}}) Run fuzzy tests
+        name: ('windows-latest') Run fuzzy tests
         run: |
           NFUZZY=100 python3 -m pytest -ra
