@@ -32,10 +32,9 @@ jobs:
       - if: matrix.os == 'windows-2022'
         name: (windows-2022) Install Criterion
         run: |
-          echo "TODO"
-          Invoke-WebRequest https://github.com/mesonbuild/meson/releases/download/1.5.0/meson-1.5.0-64.msi -OutFile meson-1.5.0-64.msi
-          Start-Process msiexec "/i meson-1.5.0-64.msi /qn";
-          Invoke-WebRequest https://github.com/Snaipe/Criterion/archive/refs/tags/v2.4.2.tar.gz -OutFile Criterion-2.4.2.tar.gz
+          Invoke-WebRequest -Uri https://github.com/mesonbuild/meson/releases/download/1.5.0/meson-1.5.0-64.msi -OutFile meson-1.5.0-64.msi
+          Start-Process -FilePath "$env:systemroot\system32\msiexec.exe" -ArgumentList '/i', 'meson-1.5.0-64.msi', '/qn' -Wait -NoNewWindow
+          Invoke-WebRequest -Uri https://github.com/Snaipe/Criterion/archive/refs/tags/v2.4.2.tar.gz -OutFile Criterion-2.4.2.tar.gz
           tar -xvf Criterion-2.4.2.tar.gz
           cd Criterion-2.4.2
           meson install -C build
