@@ -16,9 +16,9 @@ endif()
 
 set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
 if (APPLE)
-    list(APPEND CMAKE_INSTALL_RPATH @loader_path @loader_path/../lib)
+    list(APPEND CMAKE_INSTALL_RPATH @loader_path/../lib)
 elseif(UNIX)
-    list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
+    list(APPEND CMAKE_INSTALL_RPATH $ORIGIN/../lib)
 endif()
 
 add_executable(tgt_exe_{{ exename }})

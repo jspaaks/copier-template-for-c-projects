@@ -10,7 +10,12 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   set_property(CACHE CMAKE_INSTALL_PREFIX PROPERTY VALUE "${CMAKE_BINARY_DIR}/dist")
 endif()
 
-list(APPEND CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
+set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
+if (APPLE)
+    list(APPEND CMAKE_INSTALL_RPATH @loader_path/../lib)
+elseif(UNIX)
+    list(APPEND CMAKE_INSTALL_RPATH $ORIGIN/../lib)
+endif()
 
 add_executable(tgt_exe_{{ exename }})
 
