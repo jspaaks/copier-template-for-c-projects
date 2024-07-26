@@ -53,15 +53,15 @@ jobs:
         run: python -m venv venv
 
       - if: matrix.os == 'ubuntu-24.04'
-        name: Activate the virtual environment named 'venv'
+        name: (ubuntu-24.04) Activate the virtual environment named 'venv'
         run: source venv/bin/activate
 
       - if: matrix.os == 'macos-14'
-        name: Activate the virtual environment named 'venv'
+        name: (macos-14) Activate the virtual environment named 'venv'
         run: source venv/bin/activate
 
       - if: matrix.os == 'windows-2022'
-        name: Activate the virtual environment named 'venv'
+        name: (windows-2022) Activate the virtual environment named 'venv'
         run: venv\Scripts\Activate.ps1
 
       - name: Install the template with its testing dependencies
@@ -77,5 +77,5 @@ jobs:
 
       - if: matrix.os == 'windows-2022'
         name: (windows-2022) Run fuzzy tests except those marked 'inception'
-        run: NFUZZY=100 python -m pytest -ra -m 'not inception'
+        run: $Env:NFUZZY = '100' python -m pytest -ra -m 'not inception'
 
