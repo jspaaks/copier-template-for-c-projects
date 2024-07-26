@@ -26,6 +26,10 @@ jobs:
         name: (macos-14) Install Criterion
         run: brew install criterion
 
+      - if: matrix.os == 'windows-2022'
+        name: (windows-2022) Desperate try to allow long pathnames
+        run: git config --system core.longpaths true
+
       - name: Get a copy of the repository contents
         uses: actions/checkout@v4
 
