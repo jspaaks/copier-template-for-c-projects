@@ -54,19 +54,19 @@ jobs:
       - name: Install the template with its testing dependencies
         run: python3 -m pip install .[testing]
 
-      - if: os.matrix == 'ubuntu-latest'
+      - if: matrix.os == 'ubuntu-latest'
         name: (${matrix.os}) Run fuzzy tests exception those marked 'inception'
         run: |
           gcc --version
           echo "Deselect 'inception' tests because gcc version is too low to support c23 features"
           NFUZZY=100 python3 -m pytest -ra -m 'not inception'
 
-      - if: os.matrix == 'macos-latest'
+      - if: matrix.os == 'macos-latest'
         name: (${matrix.os}) Run fuzzy tests
         run: |
           NFUZZY=100 python3 -m pytest -ra
 
-      - if: os.matrix == 'windows-latest'
+      - if: matrix.os == 'windows-latest'
         name: (${matrix.os}) Run fuzzy tests
         run: |
           NFUZZY=100 python3 -m pytest -ra
