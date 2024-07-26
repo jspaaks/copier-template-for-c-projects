@@ -73,7 +73,7 @@ jobs:
 
       - if: matrix.os == 'macos-14'
         name: (macos-14) Run fuzzy tests
-        run: CC='gcc-14 -I/opt/homebrew/Cellar' NFUZZY=100 python -m pytest -ra
+        run: CC='gcc-14 -I/opt/homebrew/Cellar' LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../lib NFUZZY=100 python -m pytest -ra
 
       - if: matrix.os == 'windows-2022'
         name: (windows-2022) Run fuzzy tests except those marked 'inception'
