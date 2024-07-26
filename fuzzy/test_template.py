@@ -11,8 +11,8 @@ def get_parameterization(keys, values):
     d = {key: value for (key, value) in zip(keys, values)}
     ident = ",".join(["{}={}".format(key, value) for (key, value) in zip(keys, values)])
     marks = [
-        pytest.mark.skip("producesexe and produceslib are both False") if d["producesexe"] == False and d["produceslib"] == False else None
-        pytest.markskip("temporary subsetting") if not (d["produceslib"] and d["producesexe"] and d["nested"] == False and d["add_external"]) else None
+        pytest.mark.skip("producesexe and produceslib are both False") if d["producesexe"] == False and d["produceslib"] == False else None,
+        pytest.mark.skip("temporary subsetting") if not (d["produceslib"] and d["producesexe"] and d["nested"] == False and d["add_external"]) else None
     ]
     return pytest.param(d, id=ident, marks=[mark for mark in marks if mark is not None])
 
