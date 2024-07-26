@@ -33,9 +33,9 @@ jobs:
         name: (windows-2022) Install Criterion
         run: |
           echo "TODO"
-          Invoke-WebRequest https://github.com/Snaipe/Criterion/archive/refs/tags/v2.4.2.tar.gz -OutFile criterion.tar.gz
-          tar -xvf criterion.tar.gz
-          cd criterion
+          Invoke-WebRequest https://github.com/Snaipe/Criterion/archive/refs/tags/v2.4.2.tar.gz -OutFile thearchive.tar.gz
+          tar -xvf thearchive.tar.gz
+          cd Criterion-2.4.2
           mkdir build
           cd build
           cmake ..
