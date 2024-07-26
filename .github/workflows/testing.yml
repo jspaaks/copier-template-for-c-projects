@@ -62,7 +62,7 @@ jobs:
 
       - if: matrix.os == 'windows-2022'
         name: Activate the virtual environment named 'venv'
-        run: venv/bin/Activate.ps1
+        run: venv\Scripts\Activate.ps1
 
       - name: Install the template with its testing dependencies
         run: python -m pip install .[testing]
