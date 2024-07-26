@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ 'ubuntu-24.04', 'macos-14' ] #, 'windows-latest' ]
+        os: [ 'ubuntu-24.04', 'macos-14', 'windows-2022' ]
         python-version: ['3.8', '3.9', '3.10', '3.11', '3.12']
     steps:
 
@@ -60,4 +60,8 @@ jobs:
 
       - if: matrix.os == 'macos-14'
         name: (macos-14) Run fuzzy tests
-        run: CC=gcc-14 NFUZZY=100 python3 -m pytest -ra
+        run: CC='gcc-14 -I/opt/homebrew/Cellar/criterion' NFUZZY=100 python3 -m pytest -ra
+
+      - if: matrix.os == 'windows-2022'
+        name: (windows-2022) Run fuzzy tests except those marked 'inception'
+        run: NFUZZY=100 python3 -m pytest -ra -m 'not inception'
