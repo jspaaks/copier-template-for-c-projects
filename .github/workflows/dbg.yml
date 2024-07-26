@@ -30,7 +30,7 @@ jobs:
 
       - run: cd Criterion-2.4.2
 
-      - run: meson install -C build
+      - run: meson.exe install -C build
 
       - name: (windows-2022) Desperate try to allow long pathnames
         run: git config --system core.longpaths true
