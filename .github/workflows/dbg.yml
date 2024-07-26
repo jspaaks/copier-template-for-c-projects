@@ -1,0 +1,66 @@
+name: dbg
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  testing:
+    name: py${{ matrix.python-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ 'windows-2022' ]
+        python-version: ['3.12']
+    steps:
+
+      - name: cmake --version
+        run: cmake --version
+
+      - run: Invoke-WebRequest -Uri https://github.com/mesonbuild/meson/releases/download/1.5.0/meson-1.5.0-64.msi -OutFile meson-1.5.0-64.msi
+
+      - run: Start-Process -FilePath "$env:systemroot\system32\msiexec.exe" -ArgumentList '/i', 'meson-1.5.0-64.msi', '/qn' -Wait -NoNewWindow
+
+      - run: Invoke-WebRequest -Uri https://github.com/Snaipe/Criterion/archive/refs/tags/v2.4.2.tar.gz -OutFile Criterion-2.4.2.tar.gz
+
+      - run: tar -xvf Criterion-2.4.2.tar.gz
+
+      - run: cd Criterion-2.4.2
+
+      - run: meson install -C build
+
+      - name: (windows-2022) Desperate try to allow long pathnames
+        run: git config --system core.longpaths true
+
+      - name: Get a copy of the repository contents
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Python version
+        run: |
+          which python
+          python --version
+
+      - name: Upgrade pip, setuptools and wheel
+        run: python -m pip install --upgrade pip setuptools wheel
+
+      - name: Make a virtual environment named 'venv'
+        run: python -m venv venv
+
+      - name: (windows-2022) Activate the virtual environment named 'venv'
+        run: venv\Scripts\Activate.ps1
+
+      - name: Install the template with its testing dependencies
+        run: python -m pip install .[testing]
+
+      - name: (windows-2022) Run fuzzy tests except those marked 'inception'
+        run: |
+          $Env:NFUZZY = '100'
+          python -m pytest -ra --verbose
