@@ -19,11 +19,11 @@ jobs:
     steps:
 
       - if: matrix.os == 'ubuntu-latest'
-        name: (${matrix.os}) Install Criterion
+        name: (${{matrix.os}}) Install Criterion
         run: sudo apt-get install -y libcriterion-dev
 
       - if: matrix.os == 'macos-latest'
-        name: (${matrix.os}) Install Criterion
+        name: (${{matrix.os}}) Install Criterion
         run: brew install criterion
 
       - name: Get a copy of the repository contents
@@ -55,18 +55,18 @@ jobs:
         run: python3 -m pip install .[testing]
 
       - if: matrix.os == 'ubuntu-latest'
-        name: (${matrix.os}) Run fuzzy tests exception those marked 'inception'
+        name: (${{matrix.os}}) Run fuzzy tests exception those marked 'inception'
         run: |
           gcc --version
           echo "Deselect 'inception' tests because gcc version is too low to support c23 features"
           NFUZZY=100 python3 -m pytest -ra -m 'not inception'
 
       - if: matrix.os == 'macos-latest'
-        name: (${matrix.os}) Run fuzzy tests
+        name: (${{matrix.os}}) Run fuzzy tests
         run: |
           NFUZZY=100 python3 -m pytest -ra
 
       - if: matrix.os == 'windows-latest'
-        name: (${matrix.os}) Run fuzzy tests
+        name: (${{matrix.os}}) Run fuzzy tests
         run: |
           NFUZZY=100 python3 -m pytest -ra
