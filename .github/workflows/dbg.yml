@@ -23,6 +23,7 @@ jobs:
           choco install ninja
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
+          meson --version
 
       - name: Show versions
         run: |
