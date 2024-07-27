@@ -216,37 +216,54 @@ def test_external_generation(generated):
 
 @pytest.mark.inception
 def test_generated_tests_and_exe(generated):
-    def tuplify(cmdstr):
-        return (f"{ prepend }{ catcmds }{ cmdstr }", f"'{ cmdstr }' from { str(Path(projectname, build_directory, "cmake")) } did not run successfully.", )
-
     add_cmake, add_test, build_directory, exename, libname, producesexe, produceslib, projectname = \
             get_answers(generated["answers"], "add_cmake", "add_test", "build_directory", "exename", "libname", "producesexe", "produceslib", "projectname")
     if not add_cmake:
         pytest.skip("add_cmake is False, can't generate library, executable, or test executable")
-    prepend = "cd " + str(Path(generated['directory'], projectname, build_directory, "cmake"))
-    catcmds = "; " if sys.platform == "win32" else " && "
+
+    path_cwd = Path(generated['directory'], projectname, build_directory, "cmake")
+    path_exe = Path("dist", "bin", exename )
+    path_testexe = Path("dist", "bin", f"test_{libname} -j1 --verbose")
+    path_two_up = Path("..", "..")
+    cmd_cmake_generate = f"cmake -S { str(path_two_up) } -B ."
+    cmd_cmake_build = "cmake --build ."
+    cmd_cmake_install = "cmake --install ."
+
     cmds = [
-        tuplify("echo \"After cd'ing we're now at $PWD\""),
-        tuplify(f"cmake -S { str(Path("..", "..")) } -B ."),
-        tuplify("cmake --build ."),
-        tuplify("cmake --install .")
+        (
+            str(path_cwd),
+            cmd_cmake_generate,
+            f"Could not run '{ cmd_cmake_generate }' from { str(path_cwd) }"
+        ),
+        (
+            str(path_cwd),
+            cmd_cmake_build,
+            f"Could not run '{ cmd_cmake_build }' from { str(path_cwd) }"
+        ),
+        (
+            str(path_cwd),
+            cmd_cmake_install,
+            f"Could not run '{ cmd_cmake_install }' from { str(path_cwd) }"
+        )
     ]
     if producesexe:
         cmds.append(
             (
-                f"{ prepend }{catcmds}{ str(Path("dist", "bin", exename )) }",
-                f"Could not run '{ str(Path("dist", "bin", exename )) }' from { str(Path(projectname, build_directory, "cmake")) }"
+                str(path_cwd),
+                str(path_exe),
+                f"Could not run '{ str(path_exe) }' from { str(path_cwd) }"
             )
         )
     if produceslib and add_test:
         cmds.append(
             (
-                f"{ prepend }{catcmds}{ str(Path("dist", "bin", f"test_{libname} -j1 --verbose")) }",
-                f"Could not run '{ str(Path("dist", "bin", f"test_{libname} -j1 --verbose")) }' from { str(Path(projectname, build_directory, "cmake")) }"
+                str(path_cwd),
+                str(path_testexe),
+                f"Could not run '{ str(path_testexe) }' from { str(path_cwd) }"
             )
         )
-    for (cmd, msg) in cmds:
-        result = subprocess.run(cmd, capture_output=True, shell=True, check=True)
+    for (cwd, cmd, msg) in cmds:
+        result = subprocess.run(cmd, cwd=cwd, capture_output=True, shell=True, check=True)
         assert result.returncode == 0, msg
 
 
