@@ -217,7 +217,7 @@ def test_external_generation(generated):
 @pytest.mark.inception
 def test_generated_tests_and_exe(generated):
     def tuplify(cmdstr):
-        return (f"{ prepend }{ catcmds }{ cmdstr }", f"'{ cmdstr }' from { projectname }/{ build_directory  }/cmake did not run successfully.", )
+        return (f"{ prepend }{ catcmds }{ cmdstr }", f"'{ cmdstr }' from { str(Path(projectname, build_directory, "cmake")) } did not run successfully.", )
 
     add_cmake, add_test, build_directory, exename, libname, producesexe, produceslib, projectname = \
             get_answers(generated["answers"], "add_cmake", "add_test", "build_directory", "exename", "libname", "producesexe", "produceslib", "projectname")
@@ -226,6 +226,7 @@ def test_generated_tests_and_exe(generated):
     prepend = "cd " + str(Path(generated['directory'], projectname, build_directory, "cmake"))
     catcmds = " ; " if sys.platform == "win32" else " && "
     cmds = [
+        tuplify("echo \"After cd'ing we're now at $PWD\""),
         tuplify(f"cmake -S { str(Path("..", "..")) } -B ."),
         tuplify("cmake --build ."),
         tuplify("cmake --install .")

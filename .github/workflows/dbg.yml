@@ -70,4 +70,4 @@ jobs:
       - name: (windows-2022) Run fuzzy tests except those marked 'inception'
         run: |
           $Env:NFUZZY = '100'
-          python -m pytest -ra --verbose
+          python -m pytest -rA --verbose
