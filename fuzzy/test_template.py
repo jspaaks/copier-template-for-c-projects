@@ -222,7 +222,7 @@ def test_generated_tests_and_exe(generated):
             get_answers(generated["answers"], "add_cmake", "add_test", "build_directory", "exename", "libname", "producesexe", "produceslib", "projectname")
     if not add_cmake:
         pytest.skip("add_cmake is False, can't generate library, executable, or test executable")
-    prepend = f"cd { generated['directory'] }/{ projectname }/{ build_directory  }/cmake"
+    prepend = "cd " + str(Path(generated['directory'], projectname, build_directory, "cmake"))
     cmds = [
         tuplify("cmake ../.."),
         tuplify("cmake --build ."),
@@ -231,15 +231,15 @@ def test_generated_tests_and_exe(generated):
     if producesexe:
         cmds.append(
             (
-                f"{ prepend } && ./dist/bin/{exename}",
-                f"Could not run './dist/bin/{exename}' from { projectname }/{ build_directory  }/cmake"
+                f"{ prepend } && { str(Path("dist", "bin", exename )) }",
+                f"Could not run '{ str(Path("dist", "bin", exename )) }' from { str(Path(projectname, build_directory, "cmake")) }"
             )
         )
     if produceslib and add_test:
         cmds.append(
             (
-                f"{ prepend } && ./dist/bin/test_{libname} -j1 --verbose",
-                f"Could not run './dist/bin/test_{libname} -j1 --verbose' from { projectname }/{ build_directory  }/cmake"
+                f"{ prepend } && { str(Path("dist", "bin", f"test_{libname} -j1 --verbose")) }",
+                f"Could not run '{ str(Path("dist", "bin", f"test_{libname} -j1 --verbose")) }' from { str(Path(projectname, build_directory, "cmake")) }"
             )
         )
     for (cmd, msg) in cmds:
