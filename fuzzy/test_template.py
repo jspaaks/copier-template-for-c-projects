@@ -225,7 +225,7 @@ def test_generated_tests_and_exe(generated):
     path_exe = Path("dist", "bin", exename )
     path_testexe = Path("dist", "bin", f"test_{libname} -j1 --verbose")
     path_two_up = Path("..", "..")
-    cmd_cmake_generate = f"cmake -S { str(path_two_up) } -B ."
+    cmd_cmake_generate = f"cmake -D CMAKE_C_COMPILER=gcc -S { str(path_two_up) } -B ."
     cmd_cmake_build = "cmake --build ."
     cmd_cmake_install = "cmake --install ."
 
