@@ -224,7 +224,7 @@ def test_generated_tests_and_exe(generated):
     if not add_cmake:
         pytest.skip("add_cmake is False, can't generate library, executable, or test executable")
     prepend = "cd " + str(Path(generated['directory'], projectname, build_directory, "cmake"))
-    catcmds = " ; " if sys.platform == "win32" else " && "
+    catcmds = "; " if sys.platform == "win32" else " && "
     cmds = [
         tuplify("echo \"After cd'ing we're now at $PWD\""),
         tuplify(f"cmake -S { str(Path("..", "..")) } -B ."),
@@ -246,7 +246,7 @@ def test_generated_tests_and_exe(generated):
             )
         )
     for (cmd, msg) in cmds:
-        result = subprocess.run(cmd, shell=True, check=True)
+        result = subprocess.run(cmd, capture_output=True, shell=True, check=True)
         assert result.returncode == 0, msg
 
 
