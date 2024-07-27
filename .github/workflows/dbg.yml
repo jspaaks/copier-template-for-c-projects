@@ -21,6 +21,8 @@ jobs:
         run: |
           choco install meson
           choco install ninja
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+          refreshenv
 
       - name: Show versions
         run: |
