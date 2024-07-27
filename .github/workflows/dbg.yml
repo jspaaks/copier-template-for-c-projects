@@ -60,19 +60,30 @@ jobs:
       - name: Upgrade pip, setuptools and wheel
         run: python -m pip install --upgrade pip setuptools wheel
 
-      - name: Make a virtual environment named 'venv'
-        run: python -m venv venv
+      #- name: Make a virtual environment named 'venv'
+      #  run: python -m venv venv
 
-      - name: (windows-2022) Activate the virtual environment named 'venv'
-        run: venv\Scripts\Activate.ps1
+      #- name: (windows-2022) Activate the virtual environment named 'venv'
+      #  run: venv\Scripts\Activate.ps1
 
-      - name: Install the template with its testing dependencies
-        run: python -m pip install .[testing]
+      #- name: Install the template with its testing dependencies
+      #  run: python -m pip install .[testing]
 
-      - name: (windows-2022) Run fuzzy tests except those marked 'inception'
-        run: |
+      #- name: (windows-2022) Run fuzzy tests except those marked 'inception'
+      #  run: |
+      #    Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+      #    refreshenv
+      #    $Env:NFUZZY='100'
+      #    $Env:CC='gcc'
+      #    python -m pytest -rA --verbose
+
+
+      - run: |
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
+          python -m venv venv
+          venv\Scripts\Activate.ps1
+          python -m pip install .[testing]
           $Env:NFUZZY='100'
           $Env:CC='gcc'
           python -m pytest -rA --verbose
