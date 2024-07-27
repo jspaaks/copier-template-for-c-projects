@@ -5,6 +5,7 @@ from pathlib import Path
 import itertools
 import random
 import os
+import sys
 
 
 def get_parameterization(keys, values):
@@ -223,6 +224,7 @@ def test_generated_tests_and_exe(generated):
     if not add_cmake:
         pytest.skip("add_cmake is False, can't generate library, executable, or test executable")
     prepend = "cd " + str(Path(generated['directory'], projectname, build_directory, "cmake"))
+    catcmds = " ; " if sys.platform == "win32" else " && "
     cmds = [
         tuplify(f"cmake -S { str(Path("..", "..")) } -B ."),
         tuplify("cmake --build ."),
@@ -231,14 +233,14 @@ def test_generated_tests_and_exe(generated):
     if producesexe:
         cmds.append(
             (
-                f"{ prepend } && { str(Path("dist", "bin", exename )) }",
+                f"{ prepend }{catcmds}{ str(Path("dist", "bin", exename )) }",
                 f"Could not run '{ str(Path("dist", "bin", exename )) }' from { str(Path(projectname, build_directory, "cmake")) }"
             )
         )
     if produceslib and add_test:
         cmds.append(
             (
-                f"{ prepend } && { str(Path("dist", "bin", f"test_{libname} -j1 --verbose")) }",
+                f"{ prepend }{catcmds}{ str(Path("dist", "bin", f"test_{libname} -j1 --verbose")) }",
                 f"Could not run '{ str(Path("dist", "bin", f"test_{libname} -j1 --verbose")) }' from { str(Path(projectname, build_directory, "cmake")) }"
             )
         )
