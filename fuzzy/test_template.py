@@ -217,7 +217,7 @@ def test_external_generation(generated):
 @pytest.mark.inception
 def test_generated_tests_and_exe(generated):
     def tuplify(cmdstr):
-        return (f"{ prepend } && { cmdstr }", f"'{ cmdstr }' from { projectname }/{ build_directory  }/cmake did not run successfully.", )
+        return (f"{ prepend }{ catcmds }{ cmdstr }", f"'{ cmdstr }' from { projectname }/{ build_directory  }/cmake did not run successfully.", )
 
     add_cmake, add_test, build_directory, exename, libname, producesexe, produceslib, projectname = \
             get_answers(generated["answers"], "add_cmake", "add_test", "build_directory", "exename", "libname", "producesexe", "produceslib", "projectname")
