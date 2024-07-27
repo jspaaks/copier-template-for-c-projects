@@ -19,8 +19,8 @@ jobs:
 
       - name: Install dependencies for building Criterion
         run: |
-          choco install meson
-          choco install ninja
+          choco install meson -y
+          choco install ninja -y
 
       - name: Show versions
         run: |
