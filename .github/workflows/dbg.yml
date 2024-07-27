@@ -27,6 +27,8 @@ jobs:
 
       - name: Show versions
         run: |
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+          refreshenv
           meson --version
           ninja --version
 
