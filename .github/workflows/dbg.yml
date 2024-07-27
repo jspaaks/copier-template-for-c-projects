@@ -71,6 +71,8 @@ jobs:
 
       - name: (windows-2022) Run fuzzy tests except those marked 'inception'
         run: |
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+          refreshenv
           $Env:NFUZZY='100'
           $Env:CC='gcc'
           python -m pytest -rA --verbose
