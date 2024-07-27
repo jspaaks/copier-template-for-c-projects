@@ -224,7 +224,7 @@ def test_generated_tests_and_exe(generated):
         pytest.skip("add_cmake is False, can't generate library, executable, or test executable")
     prepend = "cd " + str(Path(generated['directory'], projectname, build_directory, "cmake"))
     cmds = [
-        tuplify(f"cmake { str(Path("..", "..")) }"),
+        tuplify(f"cmake -S { str(Path("..", "..")) } -B ."),
         tuplify("cmake --build ."),
         tuplify("cmake --install .")
     ]
