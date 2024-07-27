@@ -22,13 +22,12 @@ jobs:
           choco install meson
           choco install ninja
 
-      - name: Download Criterion
+      - name: Download, build and install Criterion
         run: |
+          Invoke-WebRequest -Uri https://github.com/Snaipe/Criterion/archive/refs/tags/v2.4.2.tar.gz -OutFile Criterion-2.4.2.tar.gz
           tar -xvf Criterion-2.4.2.tar.gz
           cd Criterion-2.4.2
-
-      - name: Build and install Criterion
-        run: meson install -C build
+          meson install -C build
 
       - name: (windows-2022) Desperate try to allow long pathnames
         run: git config --system core.longpaths true
