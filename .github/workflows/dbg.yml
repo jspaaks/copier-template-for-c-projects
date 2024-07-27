@@ -21,6 +21,7 @@ jobs:
         run: |
           choco install meson -y
           choco install ninja -y
+          choco install mingw -y
 
       - name: Show versions
         run: |
@@ -28,6 +29,7 @@ jobs:
           refreshenv
           meson --version
           ninja --version
+          mingw --version
 
       - name: Download, build and install Criterion
         run: |
@@ -69,5 +71,6 @@ jobs:
 
       - name: (windows-2022) Run fuzzy tests except those marked 'inception'
         run: |
-          $Env:NFUZZY = '100'
+          $Env:NFUZZY='100'
+          $Env:CC='gcc'
           python -m pytest -rA --verbose
