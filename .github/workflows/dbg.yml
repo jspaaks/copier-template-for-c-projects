@@ -21,6 +21,7 @@ jobs:
         run: |
           choco install meson
           choco install ninja
+          refreshenv
 
       - name: Download, build and install Criterion
         run: |
