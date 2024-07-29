@@ -17,41 +17,30 @@ jobs:
         python-version: ['3.12']
     steps:
 
-      - name: Install dependencies for building Criterion
+      - run: git config --system core.longpaths true
+
+      - name: Get a copy of the repository contents
+        uses: actions/checkout@v4
+
+      - name: desperation
         run: |
           choco install meson -y
           choco install ninja -y
           choco install mingw -y
-
-      - name: Show versions
-        run: |
+          echo "----------------------------------------------"
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
           meson --version
           ninja --version
           gcc --version
-
-      - name: Download, build and install Criterion
-        run: |
-          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-          refreshenv
+          echo "----------------------------------------------"
           Invoke-WebRequest -Uri https://github.com/Snaipe/Criterion/archive/refs/tags/v2.4.2.tar.gz -OutFile Criterion-2.4.2.tar.gz
           tar -xvf Criterion-2.4.2.tar.gz
           cd Criterion-2.4.2
           meson setup build .
           meson install -C build
-
-      - name: (windows-2022) Desperate try to allow long pathnames
-        run: git config --system core.longpaths true
-
-      - name: Get a copy of the repository contents
-        uses: actions/checkout@v4
-
-      - if: matrix.os == 'windows-2022'
-        name: dbg
-        run: |
-          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-          refreshenv
+          cd ..
+          echo "----------------------------------------------"
           $Env:CC='gcc'
           $Env:CMAKE_GENERATOR='Unix Makefiles'
           cd dbg\navigator-project\built\cmake
@@ -59,27 +48,27 @@ jobs:
           cmake --build .
           cmake --install .
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
+      # - name: Set up Python ${{ matrix.python-version }}
+      #   uses: actions/setup-python@v5
+      #   with:
+      #     python-version: ${{ matrix.python-version }}
 
-      - name: Python version
-        run: |
-          which python
-          python --version
+      # - name: Python version
+      #   run: |
+      #     which python
+      #     python --version
 
-      - name: (windows-2022) Run fuzzy tests for selected C standards
-        run: |
-          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-          refreshenv
-          python -m venv venv
-          venv\Scripts\Activate.ps1
-          python -m pip install --upgrade pip setuptools wheel
-          python -m pip install .[testing]
-          $Env:NFUZZY='100'
-          $Env:CC='gcc'
-          $Env:CMAKE_C_STANDARDS='c_std_17,c_std_11,c_std_99,c_std_90'
-          $Env:CMAKE_GENERATOR='Unix Makefiles'
-          python -m pytest -rA --verbose
-          echo "::endgroup::"
+      # - name: (windows-2022) Run fuzzy tests for selected C standards
+      #   run: |
+      #     Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+      #     refreshenv
+      #     python -m venv venv
+      #     venv\Scripts\Activate.ps1
+      #     python -m pip install --upgrade pip setuptools wheel
+      #     python -m pip install .[testing]
+      #     $Env:NFUZZY='100'
+      #     $Env:CC='gcc'
+      #     $Env:CMAKE_C_STANDARDS='c_std_17,c_std_11,c_std_99,c_std_90'
+      #     $Env:CMAKE_GENERATOR='Unix Makefiles'
+      #     python -m pytest -rA --verbose
+      #     echo "::endgroup::"
