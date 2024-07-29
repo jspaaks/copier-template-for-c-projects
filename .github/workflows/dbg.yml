@@ -24,13 +24,26 @@ jobs:
 
       - name: desperation
         run: |
+          choco install meson -y
+          choco install ninja -y
+          choco install mingw -y
+          echo "----------------------------------------------"
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+          refreshenv
           echo "$PWD"
           dir
+          meson --version
+          ninja --version
+          gcc --version
+          echo "----------------------------------------------"
           cd dbg\navigator-project
           mkdir build
           cd build
           mkdir cmake
           cd cmake
+          echo "----------------------------------------------"
+          $Env:CC='gcc'
+          $Env:CMAKE_GENERATOR='Unix Makefiles'
           cmake ..\..
           cmake --build .
           cmake --install .
