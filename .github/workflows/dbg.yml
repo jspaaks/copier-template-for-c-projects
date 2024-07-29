@@ -55,9 +55,6 @@ jobs:
           which python
           python --version
 
-      - name: Upgrade pip, setuptools and wheel
-        run: python -m pip install --upgrade pip setuptools wheel
-
       - name: (windows-2022) Run fuzzy tests for standard C17
         run: |
           echo "::group::Importing choco profile"
@@ -67,8 +64,11 @@ jobs:
           echo "::group::Setting up Python environment"
           python -m venv venv
           venv\Scripts\Activate.ps1
-          python -m pip install .[testing]
+          pip install --upgrade pip setuptools wheel
+          pip install .[testing]
           echo "::endgroup::"
+          echo "::group::Run the tests"
           $Env:NFUZZY='100'
           $Env:CMAKE_C_STANDARD='c_std_17,c_std_11,c_std_99,c_std_90'
           python -m pytest -rA --verbose
+          echo "::endgroup::"
