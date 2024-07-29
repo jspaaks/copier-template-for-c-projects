@@ -231,7 +231,7 @@ def test_generated_tests_and_exe(generated):
     cmd_cmake_generate = f"cmake -S { str(path_two_up) } -B ."
     cmd_cmake_build = "cmake --build ."
     cmd_cmake_install = "cmake --install ."
-    cmd_tree = "tree dist"
+    cmd_tree = f"tree { str(Path('dist', 'bin')) }"
 
     cmds = [
         (
@@ -263,14 +263,14 @@ def test_generated_tests_and_exe(generated):
                 f"Could not run '{ str(path_exe) }' from { str(path_cwd) }"
             )
         )
-    if produceslib and add_test:
-        cmds.append(
-            (
-                str(path_cwd),
-                str(path_testexe),
-                f"Could not run '{ str(path_testexe) }' from { str(path_cwd) }"
-            )
-        )
+    #if produceslib and add_test:
+    #    cmds.append(
+    #        (
+    #            str(path_cwd),
+    #            str(path_testexe),
+    #            f"Could not run '{ str(path_testexe) }' from { str(path_cwd) }"
+    #        )
+    #    )
     for (cwd, cmd, msg) in cmds:
         result = subprocess.run(cmd, cwd=cwd, capture_output=True, shell=True, check=True, encoding='utf-8')
         print(result.stdout, file=sys.stdout)

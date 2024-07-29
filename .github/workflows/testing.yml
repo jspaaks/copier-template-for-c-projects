@@ -102,5 +102,5 @@ jobs:
           $Env:LIBRARY_PATH='C:\\lib'
           $Env:CMAKE_GENERATOR='Unix Makefiles'
           $Env:CMAKE_C_STANDARDS='c_std_17,c_std_11,c_std_99,c_std_90'
-          python -m pytest -ra --verbose
+          python -m pytest -rA --verbose
 
