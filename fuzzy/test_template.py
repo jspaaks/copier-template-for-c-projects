@@ -263,14 +263,14 @@ def test_generated_tests_and_exe(generated):
                 f"Could not run '{ str(path_exe) }' from { str(path_cwd) }"
             )
         )
-    #if produceslib and add_test:
-    #    cmds.append(
-    #        (
-    #            str(path_cwd),
-    #            str(path_testexe),
-    #            f"Could not run '{ str(path_testexe) }' from { str(path_cwd) }"
-    #        )
-    #    )
+    if produceslib and add_test:
+        cmds.append(
+            (
+                str(path_cwd),
+                str(path_testexe),
+                f"Could not run '{ str(path_testexe) }' from { str(path_cwd) }"
+            )
+        )
     for (cwd, cmd, msg) in cmds:
         result = subprocess.run(cmd, cwd=cwd, capture_output=True, shell=True, check=True, encoding='utf-8')
         print(result.stdout, file=sys.stdout)
