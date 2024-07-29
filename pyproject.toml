@@ -52,7 +52,7 @@ Repository = "https://github.com/jspaaks/copier-template-for-c-projects"
 
 [project.optional-dependencies]
 testing = [
-    "pytest >= 6",
+    "pytest >= 6, < 7.3",  # https://github.com/pytest-dev/pytest/issues/11146
     "PyYAML >= 6.0"
 ]
 
