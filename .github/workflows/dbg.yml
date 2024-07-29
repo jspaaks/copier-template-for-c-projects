@@ -36,6 +36,7 @@ jobs:
           cmake --install .
 
       - name: desperation part deux
+        run: |
           echo "$PWD"
           dir
           choco install meson -y
