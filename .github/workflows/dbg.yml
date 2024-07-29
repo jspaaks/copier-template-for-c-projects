@@ -24,6 +24,8 @@ jobs:
 
       - name: desperation
         run: |
+          echo "$PWD"
+          dir
           choco install meson -y
           choco install ninja -y
           choco install mingw -y
@@ -43,6 +45,8 @@ jobs:
           echo "----------------------------------------------"
           $Env:CC='gcc'
           $Env:CMAKE_GENERATOR='Unix Makefiles'
+          echo "$PWD"
+          dir
           cd dbg\navigator-project\built\cmake
           cmake ..\..
           cmake --build .
