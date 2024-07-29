@@ -78,8 +78,8 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install .[testing]
           $Env:NFUZZY='100'
-          $Env:CC=gcc
+          $Env:CC='gcc'
           $Env:CMAKE_C_STANDARDS='c_std_17,c_std_11,c_std_99,c_std_90'
-          $Env:CMAKE_GENERATOR="Unix Makefiles"
+          $Env:CMAKE_GENERATOR='Unix Makefiles'
           python -m pytest -rA --verbose
           echo "::endgroup::"
