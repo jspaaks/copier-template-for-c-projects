@@ -49,38 +49,8 @@ jobs:
           mkdir cmake
           cd cmake
           echo "----------------------------------------------"
-          $Env:CC='gcc'
+          $Env:CC='gcc -I C:\include -L C:\lib'
           $Env:CMAKE_GENERATOR='Unix Makefiles'
-          cmake ..\..
-          cmake --build .
-          cmake --install .
-
-      - name: desperation part deux
-        run: |
-          echo "$PWD"
-          dir
-          choco install meson -y
-          choco install ninja -y
-          choco install mingw -y
-          echo "----------------------------------------------"
-          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-          refreshenv
-          meson --version
-          ninja --version
-          gcc --version
-          echo "----------------------------------------------"
-          Invoke-WebRequest -Uri https://github.com/Snaipe/Criterion/archive/refs/tags/v2.4.2.tar.gz -OutFile Criterion-2.4.2.tar.gz
-          tar -xvf Criterion-2.4.2.tar.gz
-          cd Criterion-2.4.2
-          meson setup build .
-          meson install -C build
-          cd ..
-          echo "----------------------------------------------"
-          $Env:CC='gcc'
-          $Env:CMAKE_GENERATOR='Unix Makefiles'
-          echo "$PWD"
-          dir
-          cd dbg\navigator-project\built\cmake
           cmake ..\..
           cmake --build .
           cmake --install .
