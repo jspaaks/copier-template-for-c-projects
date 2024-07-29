@@ -223,9 +223,10 @@ def test_generated_tests_and_exe(generated):
     if not add_cmake:
         pytest.skip("add_cmake is False, can't generate library, executable, or test executable")
 
+    exesuffix = ".exe" if sys.platform.startswith('win32') else ""
     path_cwd = Path(generated['directory'], projectname, build_directory, "cmake")
-    path_exe = Path("dist", "bin", exename )
-    path_testexe = Path("dist", "bin", f"test_{libname} -j1 --verbose")
+    path_exe = Path("dist", "bin", f"{ exename }{exesuffix}")
+    path_testexe = Path("dist", "bin", f"test_{libname}{exesuffix} -j1 --verbose")
     path_two_up = Path("..", "..")
     cmd_cmake_generate = f"cmake -S { str(path_two_up) } -B ."
     cmd_cmake_build = "cmake --build ."
