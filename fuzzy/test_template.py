@@ -31,7 +31,7 @@ def get_parameterizations():
         "add_external": boolset,
         "add_test": boolset,
         "build_directory": list(copier_config["build_directory"]["choices"].keys())[:2],
-        "c_std": [c_std] if c_std else ["c_std_23", "c_std_17", "c_std_11", "c_std_99", "c_std_90"],
+        "c_std": [item.strip() for item in c_std.split(",")] if c_std else ["c_std_23", "c_std_17", "c_std_11", "c_std_99", "c_std_90"],
         "exename": ["calculator", "navigator"],
         "external_directory": list(copier_config["external_directory"]["choices"].keys())[:2],
         "libname": ["operations", "directions"],
