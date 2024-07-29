@@ -21,7 +21,7 @@ jobs:
         run: |
           choco install meson -y
           choco install ninja -y
-          choco install mingw64 -y
+          choco install mingw -y
 
       - name: Show versions
         run: |
