@@ -49,7 +49,9 @@ jobs:
           mkdir cmake
           cd cmake
           echo "----------------------------------------------"
-          $Env:CC='gcc -I C:\\include -L C:\\lib'
+          $Env:CC='gcc'
+          $Env:C_INCLUDE_PATH='C:\\include'
+          $Env:LIBRARY_PATH='C:\\lib'
           $Env:CMAKE_GENERATOR='Unix Makefiles'
           cmake ..\..
           cmake --build .
