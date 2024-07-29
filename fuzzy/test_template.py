@@ -37,9 +37,9 @@ def get_parameterizations():
         "libname": ["operations"], #["operations", "directions"],
         "libpurpose": ["both"], #copier_config["libpurpose"]["choices"].values(),
         "nested": [True], #boolset,
-        "producesexe": [True], #boolset,
+        "producesexe": boolset,
         "produceslib": [True], #boolset,
-        "projectname": ["calculator-project"], #["calculator-project", "navigator-project"]
+        "projectname": ["calculator-project"] #["calculator-project", "navigator-project"]
     }
     valuess = itertools.product(*data.values())
     tmp = os.environ.get("NFUZZY", None)

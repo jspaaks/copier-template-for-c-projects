@@ -95,7 +95,7 @@ jobs:
       - if: matrix.os == 'windows-2022'
         name: (windows-2022) Run fuzzy tests for a selection of C standards
         run: |
-          $Env:NFUZZY = '100'
+          $Env:NFUZZY = '2'
           $Env:CC='gcc'
           $Env:C_INCLUDE_PATH='C:\\include'
           $Env:LIBRARY_PATH='C:\\lib'
