@@ -32,15 +32,23 @@ jobs:
       - if: matrix.os == 'windows-2022'
         name: (windows-2022) Install Criterion
         run: |
-          Invoke-WebRequest -Uri https://github.com/mesonbuild/meson/releases/download/1.5.0/meson-1.5.0-64.msi -OutFile meson-1.5.0-64.msi
-          Start-Process -FilePath "$env:systemroot\system32\msiexec.exe" -ArgumentList '/i', 'meson-1.5.0-64.msi', '/qn' -Wait -NoNewWindow
+          choco install meson -y
+          choco install ninja -y
+          choco install mingw -y
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+          refreshenv
+          echo "----------------------------------------------"
+          meson --version
+          ninja --version
+          gcc --version
           Invoke-WebRequest -Uri https://github.com/Snaipe/Criterion/archive/refs/tags/v2.4.2.tar.gz -OutFile Criterion-2.4.2.tar.gz
           tar -xvf Criterion-2.4.2.tar.gz
           cd Criterion-2.4.2
+          meson setup build .
           meson install -C build
 
       - if: matrix.os == 'windows-2022'
-        name: (windows-2022) Desperate try to allow long pathnames
+        name: (windows-2022) Allow long file names in git checkouts
         run: git config --system core.longpaths true
 
       - name: Get a copy of the repository contents
@@ -86,8 +94,13 @@ jobs:
         run: CC='gcc-14 -I/opt/homebrew/include -L/opt/homebrew/lib' NFUZZY=100 python -m pytest -ra --verbose
 
       - if: matrix.os == 'windows-2022'
-        name: (windows-2022) Run fuzzy tests except those marked 'inception'
+        name: (windows-2022) Run fuzzy tests for a selection of C standards
         run: |
           $Env:NFUZZY = '100'
+          $Env:CC='gcc'
+          $Env:C_INCLUDE_PATH='C:\\include'
+          $Env:LIBRARY_PATH='C:\\lib'
+          $Env:CMAKE_GENERATOR='Unix Makefiles'
+          $Env:CMAKE_C_STANDARDS='c_std_17,c_std_11,c_std_99,c_std_90'
           python -m pytest -ra --verbose
 

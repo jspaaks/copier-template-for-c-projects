@@ -1,6 +1,7 @@
 name: dbg
 
 on:
+  pull_request:
   push:
     branches:
       - main
@@ -17,12 +18,19 @@ jobs:
         python-version: ['3.12']
     steps:
 
-      - run: git config --system core.longpaths true
+      - name: cmake --version
+        run: cmake --version
 
-      - name: Get a copy of the repository contents
-        uses: actions/checkout@v4
+      - if: matrix.os == 'ubuntu-24.04'
+        name: (ubuntu-24.04) Install Criterion
+        run: sudo apt-get install -y libcriterion-dev
 
-      - name: desperation
+      - if: matrix.os == 'macos-14'
+        name: (macos-14) Install Criterion
+        run: brew install criterion
+
+      - if: matrix.os == 'windows-2022'
+        name: (windows-2022) Install Criterion
         run: |
           choco install meson -y
           choco install ninja -y
@@ -30,25 +38,30 @@ jobs:
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
           echo "----------------------------------------------"
-          echo "$PWD"
-          dir
           meson --version
           ninja --version
           gcc --version
-          echo "----------------------------------------------"
           Invoke-WebRequest -Uri https://github.com/Snaipe/Criterion/archive/refs/tags/v2.4.2.tar.gz -OutFile Criterion-2.4.2.tar.gz
           tar -xvf Criterion-2.4.2.tar.gz
           cd Criterion-2.4.2
           meson setup build .
           meson install -C build
-          cd ..
-          echo "----------------------------------------------"
+
+      - if: matrix.os == 'windows-2022'
+        name: (windows-2022) Allow long file names in git checkouts
+        run: git config --system core.longpaths true
+
+      - name: Get a copy of the repository contents
+        uses: actions/checkout@v4
+
+      - name: Build dbg project
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+          refreshenv
           cd dbg\navigator-project
           mkdir build
           cd build
           mkdir cmake
           cd cmake
-          echo "----------------------------------------------"
           $Env:CC='gcc'
           $Env:C_INCLUDE_PATH='C:\\include'
           $Env:LIBRARY_PATH='C:\\lib'
