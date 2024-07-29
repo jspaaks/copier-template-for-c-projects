@@ -55,8 +55,9 @@ jobs:
           which python
           python --version
 
-      - name: (windows-2022) Run fuzzy tests for standard C17
+      - name: (windows-2022) Run fuzzy tests for selected C standards
         run: |
+
           echo "::group::Importing choco profile"
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
@@ -64,8 +65,8 @@ jobs:
           echo "::group::Setting up Python environment"
           python -m venv venv
           venv\Scripts\Activate.ps1
-          pip install --upgrade pip setuptools wheel
-          pip install .[testing]
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install .[testing]
           echo "::endgroup::"
           echo "::group::Run the tests"
           $Env:NFUZZY='100'
