@@ -47,6 +47,18 @@ jobs:
       - name: Get a copy of the repository contents
         uses: actions/checkout@v4
 
+      - if: matrix.os == 'windows-2022'
+        name: dbg
+        run: |
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+          refreshenv
+          $Env:CC=gcc
+          $Env:CMAKE_GENERATOR="Unix Makefiles"
+          cd dbg\navigator-project\built\cmake
+          cmake ..\..
+          cmake --build .
+          cmake --install .
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
