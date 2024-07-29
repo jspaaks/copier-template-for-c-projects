@@ -52,8 +52,8 @@ jobs:
         run: |
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
-          $Env:CC=gcc
-          $Env:CMAKE_GENERATOR="Unix Makefiles"
+          $Env:CC='gcc'
+          $Env:CMAKE_GENERATOR='Unix Makefiles'
           cd dbg\navigator-project\built\cmake
           cmake ..\..
           cmake --build .
