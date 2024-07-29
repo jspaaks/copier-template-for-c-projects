@@ -20,7 +20,7 @@ def get_parameterization(keys, values):
 def get_parameterizations():
     with open("copier.yml", "r") as fid:
         copier_config = yaml.safe_load(fid)
-    c_std = os.environ.get("CMAKE_C_STANDARD", None)
+    c_std = os.environ.get("CMAKE_C_STANDARDS", None)
     boolset = {True, False}
     data = {
         "add_answers": boolset,
