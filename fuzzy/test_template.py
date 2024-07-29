@@ -225,8 +225,8 @@ def test_generated_tests_and_exe(generated):
 
     exesuffix = ".exe" if sys.platform.startswith('win32') else ""
     path_cwd = Path(generated['directory'], projectname, build_directory, "cmake")
-    path_exe = (path_cwd / "dist" / "bin" / f"{ exename }{exesuffix}").absolute()
-    path_testexe = (path_cwd / "dist" / "bin" / f"test_{libname}{exesuffix} -j1 --verbose").absolute()
+    path_exe = (path_cwd / "dist" / "bin" / f"{ exename }{exesuffix}").relative_to(path_cwd)
+    path_testexe = (path_cwd / "dist" / "bin" / f"test_{libname}{exesuffix}").relative_to(path_cwd)
     path_two_up = Path("..", "..")
     cmd_cmake_generate = f"cmake -S { str(path_two_up) } -B ."
     cmd_cmake_build = "cmake --build ."
