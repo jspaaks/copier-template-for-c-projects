@@ -20,6 +20,7 @@ def get_parameterization(keys, values):
 def get_parameterizations():
     with open("copier.yml", "r") as fid:
         copier_config = yaml.safe_load(fid)
+    c_std = os.environ.get("CMAKE_C_STANDARD", None)
     boolset = {True, False}
     data = {
         "add_answers": boolset,
@@ -30,6 +31,7 @@ def get_parameterizations():
         "add_external": boolset,
         "add_test": boolset,
         "build_directory": list(copier_config["build_directory"]["choices"].keys())[:2],
+        "c_std": [c_std] if c_std else ["c_std_23", "c_std_17", "c_std_11", "c_std_99", "c_std_90"],
         "exename": ["calculator", "navigator"],
         "external_directory": list(copier_config["external_directory"]["choices"].keys())[:2],
         "libname": ["operations", "directions"],
@@ -225,7 +227,7 @@ def test_generated_tests_and_exe(generated):
     path_exe = Path("dist", "bin", exename )
     path_testexe = Path("dist", "bin", f"test_{libname} -j1 --verbose")
     path_two_up = Path("..", "..")
-    cmd_cmake_generate = f"cmake -G \"MinGW Makefiles\" -S { str(path_two_up) } -B ."
+    cmd_cmake_generate = f"cmake -S { str(path_two_up) } -B ."
     cmd_cmake_build = "cmake --build ."
     cmd_cmake_install = "cmake --install ."
 

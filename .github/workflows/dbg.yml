@@ -21,7 +21,6 @@ jobs:
         run: |
           choco install meson -y
           choco install ninja -y
-          choco install mingw -y
 
       - name: Show versions
         run: |
@@ -29,7 +28,6 @@ jobs:
           refreshenv
           meson --version
           ninja --version
-          gcc --version
 
       - name: Download, build and install Criterion
         run: |
@@ -60,30 +58,13 @@ jobs:
       - name: Upgrade pip, setuptools and wheel
         run: python -m pip install --upgrade pip setuptools wheel
 
-      #- name: Make a virtual environment named 'venv'
-      #  run: python -m venv venv
-
-      #- name: (windows-2022) Activate the virtual environment named 'venv'
-      #  run: venv\Scripts\Activate.ps1
-
-      #- name: Install the template with its testing dependencies
-      #  run: python -m pip install .[testing]
-
-      #- name: (windows-2022) Run fuzzy tests except those marked 'inception'
-      #  run: |
-      #    Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-      #    refreshenv
-      #    $Env:NFUZZY='100'
-      #    $Env:CC='gcc'
-      #    python -m pytest -rA --verbose
-
-
-      - run: |
+      - name: (windows-2022) Run fuzzy tests for standard C17
+        run: |
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
           python -m venv venv
           venv\Scripts\Activate.ps1
           python -m pip install .[testing]
           $Env:NFUZZY='100'
-          $Env:CC='gcc'
+          $Env:CMAKE_C_STANDARD='c_std_17'
           python -m pytest -rA --verbose

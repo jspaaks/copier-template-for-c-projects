@@ -14,12 +14,11 @@ int main (void) {
 #endif
     fprintf(stdout, "\n");
 
-
     fprintf(stdout, "-- test whether math library was linked\n");
     fprintf(stdout, "   sqrt(144) = %f\n", sqrt(144));
     fprintf(stdout, "\n");
 
-
+    {% if c_str == 'c_std_23' -%}
     fprintf(stdout, "-- test c2x / c23 features\n");
     constexpr int n = 5;
     int arr[n] = {0, 1, 2, 3, 4};
@@ -28,6 +27,8 @@ int main (void) {
         fprintf(stdout, "%d%s", arr[i], i < n - 1 ? " " : "\n");
     }
     fprintf(stdout, "\n");
+
+    {% endif -%}
 
     fprintf(stdout, "-- test own library\n");
     fprintf(stdout, "   {% if prepend_symbols %}{{ libname + '_' }}{% endif %}divide(2, 3) = %d\n", {% if prepend_symbols %}{{ libname + '_' }}{% endif %}divide(2, 3));

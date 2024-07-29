@@ -86,6 +86,17 @@ add_cmake:
     default: true
     when: "{{ producesexe or produceslib }}"
 
+c_std:
+    type: str
+    help: What C standard does the project use?
+    choices:
+        C23: c_std_23
+        C17: c_std_17
+        C11: c_std_11
+        C99: c_std_99
+        C90: c_std_90
+    when: "{{ add_cmake }}"
+
 add_codeblocks:
     type: bool
     help: Add a Code::Blocks IDE configuration?
