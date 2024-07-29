@@ -27,6 +27,14 @@ jobs:
           choco install meson -y
           choco install ninja -y
           choco install mingw -y
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+          refreshenv
+          echo "----------------------------------------------"
+          echo "$PWD"
+          dir
+          meson --version
+          ninja --version
+          gcc --version
           echo "----------------------------------------------"
           Invoke-WebRequest -Uri https://github.com/Snaipe/Criterion/archive/refs/tags/v2.4.2.tar.gz -OutFile Criterion-2.4.2.tar.gz
           tar -xvf Criterion-2.4.2.tar.gz
@@ -34,14 +42,6 @@ jobs:
           meson setup build .
           meson install -C build
           cd ..
-          echo "----------------------------------------------"
-          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-          refreshenv
-          echo "$PWD"
-          dir
-          meson --version
-          ninja --version
-          gcc --version
           echo "----------------------------------------------"
           cd dbg\navigator-project
           mkdir build
