@@ -82,7 +82,7 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          $Env:NFUZZY = '2'
+          $Env:NFUZZY = '100'
           $Env:C_INCLUDE_PATH='C:\\include'
           $Env:CC='gcc'
           $Env:CMAKE_C_STANDARDS='c_std_17'

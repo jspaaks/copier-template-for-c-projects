@@ -23,23 +23,23 @@ def get_parameterizations():
     c_std = os.environ.get("CMAKE_C_STANDARDS", None)
     boolset = {True, False}
     data = {
-        "add_answers": [True],
-        "add_assets": [True],
-        "add_clang_format": [True],
-        "add_cmake": [True],
-        "add_codeblocks": [True],
-        "add_external": [True],
-        "add_test": [True],
-        "build_directory": ["build"], #list(copier_config["build_directory"]["choices"].keys())[:2],
-        "c_std": ["c_std_17"], #[item.strip() for item in c_std.split(",")] if c_std else ["c_std_23", "c_std_17", "c_std_11", "c_std_99", "c_std_90"],
-        "exename": ["calculator"], #["calculator", "navigator"],
-        "external_directory": ["external"], #list(copier_config["external_directory"]["choices"].keys())[:2],
-        "libname": ["operations"], #["operations", "directions"],
-        "libpurpose": ["both"], #copier_config["libpurpose"]["choices"].values(),
-        "nested": [True], #boolset,
+        "add_answers": boolset,
+        "add_assets": boolset,
+        "add_clang_format": boolset,
+        "add_cmake": boolset,
+        "add_codeblocks": boolset,
+        "add_external": boolset,
+        "add_test": boolset,
+        "build_directory": list(copier_config["build_directory"]["choices"].keys())[:2],
+        "c_std": [item.strip() for item in c_std.split(",")] if c_std else ["c_std_23", "c_std_17", "c_std_11", "c_std_99", "c_std_90"],
+        "exename": ["calculator", "navigator"],
+        "external_directory": list(copier_config["external_directory"]["choices"].keys())[:2],
+        "libname": ["operations", "directions"],
+        "libpurpose": copier_config["libpurpose"]["choices"].values(),
+        "nested": boolset,
         "producesexe": boolset,
-        "produceslib": [True], #boolset,
-        "projectname": ["calculator-project"] #["calculator-project", "navigator-project"]
+        "produceslib": boolset,
+        "projectname": ["calculator-project", "navigator-project"]
     }
     valuess = itertools.product(*data.values())
     tmp = os.environ.get("NFUZZY", None)
@@ -66,6 +66,7 @@ def generated(tmp_path_factory, request):
         "add_external": True,
         "add_test": True,
         "build_directory": "build",
+        "c_std": "c_std_23",
         "exename": "calculator",
         "external_directory": "external",
         "libname": "operations",
