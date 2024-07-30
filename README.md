@@ -44,6 +44,8 @@ copier copy https://github.com/jspaaks/cookiecutter-codeblocks-cmake-c
    Yes
 🎤 Add a CMake build configuration?
    Yes
+🎤 What C standard does the project use?
+   C23
 🎤 Add a Code::Blocks IDE configuration?
    Yes
 🎤 Add a clang-format configuration?
@@ -120,6 +122,7 @@ calculator-project/
 ├── CMakeLists.txt
 ├── .gitignore
 └── README.md
+
 22 directories, 42 files
 ```
 
@@ -130,17 +133,17 @@ cd calculator-project/build/cmake
 cmake ../..
 ```
 
-Next run `make` to build the libary / executable / test executable:
+Next, build the libary / executable / test executable:
 
 ```shell
-make
+cmake --build .
 ```
 
 Then install (by default, to `calculator-project/build/cmake/dist`, can be configured by
 setting `CMAKE_INSTALL_PREFIX` when calling `cmake`):
 
 ```shell
-make install
+cmake --install .
 ```
 
 Run the executable with:
