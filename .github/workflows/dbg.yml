@@ -70,8 +70,8 @@ jobs:
           echo "About to call navigator.exe"
           .\dist\bin\navigator.exe
           $Env:PATH += ';C:\\bin'
-          echo "About to call test_operations.exe"
-          .\dist\bin\test_operations.exe
+          echo "About to call test_operations.exe -j1 --verbose"
+          .\dist\bin\test_operations.exe -j1 --verbose
 
       #- name: Set up Python ${{ matrix.python-version }}
       #  uses: actions/setup-python@v5
@@ -104,7 +104,7 @@ jobs:
       #    $Env:CC='gcc'
       #    $Env:C_INCLUDE_PATH='C:\\include'
       #    $Env:LIBRARY_PATH='C:\\lib'
-      #    $Env:PATH += ';C:\\lib'
+      #    $Env:PATH += ';C:\\bin'
       #    $Env:CMAKE_GENERATOR='Unix Makefiles'
       #    $Env:CMAKE_C_STANDARDS='c_std_17'
       #    python -m pytest fuzzy/test_template.py::test_generated_tests_and_exe -rA --verbose
