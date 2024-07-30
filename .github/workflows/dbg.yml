@@ -99,6 +99,7 @@ jobs:
           $Env:CC='gcc'
           $Env:C_INCLUDE_PATH='C:\\include'
           $Env:LIBRARY_PATH='C:\\lib'
+          $Env:PATH='$Env:PATH;C:\\lib'
           $Env:CMAKE_GENERATOR='Unix Makefiles'
           $Env:CMAKE_C_STANDARDS='c_std_17'
           python -m pytest fuzzy/test_template.py::test_generated_tests_and_exe -rA --verbose
