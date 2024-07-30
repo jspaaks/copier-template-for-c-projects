@@ -272,7 +272,7 @@ def test_generated_tests_and_exe(generated):
             )
         ]
     for (cwd, cmd, msg) in cmds:
-        result = subprocess.run(cmd, cwd=cwd, capture_output=True, shell=True, check=True, encoding='utf-8')
+        result = subprocess.run(cmd, cwd=cwd, capture_output=True, shell=True, check=True, encoding='utf-8', bufsize=0)
         print(result.stdout, file=sys.stdout)
         print(result.stderr, file=sys.stderr)
         assert result.returncode == 0, msg
