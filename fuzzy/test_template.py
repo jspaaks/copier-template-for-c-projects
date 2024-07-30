@@ -232,7 +232,6 @@ def test_generated_tests_and_exe(generated):
     cmd_cmake_generate = f"cmake -S { str(path_two_up) } -B ."
     cmd_cmake_build = "cmake --build ."
     cmd_cmake_install = "cmake --install ."
-    cmd_tree = f"dir { str(Path(path_cwd, 'dist', 'bin').relative_to(path_cwd)) }"
 
     cmds = [
         (
@@ -249,11 +248,6 @@ def test_generated_tests_and_exe(generated):
             str(path_cwd),
             cmd_cmake_install,
             f"Could not run '{ cmd_cmake_install }' from { str(path_cwd) }"
-        ),
-        (
-            str(path_cwd),
-            cmd_tree,
-            f"Could not run '{ cmd_tree }' from { str(path_cwd) }"
         )
     ]
     if producesexe:
