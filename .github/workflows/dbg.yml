@@ -100,6 +100,8 @@ jobs:
       - if: matrix.os == 'windows-2022'
         name: (windows-2022) Run fuzzy tests for a selection of C standards
         run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           $Env:NFUZZY = '2'
           $Env:C_INCLUDE_PATH='C:\\include'
           $Env:CC='gcc'
