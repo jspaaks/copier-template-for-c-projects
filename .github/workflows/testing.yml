@@ -53,38 +53,40 @@ jobs:
       - name: Get a copy of the repository contents
         uses: actions/checkout@v4
 
-      #- name: Set up Python ${{ matrix.python-version }}
-      #  uses: actions/setup-python@v5
-      #  with:
-      #    python-version: ${{ matrix.python-version }}
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
 
-      #- name: Python version
-      #  run: |
-      #    which python
-      #    python --version
+      - name: Python version
+        run: |
+          which python
+          python --version
 
-      #- name: Upgrade pip, setuptools and wheel
-      #  run: python -m pip install --upgrade pip setuptools wheel
+      - name: Upgrade pip, setuptools and wheel
+        run: python -m pip install --upgrade pip setuptools wheel
 
-      #- name: Install the template with its testing dependencies
-      #  run: python -m pip install .[testing]
+      - name: Install the template with its testing dependencies
+        run: python -m pip install .[testing]
 
-      #- if: matrix.os == 'ubuntu-24.04'
-      #  name: (ubuntu-24.04) Run fuzzy tests
-      #  run: NFUZZY=100 python -m pytest -ra --verbose
+      - if: matrix.os == 'ubuntu-24.04'
+        name: (ubuntu-24.04) Run fuzzy tests
+        run: NFUZZY=100 python -m pytest -ra --verbose
 
-      #- if: matrix.os == 'macos-14'
-      #  name: (macos-14) Run fuzzy tests
-      #  run: CC='gcc-14 -I/opt/homebrew/include -L/opt/homebrew/lib' NFUZZY=100 python -m pytest -ra --verbose
+      - if: matrix.os == 'macos-14'
+        name: (macos-14) Run fuzzy tests
+        run: CC='gcc-14 -I/opt/homebrew/include -L/opt/homebrew/lib' NFUZZY=100 python -m pytest -ra --verbose
 
-      #- if: matrix.os == 'windows-2022'
-      #  name: (windows-2022) Run fuzzy tests for a selection of C standards
-      #  run: |
-      #    $Env:NFUZZY = '100'
-      #    $Env:CC='gcc'
-      #    $Env:C_INCLUDE_PATH='C:\\include'
-      #    $Env:LIBRARY_PATH='C:\\lib'
-      #    $Env:CMAKE_GENERATOR='Unix Makefiles'
-      #    $Env:CMAKE_C_STANDARDS='c_std_17,c_std_11,c_std_99,c_std_90'
-      #    python -m pytest -rA --verbose
-
+      - if: matrix.os == 'windows-2022'
+        name: (windows-2022) Run fuzzy tests for a selection of C standards
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          $Env:NFUZZY = '100'
+          $Env:C_INCLUDE_PATH='C:\\include'
+          $Env:CC='gcc'
+          $Env:CMAKE_C_STANDARDS='c_std_17,c_std_11,c_std_99,c_std_90'
+          $Env:CMAKE_GENERATOR='Unix Makefiles'
+          $Env:LIBRARY_PATH='C:\\lib'
+          $Env:PATH += ';C:\\bin'
+          python -m pytest -ra --verbose
