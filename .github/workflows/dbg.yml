@@ -70,7 +70,6 @@ jobs:
           echo "About to call navigator.exe"
           .\dist\bin\navigator.exe
           $Env:PATH += ';C:\\bin'
-          $Env:PATH += ';C:\\lib'
           echo "About to call test_operations.exe"
           .\dist\bin\test_operations.exe
 
