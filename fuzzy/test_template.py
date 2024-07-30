@@ -231,8 +231,6 @@ def test_generated_tests_and_exe(generated):
     cmd_cmake_generate = f"cmake -S { str(path_two_up) } -B ."
     cmd_cmake_build = "cmake --build ."
     cmd_cmake_install = "cmake --install ."
-    cmd_dumpbin_exe = f"dumpbin /DEPENDENTS { str(path_exe) }"
-    cmd_dumpbin_testexe = f"dumpbin /DEPENDENTS { str(path_testexe) }"
     cmd_tree = f"dir { str(Path(path_cwd, 'dist', 'bin').relative_to(path_cwd)) }"
 
     cmds = [
@@ -261,22 +259,12 @@ def test_generated_tests_and_exe(generated):
         cmds += [
             (
                 str(path_cwd),
-                cmd_dumpbin_exe,
-                f"Could not run '{ cmd_dumpbin_exe }' from { str(path_cwd) }"
-            ),
-            (
-                str(path_cwd),
                 str(path_exe),
                 f"Could not run '{ str(path_exe) }' from { str(path_cwd) }"
             )
         ]
     if produceslib and add_test:
         cmds += [
-            (
-                str(path_cwd),
-                cmd_dumpbin_testexe,
-                f"Could not run '{ cmd_dumpbin_testexe }' from { str(path_cwd) }"
-            ),
             (
                 str(path_cwd),
                 str(path_testexe),
