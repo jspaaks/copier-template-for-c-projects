@@ -1,8 +1,12 @@
 # Development notes
 
+## Badges
+
+[![testing](https://github.com/jspaaks/copier-template-for-c-projects/actions/workflows/testing.yml/badge.svg)](https://github.com/jspaaks/copier-template-for-c-projects/actions/workflows/testing.yml)
+
 ## Testing
 
-Running the tests requires python libraries specified in `pyproject.toml`,
+Running the tests requires Python libraries specified in `pyproject.toml`,
 as well as `cmake` and `make` binaries, and `Criterion` testing library.
 
 Directory `fuzzy` contains fuzzy tests. Run with:
@@ -24,17 +28,11 @@ By changing the value of `NFUZZY`, you can run more or fewer fuzzy tests.
 
 ### checks
 
-1. cmake runs
-2. make runs
-3. make install runs
-4. dist/bin/calculator runs
-5. dist/bin/test_operations runs
-6. ldd dist/lib/liboperations shows all linked
-7. ldd dist/lib/liboperations shows all linked after moving dist
-8. codeblocks project files opens
-9. file exists for every file in codeblocks filetree
-10. codeblocks project builds
-11. codeblocks project runs
+1. tests pass
+2. codeblocks project files opens
+3. file exists for every file in codeblocks filetree
+4. codeblocks project builds
+5. codeblocks project runs
 
 ### results 
 
