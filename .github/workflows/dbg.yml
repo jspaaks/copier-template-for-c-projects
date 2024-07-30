@@ -67,7 +67,7 @@ jobs:
           cmake ..\..
           cmake --build .
           cmake --install .
-          .\dist\bin\calculator.exe
+          .\dist\bin\navigator.exe
 
       #- name: Set up Python ${{ matrix.python-version }}
       #  uses: actions/setup-python@v5
