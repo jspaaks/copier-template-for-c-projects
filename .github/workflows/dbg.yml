@@ -53,26 +53,6 @@ jobs:
       - name: Get a copy of the repository contents
         uses: actions/checkout@v4
 
-      - name: Build and run contents of dbg/navigator-project
-        run: |
-          $Env:CC='gcc'
-          $Env:C_INCLUDE_PATH='C:\\include'
-          $Env:LIBRARY_PATH='C:\\lib'
-          $Env:CMAKE_GENERATOR='Unix Makefiles'
-          cd dbg/navigator-project
-          mkdir build
-          cd build
-          mkdir cmake
-          cd cmake
-          cmake ..\..
-          cmake --build .
-          cmake --install .
-          echo "About to call navigator.exe"
-          .\dist\bin\navigator.exe
-          $Env:PATH += ';C:\\bin'
-          echo "About to call test_operations.exe -j1 --verbose"
-          .\dist\bin\test_operations.exe -j1 --verbose
-
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
