@@ -8,18 +8,6 @@ on:
 
 jobs:
 
-  dbg:
-    runs-on: windows-2022
-    steps:
-
-      - if: matrix.os == 'windows-2022'
-        name: (windows-2022) Allow long file names in git checkouts
-        run: git config --system core.longpaths true
-
-      - name: Get a copy of the repository contents
-        uses: actions/checkout@v4
-
-
   testing:
     name: py${{ matrix.python-version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
