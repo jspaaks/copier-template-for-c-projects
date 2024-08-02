@@ -3,6 +3,7 @@
 ## Badges
 
 [![testing](https://github.com/jspaaks/copier-template-for-c-projects/actions/workflows/testing.yml/badge.svg)](https://github.com/jspaaks/copier-template-for-c-projects/actions/workflows/testing.yml)
+[![GitHub commits since latest release](https://img.shields.io/github/commits-since/jspaaks/copier-template-for-c-projects/0.1.0)](https://github.com/jspaaks/copier-template-for-c-projects/compare/0.1.0...HEAD)
 
 ## Testing
 
