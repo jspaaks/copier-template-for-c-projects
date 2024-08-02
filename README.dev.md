@@ -50,18 +50,3 @@ By changing the value of `NFUZZY`, you can run more or fewer fuzzy tests.
 | lib  | flat   | wo-external   | 2024-07-22 | ok      |
 | lib  | nested | with-external | 2024-07-22 | ok      |
 | lib  | nested | wo-external   | 2024-07-22 | ok      |
-
-### TODO
-
-1. add more testing framework(s), e.g.
-    1. googletest [https://github.com/google/googletest](https://github.com/google/googletest)
-    1. check [https://github.com/libcheck/check/](https://github.com/libcheck/check/), [https://libcheck.github.io/check/](https://libcheck.github.io/check/)
-    1. ~kyua~ [https://github.com/freebsd/kyua](https://github.com/freebsd/kyua)
-    1. Unity [https://www.throwtheswitch.org/unity](https://www.throwtheswitch.org/unity), [https://github.com/ThrowTheSwitch/Unity](https://github.com/ThrowTheSwitch/Unity)
-    1. CMocka? [https://lwn.net/Articles/558106/](https://lwn.net/Articles/558106/)
-    1. Catch2?
-    1. acutest?
-1. review necessity of rpath for combinations that have one level of indirection in their libraries
-1. review virtual target when there is just one target
-1. review usage of multiple CMAKE_BUILD_TYPE and CMAKE_INSTALL_PREFIX across nested CMakeLists.txt
-1. do the generated files comply with the linter?
