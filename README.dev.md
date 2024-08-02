@@ -10,7 +10,7 @@
 Running the tests requires Python libraries specified in `pyproject.toml`.
 
 Directory `fuzzy` contains fuzzy tests. Each fuzzy test is a random combination of parameter values for the parameters
-from [`/copier.yml`](/copier.yml). Each parameterization runs on a dedicated temporary test directory. Run with:
+from [`copier.yml`](copier.yml). Each parameterization runs on a dedicated temporary test directory. Run with:
 
 ```shell
 python3 -m venv venv
@@ -34,10 +34,10 @@ order to skip those tests:
 NFUZZY=10 pytest -m 'not inception'
 ```
 
-For an overview of all pytest markers, see [`/pyproject.toml`](/pyproject.toml).
+For an overview of all pytest markers, see [`pyproject.toml`](pyproject.toml).
 
 On Windows and Mac you may need to fiddle with various path-related environment variables, see the testing
-workflow [`/.github/workflows/testing.yml`](/.github/workflows/testing.yml).
+workflow [`.github/workflows/testing.yml`](.github/workflows/testing.yml).
 
 ## Other stuff
 
