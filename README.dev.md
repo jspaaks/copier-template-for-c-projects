@@ -10,7 +10,7 @@
 Running the tests requires Python libraries specified in `pyproject.toml`.
 
 Directory `fuzzy` contains fuzzy tests. Each fuzzy test is a random combination of parameter values for the parameters
-from [copier.yml](/copier.yml). Each parameterization runs on a dedicated temporary test directory. Run with:
+from [`copier.yml`](/copier.yml). Each parameterization runs on a dedicated temporary test directory. Run with:
 
 ```shell
 python3 -m venv venv
