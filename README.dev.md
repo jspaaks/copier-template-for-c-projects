@@ -26,7 +26,7 @@ NFUZZY=10 pytest fuzzy/test_template.py::test_clang_format_generation -ra --verb
 Change the value of `NFUZZY` to run more or fewer fuzzy tests.
 
 By default, testing includes running the generated tests on the generated content. Since this requires additional
-dependencies (e.g. Criterion and its dependencies, CMake, some build system like make, etc), it's sometimes convenient to
+dependencies (e.g. Criterion and its dependencies, CMake, some build system like make, a C compiler, etc), it's sometimes convenient to
 skip those tests. To that end, they have been marked with a PyTest marker `inception` which should be used as follows in
 order to skip those tests:
 
