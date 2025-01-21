@@ -27,7 +27,6 @@ def get_parameterizations():
         "add_assets": boolset,
         "add_clang_format": boolset,
         "add_cmake": boolset,
-        "add_codeblocks": boolset,
         "add_external": boolset,
         "add_test": boolset,
         "build_directory": list(copier_config["build_directory"]["choices"].keys())[:2],
@@ -62,7 +61,6 @@ def generated(tmp_path_factory, request):
         "add_assets": True,
         "add_clang_format": True,
         "add_cmake": True,
-        "add_codeblocks": True,
         "add_external": True,
         "add_test": True,
         "build_directory": "build",
@@ -176,20 +174,6 @@ def test_cmake_generation(generated):
             base / external_directory / "their" / "src" / "their" / "CMakeLists.txt"
         ]
     assert meets_expected_presence(ispresent=add_cmake, directories=directories, files=files)
-
-
-def test_codeblocks_generation(generated):
-    add_codeblocks, build_directory, projectname = \
-            get_answers(generated["answers"], "add_codeblocks", "build_directory", "projectname")
-    base = generated["directory"] / projectname
-    directories = [
-        base / build_directory / "codeblocks"
-    ]
-    files = [
-        base / ".codeblocks" / "project.cbp",
-        base / ".codeblocks" / "project.layout"
-    ]
-    assert meets_expected_presence(ispresent=add_codeblocks, directories=directories, files=files)
 
 
 def test_external_generation(generated):

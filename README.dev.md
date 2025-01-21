@@ -26,7 +26,7 @@ NFUZZY=10 pytest fuzzy/test_template.py::test_clang_format_generation -ra --verb
 Change the value of `NFUZZY` to run more or fewer fuzzy tests.
 
 By default, testing includes running the generated tests on the generated content. Since this requires additional
-dependencies (e.g. Criterion and its dependencies, CMake, some build system like make, a C compiler, etc), it's sometimes convenient to
+dependencies (e.g. Criterion and its dependencies, CMake, some build system like `make`, a C compiler, etc), it's sometimes convenient to
 skip those tests. To that end, they have been marked with a PyTest marker `inception` which should be used as follows in
 order to skip those tests:
 
@@ -34,7 +34,11 @@ order to skip those tests:
 NFUZZY=10 pytest -m 'not inception'
 ```
 
-For an overview of all pytest markers, see [`pyproject.toml`](pyproject.toml).
+For an overview of all pytest markers, see [`pyproject.toml`](pyproject.toml) or run:
+
+```console
+$ pytest --markers
+```
 
 On Windows and Mac you may need to fiddle with various path-related environment variables, see the testing
 workflow [`.github/workflows/testing.yml`](.github/workflows/testing.yml).
@@ -44,10 +48,6 @@ workflow [`.github/workflows/testing.yml`](.github/workflows/testing.yml).
 ### checks
 
 1. tests pass
-2. codeblocks project files opens
-3. file exists for every file in codeblocks filetree
-4. codeblocks project builds
-5. codeblocks project runs
 
 ### results
 

@@ -1,7 +1,7 @@
 # Copier template for C projects
 
 Copier template for generating a generic C project that can be built
-with CMake and has the right configuration to be used in Code::Blocks editor.
+with CMake.
 
 To use, first install [`copier` from PyPI](https://pypi.org/project/copier/).
 
@@ -48,8 +48,6 @@ copier copy https://github.com/jspaaks/copier-template-for-c-projects .
    Yes
 🎤 What C standard does the project use?
    C23
-🎤 Add a Code::Blocks IDE configuration?
-   Yes
 🎤 Add a clang-format configuration?
    Yes
 🎤 Do you want to include a copy of the answers you just provided as .copier-answers.yml?
@@ -76,14 +74,7 @@ calculator-project/
 │   │   └── sound.wav
 │   └── CMakeLists.txt
 ├── build
-│   ├── cmake
-│   │   └── .gitkeep
-│   ├── codeblocks
-│   │   └── .gitkeep
 │   └── .gitkeep
-├── .codeblocks
-│   ├── project.cbp
-│   └── project.layout
 ├── external
 │   ├── their
 │   │   ├── include
@@ -131,8 +122,8 @@ calculator-project/
 The generated project should build out of the box using CMake:
 
 ```shell
-cd calculator-project/build/cmake
-cmake ../..
+cd calculator-project/build/
+cmake ..
 ```
 
 Next, build the libary / executable / test executable:
@@ -141,7 +132,7 @@ Next, build the libary / executable / test executable:
 cmake --build .
 ```
 
-Then install (by default, to `calculator-project/build/cmake/dist`, can be configured by
+Then install (by default, to `calculator-project/build/dist`, can be configured by
 setting `CMAKE_INSTALL_PREFIX` when calling `cmake`):
 
 ```shell

@@ -80,12 +80,6 @@ add_test:
     default: true
     when: "{{ produceslib }}"
 
-add_cmake:
-    type: bool
-    help: Add a CMake build configuration?
-    default: true
-    when: "{{ producesexe or produceslib }}"
-
 c_std:
     type: str
     help: What C standard does the project use?
@@ -95,13 +89,6 @@ c_std:
         C11: c_std_11
         C99: c_std_99
         C90: c_std_90
-    when: "{{ add_cmake }}"
-
-add_codeblocks:
-    type: bool
-    help: Add a Code::Blocks IDE configuration?
-    default: true
-    when: "{{ producesexe or produceslib }}"
 
 add_clang_format:
     type: bool
