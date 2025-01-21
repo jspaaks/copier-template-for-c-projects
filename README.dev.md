@@ -65,3 +65,5 @@ By changing the value of `NFUZZY`, you can run more or fewer fuzzy tests.
 1. review virtual target when there is just one target
 1. review usage of multiple CMAKE_BUILD_TYPE and CMAKE_INSTALL_PREFIX across nested CMakeLists.txt
 1. do the generated files comply with the linter?
+1. Shouldn't include/ be empty/nonexistent if libpurpose is testing-only?
+1. Is it necessary to ask about adding tests? Since the answer is already contained in libpurpose question?
