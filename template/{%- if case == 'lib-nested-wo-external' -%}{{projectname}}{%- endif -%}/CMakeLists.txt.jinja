@@ -21,7 +21,7 @@ include(CTest)  # defines BUILD_TESTING
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     # I'm the top-most project
     option({{ libname | upper }}_BUILD_TESTING "Whether to build the lib{{ libname }} tests" ${BUILD_TESTING})
-    if (BUILD_TESTING NOT EQUAL {{ libname | upper }}_BUILD_TESTING)
+    if (BUILD_TESTING EQUAL (NOT {{ libname | upper }}_BUILD_TESTING))
         message(WARNING, " will use more specific -D{{ libname | upper }}_BUILD_TESTING=\"{{ "${" }}{{ libname | upper }}_BUILD_TESTING{{ "}" }}\" over -DBUILD_TESTING=\"{{ "${" }}BUILD_TESTING{{ "}" }}\"")
     endif()
 else()
