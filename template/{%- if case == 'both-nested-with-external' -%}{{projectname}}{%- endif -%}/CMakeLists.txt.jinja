@@ -19,5 +19,6 @@ add_subdirectory(${PROJECT_ROOT}/{{ external_directory }}/their)
 add_subdirectory(${PROJECT_ROOT}/src/{{ exename }})
 add_subdirectory(${PROJECT_ROOT}/src/{{ libname }})
 {% if add_test -%}
+include(CTest)  # defines BUILD_TESTING
 add_subdirectory(${PROJECT_ROOT}/test/{{ libname }})
 {%- endif %}

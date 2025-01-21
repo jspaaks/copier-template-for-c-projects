@@ -17,5 +17,6 @@ add_subdirectory(${PROJECT_ROOT}/assets)
 {% endif -%}
 add_subdirectory(${PROJECT_ROOT}/src/{{ libname }})
 {% if add_test -%}
+include(CTest)  # defines BUILD_TESTING
 add_subdirectory(${PROJECT_ROOT}/test/{{ libname }})
 {%- endif %}
