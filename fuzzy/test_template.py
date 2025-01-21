@@ -26,8 +26,6 @@ def get_parameterizations():
         "add_answers": boolset,
         "add_assets": boolset,
         "add_clang_format": boolset,
-        "add_cmake": boolset,
-        "add_codeblocks": boolset,
         "add_external": boolset,
         "add_test": boolset,
         "build_directory": list(copier_config["build_directory"]["choices"].keys())[:2],
@@ -61,8 +59,6 @@ def generated(tmp_path_factory, request):
         "add_answers": False,
         "add_assets": True,
         "add_clang_format": True,
-        "add_cmake": True,
-        "add_codeblocks": True,
         "add_external": True,
         "add_test": True,
         "build_directory": "build",
@@ -112,8 +108,7 @@ def meets_expected_presence(*, ispresent=True, directories=None, files=None):
 
 
 def test_assets_generation(generated):
-    add_assets, projectname = \
-            get_answers(generated["answers"], "add_assets", "projectname")
+    add_assets, projectname = get_answers(generated["answers"], "add_assets", "projectname")
     base = generated["directory"] / projectname
     directories = [
         base / "assets",
@@ -130,8 +125,7 @@ def test_assets_generation(generated):
 
 
 def test_clang_format_generation(generated):
-    add_clang_format, projectname = \
-            get_answers(generated["answers"], "add_clang_format", "projectname")
+    add_clang_format, projectname = get_answers(generated["answers"], "add_clang_format", "projectname")
     base = generated["directory"] / projectname
     files = [
         base / ".clang-format"
@@ -139,14 +133,14 @@ def test_clang_format_generation(generated):
     assert meets_expected_presence(ispresent=add_clang_format, files=files)
 
 def test_cmake_generation(generated):
-    add_assets, add_cmake, add_external, add_test, build_directory, \
+    add_assets, add_external, add_test, build_directory, \
     exename, external_directory, libname, nested, producesexe, \
     produceslib, projectname = \
-            get_answers(generated["answers"], "add_assets", "add_cmake", "add_external", "add_test", "build_directory", \
+            get_answers(generated["answers"], "add_assets", "add_external", "add_test", "build_directory", \
                                               "exename", "external_directory", "libname", "nested", "producesexe", \
                                               "produceslib", "projectname")
     base = generated["directory"] / projectname
-    directories = [ base / build_directory / "cmake" ]
+    directories = [ base / build_directory ]
     files = [ base / "CMakeLists.txt" ]
     if producesexe:
         if nested:
@@ -175,61 +169,43 @@ def test_cmake_generation(generated):
             base / external_directory / "their" / "CMakeLists.txt",
             base / external_directory / "their" / "src" / "their" / "CMakeLists.txt"
         ]
-    assert meets_expected_presence(ispresent=add_cmake, directories=directories, files=files)
-
-
-def test_codeblocks_generation(generated):
-    add_codeblocks, build_directory, projectname = \
-            get_answers(generated["answers"], "add_codeblocks", "build_directory", "projectname")
-    base = generated["directory"] / projectname
-    directories = [
-        base / build_directory / "codeblocks"
-    ]
-    files = [
-        base / ".codeblocks" / "project.cbp",
-        base / ".codeblocks" / "project.layout"
-    ]
-    assert meets_expected_presence(ispresent=add_codeblocks, directories=directories, files=files)
+    assert meets_expected_presence(directories=directories, files=files)
 
 
 def test_external_generation(generated):
-    add_cmake, add_external, external_directory, projectname = get_answers(generated["answers"], "add_cmake", "add_external","external_directory", "projectname")
+    add_external, external_directory, projectname = get_answers(generated["answers"], "add_external","external_directory", "projectname")
     base = generated["directory"] / projectname
     directories = [
-        base / external_directory / "their" / "include" / "their",
+        base / external_directory / "their",
         base / external_directory / "their" / "include",
-        base / external_directory / "their" / "src" / "their",
+        base / external_directory / "their" / "include" / "their",
         base / external_directory / "their" / "src",
-        base / external_directory / "their"
+        base / external_directory / "their" / "src" / "their"
+
     ]
     files = [
+        base / external_directory / "CMakeLists.txt",
+        base / external_directory / "their" / "CMakeLists.txt",
         base / external_directory / "their" / "include" / "their" / "addition.h",
         base / external_directory / "their" / "include" / "their" / "subtraction.h",
+        base / external_directory / "their" / "src" / "their" / "CMakeLists.txt",
         base / external_directory / "their" / "src" / "their" / "addition.c",
         base / external_directory / "their" / "src" / "their" / "subtraction.c"
     ]
-    if add_cmake:
-        files += [
-            base / external_directory / "their" / "src" / "their" / "CMakeLists.txt",
-            base / external_directory / "their" / "CMakeLists.txt",
-            base / external_directory / "CMakeLists.txt"
-        ]
     assert meets_expected_presence(ispresent=add_external, directories=directories, files=files)
 
 
 @pytest.mark.inception
 def test_generated_tests_and_exe(generated):
-    add_cmake, add_test, build_directory, exename, libname, producesexe, produceslib, projectname = \
-            get_answers(generated["answers"], "add_cmake", "add_test", "build_directory", "exename", "libname", "producesexe", "produceslib", "projectname")
-    if not add_cmake:
-        pytest.skip("add_cmake is False, can't generate library, executable, or test executable")
+    add_test, build_directory, exename, libname, producesexe, produceslib, projectname = \
+            get_answers(generated["answers"], "add_test", "build_directory", "exename", "libname", "producesexe", "produceslib", "projectname")
 
     exesuffix = ".exe" if sys.platform.startswith('win32') else ""
-    path_cwd = Path(generated['directory'], projectname, build_directory, "cmake")
+    path_cwd = Path(generated['directory'], projectname, build_directory)
     path_exe = (path_cwd / "dist" / "bin" / f"{ exename }{exesuffix}").relative_to(path_cwd)
     path_testexe = (path_cwd / "dist" / "bin" / f"test_{libname}{exesuffix} -j1 --verbose").relative_to(path_cwd)
-    path_two_up = Path("..", "..")
-    cmd_cmake_generate = f"cmake -S { str(path_two_up) } -B ."
+    path_one_up = Path("..")
+    cmd_cmake_generate = f"cmake -S { str(path_one_up) } -B ."
     cmd_cmake_build = "cmake --build ."
     cmd_cmake_install = "cmake --install ."
 

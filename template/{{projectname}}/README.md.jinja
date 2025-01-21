@@ -2,8 +2,6 @@
 
 # {{ projectname }}
 
-{% if add_cmake -%}
-
 ## CMake
 
 The project has been initialized with a [CMakeLists.txt](CMakeLists.txt)-based
@@ -11,10 +9,10 @@ configuration for building with CMake:
 
 ```shell
 # change into the build directory
-cd {{ build_directory }}/cmake
+cd {{ build_directory }}/
 
 # generate the build files
-cmake ../..
+cmake ..
 
 # build the project
 cmake --build .
@@ -65,15 +63,7 @@ Run the tests with
 ./dist/bin/test_{{ libname }} -j1 --verbose
 ```
 {% endif -%}
-{% endif -%}
 
-{% if add_codeblocks -%}
-
-## Code::Blocks
-
-Use [Code::Blocks IDE](https://www.codeblocks.org/) to open [.codeblocks/project.cbp](.codeblocks/project.cbp). 
-
-{% endif -%}
 {% if add_clang_format -%}
 
 ## `clang-format`
@@ -92,4 +82,4 @@ clang-format -i `find ./src -type f -name '*.[c|h]'`
 
 ## Acknowledgements
 
-_This project was generated using [Copier](https://pypi.org/project/copier) with [copier-template-for-c-projects](https://github.com/jspaaks/copier-template-for-c-projects)._
+_This project was initialized using [Copier](https://pypi.org/project/copier) and the [copier-template-for-c-projects](https://github.com/jspaaks/copier-template-for-c-projects)._
