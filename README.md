@@ -5,16 +5,16 @@ with CMake.
 
 To use, first install [`copier` from PyPI](https://pypi.org/project/copier/).
 
-```shell
-pipx install copier
+```consle
+$ pipx install copier
 ```
 
 Then run `copier` with this repo's URL as argument:
 
-```shell
+```console
 # use a dot at the end for generating in the current directory,
 # or replace it with a path of your choosing
-copier copy https://github.com/jspaaks/copier-template-for-c-projects .
+$ copier copy https://github.com/jspaaks/copier-template-for-c-projects .
 ```
 
 `copier` will then ask you a few questions, see the output below.
@@ -119,33 +119,34 @@ calculator-project/
 
 The generated project should build out of the box using CMake:
 
-```shell
-cd calculator-project/build/
-cmake ..
+```console
+$ cd calculator-project/build/
+$ cmake ..
 ```
 
 Next, build the libary / executable / test executable:
 
-```shell
-cmake --build .
+```console
+$ cmake --build .
 ```
 
 Then install (by default, to `calculator-project/build/dist`, can be configured by
 setting `CMAKE_INSTALL_PREFIX` when calling `cmake`):
 
-```shell
-cmake --install .
+```console
+$ cmake --install .
 ```
 
 If you configured your project to build an executable, you can run it with:
 
-```shell
-./dist/bin/calculator
+```console
+$ ./dist/bin/calculator
 ```
 
 If you configured your project to include tests, you can run them with:
 
-```shell
-./dist/bin/test_operations
-./dist/bin/test_operations -j1 --verbose  # for easier-to-interpret output
+```console
+$ ./dist/bin/test_operations
+$ ./dist/bin/test_operations -j1 --verbose  # for easier-to-interpret output
 ```
+
