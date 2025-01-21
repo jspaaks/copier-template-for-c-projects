@@ -38,7 +38,7 @@ keywords = [
     "C"
 ]
 license = {text = "Apache Software License"}
-name = "copier_template_for_c_projects"
+name = "copier-template-for-c-projects"
 readme = "README.md"
 requires-python = ">=3.9"
 version = "0.1.0"
