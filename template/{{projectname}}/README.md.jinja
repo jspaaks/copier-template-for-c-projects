@@ -9,19 +9,19 @@ configuration for building with CMake:
 
 ```console
 # change into the build directory
-cd {{ build_directory }}/
+$ cd {{ build_directory }}/
 
 # generate the build files
-cmake ..
+$ cmake ..
 
 # build the project
-cmake --build .
+$ cmake --build .
 
 # install the project to <repo>/build/dist
-cmake --install .
+$ cmake --install .
 {% if producesexe %}
 # run the program to see if it works
-./dist/bin/{{ exename }}
+$ ./dist/bin/{{ exename }}
 ```
 
 Should output something like:
@@ -79,8 +79,8 @@ tests.
   project, the default is to not build the tests. However, building the tests is still possible by
   setting the `{{ libname | upper }}_BUILD_TESTING` to `ON`, e.g like so:
 
-```
-cmake -D{{libname | upper}}_BUILD_TESTING=ON ..
+```console
+$ cmake -D{{libname | upper}}_BUILD_TESTING=ON ..
 ```
 
 {% endif -%}
