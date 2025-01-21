@@ -43,6 +43,10 @@ $ pytest --markers
 On Windows and Mac you may need to fiddle with various path-related environment variables, see the testing
 workflow [`.github/workflows/testing.yml`](.github/workflows/testing.yml).
 
+# Live editing / rendering of Jinja templates
+
+https://j2live.ttl255.com/
+
 ## Other stuff
 
 ### checks

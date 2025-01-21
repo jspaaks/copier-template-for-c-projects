@@ -56,4 +56,11 @@ target_sources(
         ${PROJECT_ROOT}/test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}subtraction.c
 )
 
+add_test(
+    NAME
+        test_{{ libname }}
+    COMMAND
+        ${CMAKE_BINARY_DIR}/dist/bin/test_{{libname}}
+)
+
 install(TARGETS tgt_exe_test_{{ libname }})

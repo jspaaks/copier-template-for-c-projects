@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.23...3.28)
 
-project(project LANGUAGES C)
+project({{projectname}} LANGUAGES C)
 
 set(PROJECT_ROOT ${CMAKE_CURRENT_LIST_DIR})
 
 if (NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Debug)
+    set(CMAKE_BUILD_TYPE Debug)
 endif()
 
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-  set_property(CACHE CMAKE_INSTALL_PREFIX PROPERTY VALUE "${CMAKE_BINARY_DIR}/dist")
+    set_property(CACHE CMAKE_INSTALL_PREFIX PROPERTY VALUE "${CMAKE_BINARY_DIR}/dist")
 endif()
 
 {% if add_assets -%}
@@ -19,5 +19,19 @@ add_subdirectory(${PROJECT_ROOT}/{{ external_directory }}/their)
 add_subdirectory(${PROJECT_ROOT}/src/{{ exename }})
 add_subdirectory(${PROJECT_ROOT}/src/{{ libname }})
 {% if add_test -%}
-add_subdirectory(${PROJECT_ROOT}/test/{{ libname }})
+include(CTest)  # defines BUILD_TESTING
+if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    # I'm the top-most project
+    option({{ libname | upper }}_BUILD_TESTING "Whether to build the lib{{ libname }} tests" ${BUILD_TESTING})
+    if ((BUILD_TESTING AND NOT {{ libname | upper }}_BUILD_TESTING) OR
+        (NOT BUILD_TESTING AND {{ libname | upper }}_BUILD_TESTING))
+        message(WARNING, " will use more specific -D{{ libname | upper }}_BUILD_TESTING={{ "${" }}{{ libname | upper }}_BUILD_TESTING{{ "}" }} over -DBUILD_TESTING={{ "${" }}BUILD_TESTING{{ "}" }}")
+    endif()
+else()
+    # I'm not the top-most project, use {{ libname | upper }}_BUILD_TESTING as-is
+    option({{ libname | upper }}_BUILD_TESTING "Whether to build the lib{{ libname }} tests" OFF)
+endif()
+if ({{ libname | upper }}_BUILD_TESTING)
+    add_subdirectory(${PROJECT_ROOT}/test/{{ libname }})
+endif()
 {%- endif %}
