@@ -19,5 +19,18 @@ add_subdirectory(${PROJECT_ROOT}/{{ external_directory }}/their)
 add_subdirectory(${PROJECT_ROOT}/src)
 {% if add_test -%}
 include(CTest)  # defines BUILD_TESTING
-add_subdirectory(${PROJECT_ROOT}/test)
+if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    # I'm the top-most project
+    option({{ libname | upper }}_BUILD_TESTING "Whether to build the lib{{ libname }} tests" ${BUILD_TESTING})
+    if ((BUILD_TESTING AND NOT {{ libname | upper }}_BUILD_TESTING) OR
+        (NOT BUILD_TESTING AND {{ libname | upper }}_BUILD_TESTING))
+        message(WARNING, " will use more specific -D{{ libname | upper }}_BUILD_TESTING={{ "${" }}{{ libname | upper }}_BUILD_TESTING{{ "}" }} over -DBUILD_TESTING={{ "${" }}BUILD_TESTING{{ "}" }}")
+    endif()
+else()
+    # I'm not the top-most project, use {{ libname | upper }}_BUILD_TESTING as-is
+    option({{ libname | upper }}_BUILD_TESTING "Whether to build the lib{{ libname }} tests" OFF)
+endif()
+if ({{ libname | upper }}_BUILD_TESTING)
+    add_subdirectory(${PROJECT_ROOT}/test)
+endif()
 {%- endif %}
