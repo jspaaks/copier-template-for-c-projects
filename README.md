@@ -44,8 +44,6 @@ copier copy https://github.com/jspaaks/copier-template-for-c-projects .
    Yes
 🎤 Does the project use tests?
    Yes
-🎤 Add a CMake build configuration?
-   Yes
 🎤 What C standard does the project use?
    C23
 🎤 Add a clang-format configuration?
@@ -116,7 +114,7 @@ calculator-project/
 ├── .gitignore
 └── README.md
 
-22 directories, 42 files
+19 directories, 38 files
 ```
 
 The generated project should build out of the box using CMake:
@@ -139,13 +137,13 @@ setting `CMAKE_INSTALL_PREFIX` when calling `cmake`):
 cmake --install .
 ```
 
-Run the executable with:
+If you configured your project to build an executable, you can run it with:
 
 ```shell
 ./dist/bin/calculator
 ```
 
-Run the tests with:
+If you configured your project to include tests, you can run them with:
 
 ```shell
 ./dist/bin/test_operations
