@@ -12,7 +12,9 @@ pipx install copier
 Then run `copier` with this repo's URL as argument:
 
 ```shell
-copier copy https://github.com/jspaaks/cookiecutter-codeblocks-cmake-c
+# use a dot at the end for generating in the current directory,
+# or replace it with a path of your choosing
+copier copy https://github.com/jspaaks/copier-template-for-c-projects .
 ```
 
 `copier` will then ask you a few questions, see the output below.

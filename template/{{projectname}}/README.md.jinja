@@ -17,10 +17,10 @@ cd {{ build_directory }}/cmake
 cmake ../..
 
 # build the project
-make
+cmake --build .
 
 # install the project to <repo>/build/cmake/dist
-make install
+cmake --install .
 {% if producesexe %}
 # run the program to see if it works
 ./dist/bin/{{ exename }}
@@ -92,4 +92,4 @@ clang-format -i `find ./src -type f -name '*.[c|h]'`
 
 ## Acknowledgements
 
-_This project was generated using [Copier](https://pypi.org/project/copier)._
+_This project was generated using [Copier](https://pypi.org/project/copier) with [copier-template-for-c-projects](https://github.com/jspaaks/copier-template-for-c-projects)._
