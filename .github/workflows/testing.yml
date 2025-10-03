@@ -74,9 +74,9 @@ jobs:
         name: (ubuntu-24.04) Run fuzzy tests
         run: NFUZZY=100 python -m pytest -ra --verbose
 
-      - if: matrix.os == 'macos-14'
-        name: (macos-14) Run fuzzy tests
-        run: CC='gcc-14 -fsanitize=address -I/opt/homebrew/include -L/opt/homebrew/lib' NFUZZY=100 python -m pytest -ra --verbose
+      - if: matrix.os == 'macos-15'
+        name: (macos-15) Run fuzzy tests
+        run: CC='gcc-15 -fsanitize=address -I/opt/homebrew/include -L/opt/homebrew/lib' NFUZZY=100 python -m pytest -ra --verbose
 
       - if: matrix.os == 'windows-2022'
         name: (windows-2022) Run fuzzy tests for a selection of C standards
