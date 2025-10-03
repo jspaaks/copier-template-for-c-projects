@@ -28,7 +28,7 @@ jobs:
 
       - if: matrix.os == 'macos-14'
         name: (macos-14) Install Criterion
-        run: brew install criterion llvm
+        run: brew install criterion gcc
 
       - if: matrix.os == 'windows-2022'
         name: (windows-2022) Install Criterion
