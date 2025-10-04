@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ 'ubuntu-24.04', 'macos-15', 'windows-2022' ]
+        os: [ 'ubuntu-24.04', 'macos-15-intel', 'windows-2022' ]
         python-version: ['3.10', '3.11', '3.12', '3.13']
     steps:
 
@@ -26,8 +26,8 @@ jobs:
         name: (ubuntu-24.04) Install Criterion
         run: sudo apt-get install -y libcriterion-dev
 
-      - if: matrix.os == 'macos-14'
-        name: (macos-14) Install Criterion
+      - if: matrix.os == 'macos-15-intel'
+        name: (macos-15-intel) Install Criterion
         run: brew install criterion
 
       - if: matrix.os == 'windows-2022'
@@ -74,7 +74,7 @@ jobs:
         name: (ubuntu-24.04) Run fuzzy tests
         run: NFUZZY=100 python -m pytest -ra --verbose
 
-      - if: matrix.os == 'macos-15'
+      - if: matrix.os == 'macos-15-intel'
         name: (macos-15) Run fuzzy tests
         #run: CC='gcc-15 -lasan -fsanitize=address -I/opt/homebrew/include -L/opt/homebrew/lib' NFUZZY=100 python -m pytest -ra --verbose
         run: NFUZZY=100 python -m pytest -ra --verbose
