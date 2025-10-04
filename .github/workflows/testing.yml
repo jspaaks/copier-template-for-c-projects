@@ -75,8 +75,7 @@ jobs:
         run: NFUZZY=100 python -m pytest -ra --verbose
 
       - if: matrix.os == 'macos-15-intel'
-        name: (macos-15) Run fuzzy tests
-        #run: CC='gcc-15 -lasan -fsanitize=address -I/opt/homebrew/include -L/opt/homebrew/lib' NFUZZY=100 python -m pytest -ra --verbose
+        name: (macos-15-intel) Run fuzzy tests
         run: NFUZZY=100 python -m pytest -ra --verbose
         
       - if: matrix.os == 'windows-2022'
