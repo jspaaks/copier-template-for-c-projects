@@ -41,6 +41,7 @@ target_compile_options(
         -pedantic
         $<$<CONFIG:Debug>:-g>
         $<$<CONFIG:Debug>:-O0>
+        $<$<CONFIG:Debug>:-fsanitize=address>
         $<$<CONFIG:Release>:-Werror>
 )
 
@@ -48,6 +49,12 @@ target_link_libraries(
     tgt_exe_{{ exename }}
     PRIVATE
         m
+)
+
+target_link_options(
+    tgt_exe_{{ exename }}
+    PRIVATE
+        $<$<CONFIG:Debug>:-fsanitize=address>
 )
 
 target_sources(
