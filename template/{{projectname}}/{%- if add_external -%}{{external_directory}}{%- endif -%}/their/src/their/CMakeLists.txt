@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 3.21...3.28)
-
 set(PROJECT_ROOT ${CMAKE_CURRENT_LIST_DIR}/../..)
 
 add_library(tgt_lib_their SHARED)
