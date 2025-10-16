@@ -56,7 +56,7 @@ add_test(
     NAME
         test_{{ libname }}
     COMMAND
-        ${CMAKE_BINARY_DIR}/dist/bin/test_{{libname}}
+        ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BINDIR}/test_{{libname}}
 )
 
 install(TARGETS tgt_exe_test_{{ libname }})
