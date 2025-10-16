@@ -29,7 +29,7 @@ target_compile_options(
 target_include_directories(
     tgt_exe_test_{{ libname }}
     PRIVATE
-        ${PROJECT_ROOT}/include
+        ../include
 )
 
 target_link_libraries(
@@ -48,8 +48,8 @@ target_link_options(
 target_sources(
     tgt_exe_test_{{ libname }}
     PRIVATE
-        ${PROJECT_ROOT}/test/{{ libname }}/test_division.c
-        ${PROJECT_ROOT}/test/{{ libname }}/test_multiplication.c
+        test_division.c
+        test_multiplication.c
 )
 
 add_test(

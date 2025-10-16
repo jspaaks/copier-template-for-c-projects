@@ -30,8 +30,8 @@ target_compile_options(
 target_include_directories(
     tgt_lib_{{ libname }}
     PRIVATE
-        ${PROJECT_ROOT}/include
-        ${PROJECT_ROOT}/{{ external_directory }}/their/include
+        ../../include
+        ../../{{ external_directory }}/their/include
 )
 
 target_link_libraries(
@@ -49,20 +49,20 @@ target_link_options(
 target_sources(
     tgt_lib_{{ libname }}
     PRIVATE
-        ${PROJECT_ROOT}/src/{{ libname }}/addition.c
-        ${PROJECT_ROOT}/src/{{ libname }}/division.c
-        ${PROJECT_ROOT}/src/{{ libname }}/multiplication.c
-        ${PROJECT_ROOT}/src/{{ libname }}/subtraction.c
+        addition.c
+        division.c
+        multiplication.c
+        subtraction.c
     PUBLIC
         FILE_SET fset_lib_{{ libname }}_headers
         TYPE HEADERS
         BASE_DIRS
-            ${PROJECT_ROOT}/include
+            ../../include
         FILES
-            ${PROJECT_ROOT}/include/{{ libname }}/addition.h
-            ${PROJECT_ROOT}/include/{{ libname }}/division.h
-            ${PROJECT_ROOT}/include/{{ libname }}/multiplication.h
-            ${PROJECT_ROOT}/include/{{ libname }}/subtraction.h
+            ../../include/{{ libname }}/addition.h
+            ../../include/{{ libname }}/division.h
+            ../../include/{{ libname }}/multiplication.h
+            ../../include/{{ libname }}/subtraction.h
 )
 
 install(TARGETS tgt_lib_{{ libname }}

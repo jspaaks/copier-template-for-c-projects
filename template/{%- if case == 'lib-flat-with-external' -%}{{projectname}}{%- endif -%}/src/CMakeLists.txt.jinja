@@ -30,8 +30,8 @@ target_compile_options(
 target_include_directories(
     tgt_lib_{{ libname }}
     PRIVATE
-        ${PROJECT_ROOT}/include
-        ${PROJECT_ROOT}/{{ external_directory }}/their/include
+        ../include
+        ../{{ external_directory }}/their/include
 )
 
 target_link_libraries(
@@ -49,20 +49,20 @@ target_link_options(
 target_sources(
     tgt_lib_{{ libname }}
     PRIVATE
-        ${PROJECT_ROOT}/src/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}addition.c
-        ${PROJECT_ROOT}/src/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}division.c
-        ${PROJECT_ROOT}/src/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.c
-        ${PROJECT_ROOT}/src/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}subtraction.c
+        {% if prepend_filenames %}{{ libname + '_' }}{% endif %}addition.c
+        {% if prepend_filenames %}{{ libname + '_' }}{% endif %}division.c
+        {% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.c
+        {% if prepend_filenames %}{{ libname + '_' }}{% endif %}subtraction.c
     PUBLIC
         FILE_SET fset_lib_{{ libname }}_headers
         TYPE HEADERS
         BASE_DIRS
-            ${PROJECT_ROOT}/include
+            ../include
         FILES
-            ${PROJECT_ROOT}/include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}addition.h
-            ${PROJECT_ROOT}/include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}division.h
-            ${PROJECT_ROOT}/include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.h
-            ${PROJECT_ROOT}/include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}subtraction.h
+            ../include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}addition.h
+            ../include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}division.h
+            ../include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.h
+            ../include/{% if prepend_filenames %}{{ libname + '_' }}{% endif %}subtraction.h
 )
 
 install(TARGETS tgt_lib_{{ libname }}

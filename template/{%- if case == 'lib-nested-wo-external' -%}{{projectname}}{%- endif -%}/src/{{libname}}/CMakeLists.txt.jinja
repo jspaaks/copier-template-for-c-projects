@@ -30,7 +30,7 @@ target_compile_options(
 target_include_directories(
     tgt_lib_{{ libname }}
     PRIVATE
-        ${PROJECT_ROOT}/include
+        ../../include
 )
 
 target_link_options(
@@ -42,16 +42,16 @@ target_link_options(
 target_sources(
     tgt_lib_{{ libname }}
     PRIVATE
-        ${PROJECT_ROOT}/src/{{ libname }}/division.c
-        ${PROJECT_ROOT}/src/{{ libname }}/multiplication.c
+        division.c
+        multiplication.c
     PUBLIC
         FILE_SET fset_lib_{{ libname }}_headers
         TYPE HEADERS
         BASE_DIRS
-            ${PROJECT_ROOT}/include
+            ../../include
         FILES
-            ${PROJECT_ROOT}/include/{{ libname }}/division.h
-            ${PROJECT_ROOT}/include/{{ libname }}/multiplication.h
+            ../../include/{{ libname }}/division.h
+            ../../include/{{ libname }}/multiplication.h
 )
 
 install(TARGETS tgt_lib_{{ libname }}
