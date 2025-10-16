@@ -43,9 +43,9 @@ target_link_options(
 target_sources(
     tgt_exe_{{ exename }}
     PRIVATE
-        ${PROJECT_ROOT}/src/{{ exename }}/division.c
-        ${PROJECT_ROOT}/src/{{ exename }}/main.c
-        ${PROJECT_ROOT}/src/{{ exename }}/multiplication.c
+        division.c
+        main.c
+        multiplication.c
 )
 
 install(TARGETS tgt_exe_{{ exename }})

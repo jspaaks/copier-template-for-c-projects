@@ -30,7 +30,7 @@ target_compile_options(
 target_include_directories(
     tgt_exe_test_{{ libname }}
     PRIVATE
-        ${PROJECT_ROOT}/include
+        ../include
 )
 
 target_link_libraries(
@@ -50,10 +50,10 @@ target_link_options(
 target_sources(
     tgt_exe_test_{{ libname }}
     PRIVATE
-        ${PROJECT_ROOT}/test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}addition.c
-        ${PROJECT_ROOT}/test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}division.c
-        ${PROJECT_ROOT}/test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.c
-        ${PROJECT_ROOT}/test/test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}subtraction.c
+        test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}addition.c
+        test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}division.c
+        test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}multiplication.c
+        test_{% if prepend_filenames %}{{ libname + '_' }}{% endif %}subtraction.c
 )
 
 add_test(

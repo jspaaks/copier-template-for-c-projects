@@ -5,14 +5,14 @@ set_property(TARGET tgt_lib_their PROPERTY OUTPUT_NAME their)
 target_include_directories(
     tgt_lib_their
     PRIVATE
-        ${PROJECT_ROOT}/include/
+        ../../include/
 )
 
 target_sources(
     tgt_lib_their
     PRIVATE
-        ${PROJECT_ROOT}/src/their/addition.c
-        ${PROJECT_ROOT}/src/their/subtraction.c
+        addition.c
+        subtraction.c
 )
 
 install(TARGETS tgt_lib_their)
