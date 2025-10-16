@@ -1,10 +1,3 @@
-set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
-if (APPLE)
-    list(APPEND CMAKE_INSTALL_RPATH @loader_path/../lib)
-elseif(UNIX)
-    list(APPEND CMAKE_INSTALL_RPATH $ORIGIN/../lib)
-endif()
-
 add_executable(tgt_exe_test_{{ libname }})
 
 set_property(TARGET tgt_exe_test_{{ libname }} PROPERTY OUTPUT_NAME test_{{ libname }})
