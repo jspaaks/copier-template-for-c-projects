@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21...3.28)
+cmake_minimum_required(VERSION 3.21...3.28 FATAL_ERROR)
 
 project(project LANGUAGES C)
 
