@@ -1,5 +1,3 @@
-set(PROJECT_ROOT ${CMAKE_CURRENT_LIST_DIR}/../..)
-
 add_library(tgt_lib_their SHARED)
 
 set_property(TARGET tgt_lib_their PROPERTY OUTPUT_NAME their)
