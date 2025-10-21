@@ -200,12 +200,10 @@ def test_generated_tests_and_exe(generated):
     add_test, build_directory, exename, libname, producesexe, produceslib, projectname = \
             get_answers(generated["answers"], "add_test", "build_directory", "exename", "libname", "producesexe", "produceslib", "projectname")
 
-    exesuffix = ".exe" if sys.platform.startswith('win32') else ""
     path_cwd = Path(generated['directory'], projectname, build_directory)
-    path_exe = (path_cwd / "dist" / "bin" / f"{ exename }{exesuffix}").relative_to(path_cwd)
-    path_testexe = (path_cwd / "dist" / "bin" / f"test_{libname}{exesuffix} -j1 --verbose").relative_to(path_cwd)
-    path_one_up = Path("..")
-    cmd_cmake_generate = f"cmake -S { str(path_one_up) } -B ."
+    path_exe = (path_cwd / "dist" / "bin" / f"{ exename }").relative_to(path_cwd)
+    path_testexe = (path_cwd / "dist" / "bin" / f"test_{libname} -j1 --verbose").relative_to(path_cwd)
+    cmd_cmake_generate = "cmake .."
     cmd_cmake_build = "cmake --build ."
     cmd_cmake_install = "cmake --install ."
 
@@ -247,6 +245,49 @@ def test_generated_tests_and_exe(generated):
         print(result.stdout, file=sys.stdout)
         print(result.stderr, file=sys.stderr)
         assert result.returncode == 0, msg
+
+
+@pytest.mark.abi
+def test_generated_abi(generated):
+    add_external, build_directory, libname, produceslib, projectname = \
+            get_answers(generated["answers"], "add_external", "build_directory", "libname", "produceslib", "projectname")
+
+    if produceslib:
+        path_cwd = Path(generated['directory'], projectname, build_directory)
+        path_lib = (path_cwd / "dist" / "lib" / f"lib{ libname }.so").relative_to(path_cwd)
+
+        cmd_cmake_generate = "cmake .."
+        cmd_cmake_build = "cmake --build ."
+        cmd_cmake_install = "cmake --install ."
+        cmd_objdump = f"test $(objdump -t { path_lib } | grep 'g     F' | wc -l) -eq { 4 if add_external else 2}"
+
+        cmds = [
+            (
+                str(path_cwd),
+                cmd_cmake_generate,
+                f"Could not run '{ cmd_cmake_generate }' from { str(path_cwd) }"
+            ),
+            (
+                str(path_cwd),
+                cmd_cmake_build,
+                f"Could not run '{ cmd_cmake_build }' from { str(path_cwd) }"
+            ),
+            (
+                str(path_cwd),
+                cmd_cmake_install,
+                f"Could not run '{ cmd_cmake_install }' from { str(path_cwd) }"
+            ),
+            (
+                str(path_cwd),
+                cmd_objdump,
+                f"Could not run '{ cmd_objdump }' from { str(path_cwd) }"
+            )
+        ]
+        for (cwd, cmd, msg) in cmds:
+            result = subprocess.run(cmd, cwd=cwd, capture_output=True, shell=True, check=True, encoding='utf-8', bufsize=0)
+            print(result.stdout, file=sys.stdout)
+            print(result.stderr, file=sys.stderr)
+            assert result.returncode == 0, msg
 
 
 def test_test_generation(generated):

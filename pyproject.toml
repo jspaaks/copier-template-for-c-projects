@@ -65,6 +65,7 @@ testpaths = [
     "fuzzy"
 ]
 markers = [
+    "abi: tests that test the symbol visibility on the generated library",
     "inception: tests that test whether the generated tests run successfully"
 ]
 
