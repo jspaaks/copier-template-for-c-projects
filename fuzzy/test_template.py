@@ -20,7 +20,9 @@ def get_parameterization(keys, values):
 def get_parameterizations():
     with open("copier.yml", "r") as fid:
         copier_config = yaml.safe_load(fid)
-    c_std = os.environ.get("CMAKE_C_STANDARDS", None)
+    c_stds = os.environ.get("FUZZY_C_STANDARDS", None)
+    compilers = os.environ.get("FUZZY_COMPILERS", None)
+    generators = os.environ.get("FUZZY_GENERATORS", None)
     boolset = {True, False}
     data = {
         "add_answers": boolset,
@@ -29,9 +31,11 @@ def get_parameterizations():
         "add_external": boolset,
         "add_test": boolset,
         "build_directory": list(copier_config["build_directory"]["choices"].keys())[:2],
-        "c_std": [item.strip() for item in c_std.split(",")] if c_std else ["c_std_23", "c_std_17", "c_std_11", "c_std_99", "c_std_90"],
+        "c_std": [item.strip() for item in c_stds.split(",")] if c_stds else ["c_std_23", "c_std_17", "c_std_11", "c_std_99", "c_std_90"],
+        "compiler": [item.strip() for item in compilers.split(",")] if compilers else ["gcc", "clang"],
         "exename": ["calculator", "navigator"],
         "external_directory": list(copier_config["external_directory"]["choices"].keys())[:2],
+        "generator": ["'" + item.strip() + "'" for item in generators.split(",")] if generators else ["'Unix Makefiles'", "Ninja"],
         "libname": ["operations", "directions"],
         "libpurpose": copier_config["libpurpose"]["choices"].values(),
         "nested": boolset,
@@ -63,8 +67,10 @@ def generated(tmp_path_factory, request):
         "add_test": True,
         "build_directory": "build",
         "c_std": "c_std_23",
+        "compiler": "gcc",
         "exename": "calculator",
         "external_directory": "external",
+        "generator": "'Unix Makefiles'",
         "libname": "operations",
         "libpurpose": "both",
         "nested": True,
@@ -197,13 +203,14 @@ def test_external_generation(generated):
 
 @pytest.mark.inception
 def test_generated_tests_and_exe(generated):
-    add_test, build_directory, exename, libname, producesexe, produceslib, projectname = \
-            get_answers(generated["answers"], "add_test", "build_directory", "exename", "libname", "producesexe", "produceslib", "projectname")
+    add_test, build_directory, compiler, exename, generator, libname, producesexe, produceslib, projectname = \
+            get_answers(generated["answers"], "add_test", "build_directory", "compiler", "exename",
+            "generator", "libname", "producesexe", "produceslib", "projectname")
 
     path_cwd = Path(generated['directory'], projectname, build_directory)
     path_exe = (path_cwd / "dist" / "bin" / f"{ exename }").relative_to(path_cwd)
     path_testexe = (path_cwd / "dist" / "bin" / f"test_{libname} -j1 --verbose").relative_to(path_cwd)
-    cmd_cmake_generate = "cmake .."
+    cmd_cmake_generate = f"cmake -DCMAKE_C_COMPILER={ compiler } -G { generator } .."
     cmd_cmake_build = "cmake --build ."
     cmd_cmake_install = "cmake --install ."
 
@@ -249,14 +256,14 @@ def test_generated_tests_and_exe(generated):
 
 @pytest.mark.abi
 def test_generated_abi(generated):
-    add_external, build_directory, libname, produceslib, projectname = \
-            get_answers(generated["answers"], "add_external", "build_directory", "libname", "produceslib", "projectname")
+    add_external, build_directory, compiler, generator, libname, produceslib, projectname = \
+            get_answers(generated["answers"], "add_external", "build_directory", "compiler", "generator", "libname", "produceslib", "projectname")
 
     if produceslib:
         path_cwd = Path(generated['directory'], projectname, build_directory)
         path_lib = (path_cwd / "dist" / "lib" / f"lib{ libname }.so").relative_to(path_cwd)
 
-        cmd_cmake_generate = "cmake .."
+        cmd_cmake_generate = f"cmake -DCMAKE_C_COMPILER={ compiler } -G { generator } .."
         cmd_cmake_build = "cmake --build ."
         cmd_cmake_install = "cmake --install ."
         cmd_objdump = f"test $(objdump -t { path_lib } | grep 'g     F' | wc -l) -eq { 4 if add_external else 2}"
