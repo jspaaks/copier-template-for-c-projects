@@ -43,4 +43,4 @@ jobs:
         run: python -m pip install .[testing]
 
       - name: Run fuzzy tests
-        run: NFUZZY=100 FUZZY_COMPILERS=${{ matrix.compiler }} FUZZY_GENERATORS=${{ matrix.generator }} python -m pytest -ra --verbose
+        run: NFUZZY=100 FUZZY_COMPILERS=${{ matrix.compiler }} FUZZY_GENERATORS="${{ matrix.generator }}" python -m pytest -ra --verbose
