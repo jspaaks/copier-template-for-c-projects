@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.23...3.28 FATAL_ERROR)
 
-project(project LANGUAGES C)
+project({{projectname}} LANGUAGES C)
+
+option({{ exename | upper }}_WITH_ASAN "Whether to enable address sanitizing for executable '{{ exename }}'" OFF)
+option({{ libname | upper }}_WITH_ASAN "Whether to enable address sanitizing for library 'lib{{ libname }}.so'" OFF)
 
 include(GenerateExportHeader)
 include(GNUInstallDirs)

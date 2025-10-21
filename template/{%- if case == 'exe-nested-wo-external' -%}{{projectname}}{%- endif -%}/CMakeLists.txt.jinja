@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.23...3.28 FATAL_ERROR)
 
 project({{projectname}} LANGUAGES C)
 
+option({{ exename | upper }}_WITH_ASAN "Whether to enable address sanitizing for executable '{{ exename }}'" OFF)
+
 set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
 
 if (APPLE)
