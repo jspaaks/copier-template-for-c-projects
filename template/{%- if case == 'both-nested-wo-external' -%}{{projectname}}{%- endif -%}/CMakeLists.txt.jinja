@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.23...3.28 FATAL_ERROR)
 
 project(project LANGUAGES C)
 
+include(GenerateExportHeader)
 include(GNUInstallDirs)
 
 set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)

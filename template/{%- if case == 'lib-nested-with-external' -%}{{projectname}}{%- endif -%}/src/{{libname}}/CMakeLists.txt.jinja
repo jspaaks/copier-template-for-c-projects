@@ -1,6 +1,14 @@
 add_library(tgt_lib_{{ libname }} SHARED)
 
+set_property(TARGET tgt_lib_{{ libname }} PROPERTY C_VISIBILITY_PRESET hidden)
 set_property(TARGET tgt_lib_{{ libname }} PROPERTY OUTPUT_NAME {{ libname }})
+set_property(TARGET tgt_lib_{{ libname }} PROPERTY VISIBILITY_INLINES_HIDDEN YES)
+
+generate_export_header(
+    tgt_lib_{{ libname }}
+    BASE_NAME {{ libname }}
+    EXPORT_FILE_NAME ${CMAKE_BINARY_DIR}/include/{{ libname }}/export.h
+)
 
 target_compile_definitions(
     tgt_lib_{{ libname }}
@@ -55,14 +63,16 @@ target_sources(
         subtraction.c
     PUBLIC
         FILE_SET fset_lib_{{ libname }}_headers
-        TYPE HEADERS
-        BASE_DIRS
-            ../../include
-        FILES
-            ../../include/{{ libname }}/addition.h
-            ../../include/{{ libname }}/division.h
-            ../../include/{{ libname }}/multiplication.h
-            ../../include/{{ libname }}/subtraction.h
+            TYPE HEADERS
+            BASE_DIRS
+                ../../include
+                ${CMAKE_BINARY_DIR}/include  # contains cmake-generated file
+            FILES
+                ../../include/{{ libname }}/addition.h
+                ../../include/{{ libname }}/division.h
+                ../../include/{{ libname }}/multiplication.h
+                ../../include/{{ libname }}/subtraction.h
+                ${CMAKE_BINARY_DIR}/include/{{ libname }}/export.h  # cmake-generated file
 )
 
 install(TARGETS tgt_lib_{{ libname }}

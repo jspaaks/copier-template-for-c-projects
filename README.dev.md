@@ -46,26 +46,3 @@ workflow [`.github/workflows/testing.yml`](.github/workflows/testing.yml).
 # Live editing / rendering of Jinja templates
 
 https://j2live.ttl255.com/
-
-## Other stuff
-
-### checks
-
-1. tests pass
-
-### results
-
-|      |        |               | checked    | state   |
-| ---  | ---    | ---           | ---        | ---     |
-| both | flat   | with-external | 2024-07-22 | ok      |
-| both | flat   | wo-external   | 2024-07-22 | ok      |
-| both | nested | with-external | 2024-07-22 | ok      |
-| both | nested | wo-external   | 2024-07-22 | ok      |
-| exe  | flat   | with-external | 2024-07-22 | ok      |
-| exe  | flat   | wo-external   | 2024-07-22 | ok      |
-| exe  | nested | with-external | 2024-07-22 | ok      |
-| exe  | nested | wo-external   | 2024-07-22 | ok      |
-| lib  | flat   | with-external | 2024-07-22 | ok      |
-| lib  | flat   | wo-external   | 2024-07-22 | ok      |
-| lib  | nested | with-external | 2024-07-22 | ok      |
-| lib  | nested | wo-external   | 2024-07-22 | ok      |
