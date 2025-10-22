@@ -23,7 +23,7 @@ target_compile_options(
         -fPIE
         $<$<CONFIG:Debug>:-g>
         $<$<CONFIG:Debug>:-O0>
-        $<$<CONFIG:Debug>:-fsanitize=address>
+        $<$<BOOL:${{ '{' }}{{ exename | upper }}_WITH_ASAN{{ '}' }}>:-fsanitize=address>
         $<$<CONFIG:Release>:-Werror>
 )
 
@@ -36,6 +36,7 @@ target_include_directories(
 target_link_libraries(
     tgt_exe_{{ exename }}
     PRIVATE
+        m
         tgt_lib_their
 )
 
@@ -43,7 +44,7 @@ target_link_options(
     tgt_exe_{{ exename }}
     PRIVATE
         -pie
-        $<$<CONFIG:Debug>:-fsanitize=address>
+        $<$<BOOL:${{ '{' }}{{ exename | upper }}_WITH_ASAN{{ '}' }}>:-fsanitize=address>
 )
 
 target_sources(
