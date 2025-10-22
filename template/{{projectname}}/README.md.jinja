@@ -87,6 +87,13 @@ $ cmake -D{{libname | upper}}_BUILD_TESTING=ON ..
 
 ## Address sanitizing
 
+To use address sanitizing, you may need to install an extra dependency, e.g. like so:
+
+```console
+# (Ubuntu)
+sudo apt install libasan8
+```
+
 {% if producesexe -%}
 The CMake variable `{{ exename | upper }}_WITH_ASAN` can be used to enable address sanitizing on the
 executable `{{ exename }}`. `{{ exename | upper }}_WITH_ASAN`'s value is `OFF` by default. To
