@@ -10,7 +10,7 @@ on:
 jobs:
 
   testing:
-    name: py${{ matrix.python-version }}-${{ matrix.compiler }}-${{ matrix.generator }}-{{ matrix.build_type }}
+    name: py${{ matrix.python-version }}-${{ matrix.compiler }}-${{ matrix.generator }}-${{ matrix.build_type }}
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
