@@ -7,9 +7,11 @@ option({{ libname | upper }}_WITH_ASAN "Whether to enable address sanitizing for
 
 {% if add_test -%}
 include(CTest)
-include(GNUInstallDirs)
 {%- endif %}
 include(GenerateExportHeader)
+{% if add_test or add_assets -%}
+include(GNUInstallDirs)
+{%- endif %}
 
 set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
 
