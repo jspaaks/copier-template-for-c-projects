@@ -85,6 +85,30 @@ $ cmake -D{{libname | upper}}_BUILD_TESTING=ON ..
 
 {% endif -%}
 
+## Address sanitizing
+
+{% if producesexe -%}
+The CMake variable `{{ exename | upper }}_WITH_ASAN` can be used to enable address sanitizing on the
+executable `{{ exename }}`. `{{ exename | upper }}_WITH_ASAN`'s value is `OFF` by default. To
+enable it, configure the build via `ccmake ..`, or via a command line argument with:
+
+```console
+$ cmake -D{{exename | upper}}_WITH_ASAN=ON ..
+```
+
+{% endif -%}
+
+{% if produceslib -%}
+The CMake variable `{{ libname | upper }}_WITH_ASAN` can be used to enable address sanitizing on the
+library `lib{{ libname }}.so`. `{{ libname | upper }}_WITH_ASAN`'s value is `OFF` by default. To
+enable it, configure the build via `ccmake ..`, or via a command line argument with:
+
+```console
+$ cmake -D{{libname | upper}}_WITH_ASAN=ON ..
+```
+
+{% endif -%}
+
 {% if add_clang_format -%}
 
 ## `clang-format`
