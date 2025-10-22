@@ -130,11 +130,10 @@ Next, build the libary / executable / test executable:
 $ cmake --build .
 ```
 
-Then install (by default, to `calculator-project/build/dist`, can be configured by
-setting `CMAKE_INSTALL_PREFIX` when calling `cmake`):
+Then install to the value of prefix (here, `calculator-project/build/dist`):
 
 ```console
-$ cmake --install .
+$ cmake --install . --prefix dist/
 ```
 
 If you configured your project to build an executable, you can run it with:

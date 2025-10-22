@@ -18,7 +18,7 @@ $ cmake ..
 $ cmake --build .
 
 # install the project to <repo>/build/dist
-$ cmake --install .
+$ cmake --install . --prefix dist/
 {% if producesexe %}
 # run the program to see if it works
 $ ./dist/bin/{{ exename }}
@@ -62,12 +62,6 @@ Run the tests with
 
 ```console
 $ ./dist/bin/test_{{ libname }} -j1 --verbose
-```
-
- or simply, with:
-
-```console
-$ ctest
 ```
 
 The CMake variable `{{ libname | upper }}_BUILD_TESTING` can be used to build the

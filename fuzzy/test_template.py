@@ -212,7 +212,7 @@ def test_generated_tests_and_exe(generated):
     path_testexe = (path_cwd / "dist" / "bin" / f"test_{libname} -j1 --verbose").relative_to(path_cwd)
     cmd_cmake_generate = f"cmake -DCMAKE_C_COMPILER={ compiler } -G { generator } .."
     cmd_cmake_build = "cmake --build ."
-    cmd_cmake_install = "cmake --install ."
+    cmd_cmake_install = "cmake --install . --prefix dist/"
 
     cmds = [
         (
@@ -265,7 +265,7 @@ def test_generated_abi(generated):
 
         cmd_cmake_generate = f"cmake -DCMAKE_C_COMPILER={ compiler } -G { generator } .."
         cmd_cmake_build = "cmake --build ."
-        cmd_cmake_install = "cmake --install ."
+        cmd_cmake_install = "cmake --install . --prefix dist/"
         cmd_objdump = f"test $(objdump -t { path_lib } | grep 'g     F' | wc -l) -eq { 4 if add_external else 2}"
 
         cmds = [
