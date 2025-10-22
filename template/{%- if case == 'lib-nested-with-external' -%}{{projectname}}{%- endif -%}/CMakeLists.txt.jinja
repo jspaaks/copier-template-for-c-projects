@@ -8,7 +8,9 @@ option({{ libname | upper }}_WITH_ASAN "Whether to enable address sanitizing for
 include(CTest)
 {%- endif %}
 include(GenerateExportHeader)
+{% if add_test or add_assets -%}
 include(GNUInstallDirs)
+{%- endif %}
 
 set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
 
@@ -16,10 +18,6 @@ if (APPLE)
     list(APPEND CMAKE_INSTALL_RPATH @loader_path/../lib)
 elseif(UNIX)
     list(APPEND CMAKE_INSTALL_RPATH $ORIGIN/../lib)
-endif()
-
-if (NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Debug)
 endif()
 
 {% if add_test -%}
