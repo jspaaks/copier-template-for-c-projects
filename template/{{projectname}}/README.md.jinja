@@ -18,7 +18,7 @@ $ cmake ..
 $ cmake --build .
 
 # install the project to <repo>/build/dist
-$ cmake --install .
+$ cmake --install . --prefix dist
 {% if producesexe %}
 # run the program to see if it works
 $ ./dist/bin/{{ exename }}
