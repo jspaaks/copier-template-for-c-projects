@@ -23,10 +23,6 @@ if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug)
 endif()
 
-if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-    set_property(CACHE CMAKE_INSTALL_PREFIX PROPERTY VALUE "${CMAKE_BINARY_DIR}/dist")
-endif()
-
 {% if add_test -%}
 if (CMAKE_PROJECT_NAME)
     # I'm the top-most project, set {{ libname | upper }}_BUILD_TESTING like BUILD_TESTING by default
