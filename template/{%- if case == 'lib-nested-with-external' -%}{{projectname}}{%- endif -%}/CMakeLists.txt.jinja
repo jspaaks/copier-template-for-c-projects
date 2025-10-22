@@ -4,6 +4,9 @@ project({{projectname}} LANGUAGES C)
 
 option({{ libname | upper }}_WITH_ASAN "Whether to enable address sanitizing for library 'lib{{ libname }}.so'" OFF)
 
+{% if add_test -%}
+include(CTest)
+{%- endif %}
 include(GenerateExportHeader)
 include(GNUInstallDirs)
 
@@ -23,24 +26,22 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set_property(CACHE CMAKE_INSTALL_PREFIX PROPERTY VALUE "${CMAKE_BINARY_DIR}/dist")
 endif()
 
+{% if add_test -%}
+if (CMAKE_PROJECT_NAME)
+    # I'm the top-most project, set {{ libname | upper }}_BUILD_TESTING like BUILD_TESTING by default
+    option({{ libname | upper }}_BUILD_TESTING "Whether to build the lib{{ libname }} tests" ${BUILD_TESTING})
+else()
+    # I'm not the top-most project, set {{ libname | upper }}_BUILD_TESTING default OFF
+    option({{ libname | upper }}_BUILD_TESTING "Whether to build the lib{{ libname }} tests" OFF)
+endif()
+{%- endif %}
+
 {% if add_assets -%}
 add_subdirectory(assets)
 {% endif -%}
 add_subdirectory({{ external_directory }}/their)
 add_subdirectory(src/{{ libname }})
 {% if add_test -%}
-include(CTest)  # defines BUILD_TESTING
-if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-    # I'm the top-most project
-    option({{ libname | upper }}_BUILD_TESTING "Whether to build the lib{{ libname }} tests" ${BUILD_TESTING})
-    if ((BUILD_TESTING AND NOT {{ libname | upper }}_BUILD_TESTING) OR
-        (NOT BUILD_TESTING AND {{ libname | upper }}_BUILD_TESTING))
-        message(WARNING, " will use more specific -D{{ libname | upper }}_BUILD_TESTING={{ "${" }}{{ libname | upper }}_BUILD_TESTING{{ "}" }} over -DBUILD_TESTING={{ "${" }}BUILD_TESTING{{ "}" }}")
-    endif()
-else()
-    # I'm not the top-most project, use {{ libname | upper }}_BUILD_TESTING as-is
-    option({{ libname | upper }}_BUILD_TESTING "Whether to build the lib{{ libname }} tests" OFF)
-endif()
 if ({{ libname | upper }}_BUILD_TESTING)
     add_subdirectory(test/{{ libname }})
 endif()
