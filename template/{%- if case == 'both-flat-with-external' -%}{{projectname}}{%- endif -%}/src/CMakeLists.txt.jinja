@@ -63,7 +63,6 @@ add_library(tgt_lib_{{ libname }} SHARED)
 
 set_property(TARGET tgt_lib_{{ libname }} PROPERTY C_VISIBILITY_PRESET hidden)
 set_property(TARGET tgt_lib_{{ libname }} PROPERTY OUTPUT_NAME {{ libname }})
-set_property(TARGET tgt_lib_{{ libname }} PROPERTY VISIBILITY_INLINES_HIDDEN YES)
 
 generate_export_header(
     tgt_lib_{{ libname }}
